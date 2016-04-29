@@ -1,12 +1,13 @@
 import tkinter as tk
 import time
+import tkinter.messagebox as tkm
 
 class Tamagotchi:
     
     def __init__(self):
         
         self.window = tk.Tk()
-        self.window.geometry("400x450+100+100")
+        self.window.geometry("400x470+100+100")
         self.window.title("Tamagotchi")
         
         # Geometria da página
@@ -70,6 +71,24 @@ class Tamagotchi:
         self.fun = 100
         self.sleep = 100
         self.days = 0
+        
+# ---------------------------------------------------
+# Tempo
+        
+    def tempo_ao_desligar(self):
+        
+        # Quando desligar:
+        desligou = time.time()
+        
+        return desligou
+    
+    def tempo_ao_ligar(self):
+        
+        # Quando ligar:
+        ligou = time.time()
+        tkm.showinfo(title = "Em quanto você esteve fora...", message = "...")
+        
+        return ligou
 
 # ---------------------------------------------------
 # Updates:
