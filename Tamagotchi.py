@@ -1,3 +1,6 @@
+
+###http://stackoverflow.com/questions/13215215/python-tkinter-animation###
+
 import tkinter as tk
 import time
 import tkinter.messagebox as tkm
@@ -9,6 +12,8 @@ class Tamagotchi:
         self.window = tk.Tk()
         self.window.geometry("400x470+100+100")
         self.window.title("Tamagotchi")
+        
+
         
         # Geometria da página
         self.window.rowconfigure(0, minsize = 50)
@@ -23,7 +28,7 @@ class Tamagotchi:
         
         # Labels
         self.label_dia = tk.Label()
-        self.label_dia.configure(text = "Dias de vida:\n0")
+        self.label_dia.configure(text = "Dias de vida:\n {0}" .format(self.update_day()))
         self.label_dia.grid(row = 0, column = 0, columnspan = 4)
         
         self.label_fome = tk.Label()
@@ -98,6 +103,11 @@ class Tamagotchi:
     
     
     def update_day(self):
+#        day = 0
+#        for i in range (0,1000):
+#             day = i
+#        self.after(1000, self.update_day)
+#        return day
         pass
     
 
