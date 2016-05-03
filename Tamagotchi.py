@@ -12,6 +12,8 @@ class Tamagotchi:
         self.window = tk.Tk()
         self.window.geometry("400x470+100+100")
         self.window.title("Tamagotchi")
+        self.window.resizable(False,False)
+        
         
 
         
