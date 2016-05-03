@@ -10,8 +10,16 @@ class Tamagotchi:
     def __init__(self):
         
         self.window = tk.Tk()
-        self.window.geometry("400x470+100+100")
+        self.window.geometry("300x450+100+100")
         self.window.title("Tamagotchi")
+        self.window.resizable(False,False)
+        self.window.protocol("WM_DELETE_WINDOW", self.sair)
+        
+        self.canvas = tk.Canvas(self.window,width=192,height=192)
+        self.canvas.grid(row = 2 ,column = 0,columnspan = 3)
+        self.v = "squirtle_S"
+        self.app()
+        
         
 
         
@@ -24,7 +32,7 @@ class Tamagotchi:
         self.window.columnconfigure(0, minsize = 100)
         self.window.columnconfigure(1, minsize = 100)
         self.window.columnconfigure(2, minsize = 100)
-        self.window.columnconfigure(3, minsize = 100)
+
         
         # Labels
         self.label_dia = tk.Label()
@@ -39,19 +47,16 @@ class Tamagotchi:
         self.label_saude.configure(text = "Limpeza:\n100")
         self.label_saude.grid(row = 1, column = 1)
         
-        self.label_diversao = tk.Label()
-        self.label_diversao.configure(text = "Diversão:\n100")
-        self.label_diversao.grid(row = 1, column = 2)
         
         self.label_sono = tk.Label()
         self.label_sono.configure(text = "Sono:\n100")
-        self.label_sono.grid(row = 1, column = 3)
+        self.label_sono.grid(row = 1, column = 2)
         
         # Imagem
-        self.imagem = tk.PhotoImage(file = "normal.gif")
-        self.label_imagem = tk.Label()
-        self.label_imagem.configure(image = self.imagem)
-        self.label_imagem.grid(row = 2, column = 0, columnspan = 4)
+#        self.imagem = tk.PhotoImage(file = "raikou.gif")
+#        self.label_imagem = tk.Label()
+#        self.label_imagem.configure(image = self.imagem)
+#        self.label_imagem.grid(row = 2, column = 0, columnspan = 4)
         
         # Botões
         self.button_feed = tk.Button(self.window, text = "Alimentar", height = 1, width = 5)
@@ -62,12 +67,9 @@ class Tamagotchi:
         self.button_clean.grid(row = 3, column = 1, sticky = "nsew")
         self.button_clean.configure(command = self.update_clean)
         
-        self.button_fun = tk.Button(self.window, text = "Brincar", height = 1, width = 5)
-        self.button_fun.grid(row = 3, column = 2, sticky = "nsew")
-        self.button_fun.configure(command = self.update_fun)
         
         self.button_sleep = tk.Button(self.window, text = "Dormir", height = 1, width = 5)
-        self.button_sleep.grid(row = 3, column = 3, sticky = "nsew")
+        self.button_sleep.grid(row = 3, column = 2, sticky = "nsew")
         self.button_sleep.configure(command = self.update_sleep)
         
         # Atributos do Tamagotchi
@@ -159,7 +161,206 @@ class Tamagotchi:
      
     def iniciar(self):
         self.window.mainloop()
+    
+    def sair(self):
+        print("oi, estou saindo")
+        self.window.quit()
+     
+#    def animação_squirtle(self):
+#        self.lista = []
+#        self.listagif = []
+#        v = self.v
+#        for i in range(100000000000000000000000):
+#            for i in range (1,32):
+#                if v == "charmander_A":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "charmander_F":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "charmander_S":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "charmander_B":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#            for k in self.lista:
+#                self.listagif.append(k)
+#            for j in self.listagif:
+#                self.canvas.create_image(192/2,192/2,image = j)
+#                self.canvas.update()
+#                time.sleep(0.02)               
+            
+#    def animação_squirtle(self):
+#        self.lista = []
+#        self.listagif = []
+#        v = self.v
+#        for i in range(100000000000000000000000):
+#            for i in range (1,32):                
+#                elif v == "charmeleon_A":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "charmeleon_F":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "charmeleon_S":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "charmeleon_B":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#            for k in self.lista:
+#                self.listagif.append(k)
+#            for j in self.listagif:
+#                self.canvas.create_image(192/2,192/2,image = j)
+#                self.canvas.update()
+#                time.sleep(0.02)               
+            
+#    def animação_squirtle(self):
+#        self.lista = []
+#        self.listagif = []
+#        v = self.v
+#        for i in range(100000000000000000000000):
+#            for i in range (1,32):
+#                elif v == "charizard_A":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "charizard_F":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "charizard_S":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "charizard_B":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#            for k in self.lista:
+#                self.listagif.append(k)
+#            for j in self.listagif:
+#                self.canvas.create_image(192/2,192/2,image = j)
+#                self.canvas.update()
+#                time.sleep(0.02)   
+                
+            
+    def animação_squirtle(self):
+        self.lista = []
+        self.listagif = []
+        v = self.v
+        
+        for i in range (1,32):
+            if v == "squirtle_A":
+                self.lista.append(tk.PhotoImage(file ='Squirtle/squirtleA%s.gif'%i))
+            elif v == "squirtle_F":
+                self.lista.append(tk.PhotoImage(file ='Squirtle_F/SquirtleF%s.gif'%i))
+            elif v == "squirtle_S":
+                self.lista.append(tk.PhotoImage(file ='Squirtle_S/SquirtleS%s.gif'%i))
+            elif v == "squirtle_B":
+                self.lista.append(tk.PhotoImage(file ='Squirtle_B/SquirtleB%s.gif'%i))
+        for k in self.lista:
+            self.listagif.append(k)
+        for j in self.listagif:
+            self.canvas.create_image(192/2,192/2,image = j)
+            self.canvas.update()
+            time.sleep(0.02)
+        self.window.after(0, self.animação_squirtle)
 
+                    
+#    def animação_wartortle(self):
+#        self.lista = []
+#        self.listagif = []
+#        v = self.v
+#        for i in range(100000000000000000000000):
+#            for i in range (1,32):
+#                if v == "wartortle_A":
+#                    self.lista.append(tk.PhotoImage(file ='Squirtle/wartortleA%s.gif'%i))
+#                elif v == "wartortle_F":
+#                    self.lista.append(tk.PhotoImage(file ='Squirtle_F/WartortleF%s.gif'%i))
+#                elif v == "wartortle_S":
+#                    self.lista.append(tk.PhotoImage(file ='Squirtle_S/WartortleS%s.gif'%i))
+#                elif v == "wartortle_B":
+#                    self.lista.append(tk.PhotoImage(file ='Squirtle_B/WartortleB%s.gif'%i))
+#            for k in self.lista:
+#                self.listagif.append(k)
+#            for j in self.listagif:
+#                self.canvas.create_image(192/2,192/2,image = j)
+#                self.canvas.update()
+#                time.sleep(0.02)   
+#                    
+#    def animação_blastoise(self):
+#        self.lista = []
+#        self.listagif = []
+#        v = self.v
+#        
+#        for i in range (1,32):
+#            if v == "blastoise_A":
+#                self.lista.append(tk.PhotoImage(file ='Squirtle/BlastoiseA%s.gif'%i))
+#            elif v == "blastoise_F":
+#                self.lista.append(tk.PhotoImage(file ='Squirtle_F/BlastoiseF%s.gif'%i))
+#            elif v == "blastoise_S":
+#                self.lista.append(tk.PhotoImage(file ='Squirtle_S/BlastoiseF%s.gif'%i))
+#            elif v == "blastoise_B":
+#                self.lista.append(tk.PhotoImage(file ='Squirtle_B/BlastoiseB%s.gif'%i))
+#        for k in self.lista:
+#            self.listagif.append(k)
+#        for j in self.listagif:
+#            self.canvas.create_image(192/2,192/2,image = j)
+#            self.canvas.update()
+#            time.sleep(0.02)   
+#                    
+#    def animação_squirtle(self):
+#        self.lista = []
+#        self.listagif = []
+#        v = self.v
+#        for i in range(100000000000000000000000):
+#            for i in range (1,32):                    
+#                elif v == "bulbasaur_A":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "bulbasaur_F":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "bulbasaur_S":    
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "bulbasaur_B":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#            for k in self.lista:
+#                self.listagif.append(k)
+#            for j in self.listagif:
+#                self.canvas.create_image(192/2,192/2,image = j)
+#                self.canvas.update()
+#                time.sleep(0.02)   
+                
+#    def animação_squirtle(self):
+#        self.lista = []
+#        self.listagif = []
+#        v = self.v
+#        for i in range(100000000000000000000000):
+#            for i in range (1,32):
+#                elif v == "ivysaur_A":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "ivysaur_F":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "ivysaur_S":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "ivysaur_B":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#            for k in self.lista:
+#                self.listagif.append(k)
+#            for j in self.listagif:
+#                self.canvas.create_image(192/2,192/2,image = j)
+#                self.canvas.update()
+#                time.sleep(0.02)   
+                
+                
+#    def animação_squirtle(self):
+#        self.lista = []
+#        self.listagif = []
+#        v = self.v
+#        for i in range(100000000000000000000000):
+#            for i in range (1,32):
+#                elif v == "venusaur_A":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "venusaur_F":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "venusaur_S":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#                elif v == "venusaur_B":
+#                    self.lista.append(tk.PhotoImage(file = .gif'%i))
+#
+#            for k in self.lista:
+#                self.listagif.append(k)
+#            for j in self.listagif:
+#                self.canvas.create_image(192/2,192/2,image = j)
+#                self.canvas.update()
+#                time.sleep(0.02)
+    def app(self):
+        self.window.after(0, self.animação_squirtle)           
      
 tamag = Tamagotchi()
 tamag.iniciar()
