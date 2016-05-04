@@ -217,6 +217,7 @@ class Tamagotchi:
     def animação(self):
         self.lista = []
         self.listagif = []
+        self.listaIn = []
         v = self.v
         
         for i in range (1,32):
@@ -300,8 +301,9 @@ class Tamagotchi:
 #                self.lista.append(tk.PhotoImage(file ='Venusar_S/venusaurF%s.gif'%i))
 #            elif v == "venusar_B":
 #                self.lista.append(tk.PhotoImage(file ='Venusar_B/venusaurB%s.gif'%i)) 
-
-        for k in self.lista:
+        for z in self.lista[::-1]:
+            self.listaIn.append(z)
+        for k in self.listaIn:
             self.listagif.append(k)
         for j in self.listagif:
             self.canvas.create_image(192/2,192/2,image = j)
