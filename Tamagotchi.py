@@ -9,13 +9,13 @@ class Tamagotchi:
         self.window = tk.Tk()
         self.window.geometry("300x450+100+100")
         self.window.title("Tamagotchi")
-        self.window.resizable(False,False)
+        self.window.configure(background = 'white')
+        self.window.resizable(False, False)
         #self.window.protocol("WM_DELETE_WINDOW", self.sair)
         
-        self.canvas = tk.Canvas(self.window,width=192,height=192)
-        self.canvas.grid(row = 2 ,column = 0,columnspan = 3)
+        self.canvas = tk.Canvas(self.window, width = 192, height = 192)
+        self.canvas.grid(row = 2 , column = 0, columnspan = 3)
         self.v = "squirtle_S"
-
         
         # Atributos do Tamagotchi
         self.hunger = 101
@@ -37,36 +37,40 @@ class Tamagotchi:
         
         # Labels
         self.label_dia = tk.Label()
+        self.label_dia.configure(background = 'white')
         self.label_dia.grid(row = 0, column = 0, columnspan = 3)
         
         self.label_fome = tk.Label()
+        self.label_fome.configure(background = 'white')
         self.label_fome.grid(row = 1, column = 0)
         
         self.label_saude = tk.Label()
+        self.label_saude.configure(background = 'white')
         self.label_saude.grid(row = 1, column = 1)
                 
         self.label_sono = tk.Label()
+        self.label_sono.configure(background = 'white')
         self.label_sono.grid(row = 1, column = 2)
         
-
-                # Botões
+        # Botões
         self.button_feed = tk.Button(self.window, text = "Alimentar", height = 1, width = 5)
         self.button_feed.grid(row = 3, column = 0, sticky = "nsew")
-        self.button_feed.configure(command = self.update_hunger)
+        self.button_feed.configure(command = self.update_hunger, background = 'white')
         
         self.button_clean = tk.Button(self.window, text = "Limpar", height = 1, width = 5)
         self.button_clean.grid(row = 3, column = 1, sticky = "nsew")
-        self.button_clean.configure(command = self.update_clean)      
+        self.button_clean.configure(command = self.update_clean, background = 'white')      
         
         self.button_sleep = tk.Button(self.window, text = "Dormir", height = 1, width = 5)
         self.button_sleep.grid(row = 3, column = 2, sticky = "nsew")
-        self.button_sleep.configure(command = self.update_sleep)
+        self.button_sleep.configure(command = self.update_sleep, background = 'white')
         
         self.window.after(0, self.get_hungry)
         self.window.after(0, self.get_sleepy)
         self.window.after(0, self.get_dirty)
         self.window.after(0, self.pass_day)
         self.window.after(0, self.animação)
+        
 # ---------------------------------------------------
 # Tempo
         
@@ -86,9 +90,7 @@ class Tamagotchi:
         return ligou
 
 # ---------------------------------------------------
-# Updates:
-    
-    
+# Updates:      
     
     def update_hunger(self):
         
