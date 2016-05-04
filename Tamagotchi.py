@@ -53,15 +53,18 @@ class Tamagotchi:
         self.label_sono.grid(row = 1, column = 2)
         
         # Botões
-        self.button_feed = tk.Button(self.window, text = "Alimentar", height = 1, width = 5)
+        self.icone_comer = tk.PhotoImage(file = "comer_icone.png")
+        self.button_feed = tk.Button(self.window, image = self.icone_comer, height = 1, width = 5)
         self.button_feed.grid(row = 3, column = 0, sticky = "nsew")
         self.button_feed.configure(command = self.update_hunger, background = 'white')
         
-        self.button_clean = tk.Button(self.window, text = "Limpar", height = 1, width = 5)
+        self.icone_limpar = tk.PhotoImage(file = "banho_icone.png")
+        self.button_clean = tk.Button(self.window, image = self.icone_limpar, height = 1, width = 5)
         self.button_clean.grid(row = 3, column = 1, sticky = "nsew")
         self.button_clean.configure(command = self.update_clean, background = 'white')      
         
-        self.button_sleep = tk.Button(self.window, text = "Dormir", height = 1, width = 5)
+        self.icone_dormir = tk.PhotoImage(file = "dormir_icone.png")
+        self.button_sleep = tk.Button(self.window, image = self.icone_dormir, height = 1, width = 5)
         self.button_sleep.grid(row = 3, column = 2, sticky = "nsew")
         self.button_sleep.configure(command = self.update_sleep, background = 'white')
         
