@@ -145,30 +145,33 @@ class Tamagotchi:
                     
     
     def get_hungry(self):
+        if self.hunger != 0:
             
-        self.hunger -= 1
+            self.hunger -= 1
             
-        self.label_fome.configure(text = "Fome:\n{0}".format(self.hunger))
-            
-        self.window.after(1000, self.get_hungry)
+            self.label_fome.configure(text = "Fome:\n{0}".format(self.hunger))
+                
+            self.window.after(1000, self.get_hungry)
         
         
     def get_sleepy(self):
+        if self.sleep != 0:
         
-        self.sleep -= 1
-            
-        self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
-            
-        self.window.after(1000, self.get_sleepy)
+            self.sleep -= 1
+                
+            self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
+                
+            self.window.after(1000, self.get_sleepy)
     
     
     def get_dirty(self):
+        if self.clean != 0:
         
-        self.clean -= 1
+            self.clean -= 1
             
-        self.label_saude.configure(text = "Limpeza:\n{0}".format(self.clean))
+            self.label_saude.configure(text = "Limpeza:\n{0}".format(self.clean))
             
-        self.window.after(1000, self.get_dirty)
+            self.window.after(1000, self.get_dirty)
     
     
     def pass_day(self):
