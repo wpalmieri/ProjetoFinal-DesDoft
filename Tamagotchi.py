@@ -5,7 +5,7 @@ import tkinter.messagebox as tkm
 class Tamagotchi:
     
     def __init__(self):
-        
+
         self.window = tk.Tk()
         self.window.geometry("300x450+100+100")
         self.window.title("Tamagotchi")
@@ -15,7 +15,7 @@ class Tamagotchi:
         
         self.canvas = tk.Canvas(self.window, width = 192, height = 192)
         self.canvas.grid(row = 2 , column = 0, columnspan = 3)
-        self.v = "squirtle_S"
+        self.v = "squirtle_A"
         
         # Atributos do Tamagotchi
         self.hunger = 101
