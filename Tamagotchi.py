@@ -1,5 +1,6 @@
 import tkinter as tk
 import time
+from datetime import datetime
 import tkinter.messagebox as tkm
 
 class Tamagotchi:
@@ -11,7 +12,7 @@ class Tamagotchi:
         self.window.title("Tamagotchi")
         self.window.configure(background = 'white')
         self.window.resizable(False, False)
-        #self.window.protocol("WM_DELETE_WINDOW", self.sair)
+        self.window.protocol("WM_DELETE_WINDOW", self.sair)
         
         self.canvas = tk.Canvas(self.window, width = 192, height = 192)
         self.canvas.grid(row = 2 , column = 0, columnspan = 3)
@@ -80,17 +81,19 @@ class Tamagotchi:
     def tempo_ao_desligar(self):
         
         # Quando desligar:
-        desligou = time.time()
-        
-        return desligou
+#        desligou = time.time()
+#        
+#        return desligou
+        pass
     
     def tempo_ao_ligar(self):
         
         # Quando ligar:
-        ligou = time.time()
-        tkm.showinfo(title = "Em quanto você esteve fora...", message = "...")
-        
-        return ligou
+#        ligou = time.time()
+#        tkm.showinfo(title = "Em quanto você esteve fora...", message = "...")
+#        
+#        return ligou
+        pass
 
 # ---------------------------------------------------
 # Updates:      
@@ -145,6 +148,7 @@ class Tamagotchi:
                     
     
     def get_hungry(self):
+        
         if self.hunger != 0:
             
             self.hunger -= 1
@@ -155,6 +159,7 @@ class Tamagotchi:
         
         
     def get_sleepy(self):
+        
         if self.sleep != 0:
         
             self.sleep -= 1
@@ -165,6 +170,7 @@ class Tamagotchi:
     
     
     def get_dirty(self):
+        
         if self.clean != 0:
         
             self.clean -= 1
@@ -216,9 +222,17 @@ class Tamagotchi:
     def iniciar(self):
         self.window.mainloop()
     
-#    def sair(self):
-#        print("oi, estou saindo")
-#        self.window.quit()
+    def sair(self):
+        
+        horario = datetime.now().time()
+        
+        save = open('Save', 'a')
+        save.write("{0}, {1}, {2}, {3}, {4}\n".format(horario, self.days, self.hunger, 
+                   self.clean, self.sleep))
+        save.close()
+        
+        self.window.quit()
+        
      
     def animação(self):
         self.lista = []
