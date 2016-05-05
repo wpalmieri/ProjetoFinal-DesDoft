@@ -1,7 +1,7 @@
 import tkinter as tk
 import time
 from datetime import datetime
-import tkinter.messagebox as tkm
+#import tkinter.messagebox as tkm
 
 class Tamagotchi:
     
@@ -18,12 +18,26 @@ class Tamagotchi:
         self.canvas.grid(row = 2 , column = 0, columnspan = 3)
         self.v = "squirtle_A"
         
+        # Pegando últimos status
+
+        self.arquivo = open("Save", "r")
+        self.lista = self.arquivo.readlines()
+        self.last_line = self.lista[-1]
+        self.arquivo.close()
+            
+        self.str_split = self.last_line.split(",")
+        
+        self.last_timetable = self.str_split[0]
+        self.last_day = int(self.str_split[1])
+        self.last_hunger = int(self.str_split[2])
+        self.last_clean = int(self.str_split[3])
+        self.last_sleep = int(self.str_split[4])
+        
         # Atributos do Tamagotchi
-        self.hunger = 101
-        self.clean = 101
-        self.fun = 101
-        self.sleep = 101
-        self.days = 0
+        self.hunger = self.last_hunger
+        self.clean = self.last_clean
+        self.sleep = self.last_sleep
+        self.days = self.last_day
         
         # Geometria da página
         self.window.rowconfigure(0, minsize = 50)
@@ -217,7 +231,7 @@ class Tamagotchi:
         
         
 # --------------------------------------------------
-# Iniciar     
+# Iniciar e sair     
      
     def iniciar(self):
         self.window.mainloop()
@@ -227,12 +241,14 @@ class Tamagotchi:
         horario = datetime.now().time()
         
         save = open('Save', 'a')
-        save.write("{0}, {1}, {2}, {3}, {4}\n".format(horario, self.days, self.hunger, 
+        save.write("\n{0}, {1}, {2}, {3}, {4}".format(horario, self.days, self.hunger, 
                    self.clean, self.sleep))
         save.close()
         
         self.window.quit()
         
+#------------------------------------------------------  
+# Animação
      
     def animação(self):
         self.lista = []
