@@ -1,7 +1,7 @@
 import tkinter as tk
 import time
 from datetime import datetime
-#import tkinter.messagebox as tkm
+from tkinter import messagebox
 
 class Tamagotchi:
     
@@ -118,7 +118,7 @@ class Tamagotchi:
             
             self.hunger = 101
             
-        elif self.hunger >= 100 or self.hunger <= 0:
+        elif self.hunger >= 100:
             
             return None
             
@@ -133,7 +133,7 @@ class Tamagotchi:
             
             self.clean = 101
             
-        elif self.clean >= 100 or self.clean <= 0:
+        elif self.clean >= 100:
             
             return None
             
@@ -141,26 +141,22 @@ class Tamagotchi:
             
             self.clean += 10
     
-    
-    def update_fun(self):
-        pass
-    
-    
+        
     def update_sleep(self):
         
         if self.sleep >= 90:
             
             self.sleep = 101
             
-        elif self.sleep >= 100 or self.sleep <= 0:
+        elif self.sleep >= 100:
             
             return None
             
         else:
             
-            self.sleep += 10
+            self.sleep = 100
                     
-    
+#botões    
     def get_hungry(self):
         
         if self.hunger != 0:
@@ -169,7 +165,13 @@ class Tamagotchi:
             
             self.label_fome.configure(text = "Fome:\n{0}".format(self.hunger))
                 
-            self.window.after(1000, self.get_hungry)
+        else:
+            self.label_fome.configure(text = "Fome:\n{0}".format(self.hunger))
+            self.morto()
+            
+            
+            
+        self.window.after(1000, self.get_hungry)
         
         
     def get_sleepy(self):
@@ -179,8 +181,11 @@ class Tamagotchi:
             self.sleep -= 1
                 
             self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
-                
-            self.window.after(1000, self.get_sleepy)
+        else:
+            self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
+            
+            
+        self.window.after(1000, self.get_sleepy)
     
     
     def get_dirty(self):
@@ -191,7 +196,10 @@ class Tamagotchi:
             
             self.label_saude.configure(text = "Limpeza:\n{0}".format(self.clean))
             
-            self.window.after(1000, self.get_dirty)
+        else:
+            self.label_saude.configure(text = "Limpeza:\n{0}".format(self.clean))
+           
+        self.window.after(1000, self.get_dirty)
     
     
     def pass_day(self):
@@ -206,29 +214,16 @@ class Tamagotchi:
 # ---------------------------------------------------  
 # Consequências:
     
-    def vivo_morto(self):
-        
-        if self.hunger <= 0:
-            pass
+    def morto(self):
+        tk.messagebox.showinfo ('Morreu', 'seu pokemon morreu')
+        self.window.quit()
+
+#    
+#    def sujo(self):
+#        return f
     
-    
-    def sick(self):
-        
-        if self.clean <= 0:
-            pass
-        
-    
-    def pass_out(self):
-        
-        if self.sleep <= 0:
-            pass
-        
-        
-    def bored(self):
-        
-        if self.fun <= 20:
-            pass
-        
+#    def sonolento(self):
+#        return s
         
 # --------------------------------------------------
 # Iniciar e sair     
