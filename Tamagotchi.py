@@ -3,6 +3,103 @@ import time
 from datetime import datetime
 from tkinter import messagebox
 
+class menu_1:
+    
+    def __init__(self):
+        
+        self.window1 = tk.Tk ()
+        self.window1.geometry("200x300")
+        self.window1.resizable(False, False)
+        self.window1.title("MENU PRINCIPAL")
+        self.window1.rowconfigure(0, minsize = 150) #Geometria da página
+        self.window1.rowconfigure(1, minsize = 150)
+        self.window1.columnconfigure(0, minsize = 200)
+        
+        self.button_continuar = tk.Button(self.window1)
+        self.button_continuar = tk.Button(self.window1, text = "Continuar", height = 1, width = 5)        
+        self.button_continuar.grid(row = 0, column = 0, sticky = "nsew")
+        self.button_continuar.configure(command = self.continuar)
+        
+        
+        self.button_novojogo = tk.Button(self.window1)
+        self.button_novojogo = tk.Button(self.window1, text = "Novo Jogo", height = 1, width = 5)        
+        self.button_novojogo.grid(row = 1, column = 0, sticky = "nsew")
+        self.button_novojogo.configure(command = self.novo_jogo)
+        
+        
+#--------------------------------------FUNÇÕES---------------------------------
+        
+    def iniciar(self):
+        self.window1.mainloop()
+        
+    def continuar (self):
+        self.window1.destroy()
+        return 0       
+        
+    def novo_jogo (self):
+        self.window1.destroy()
+        return 1
+        
+        
+Menu = menu_1()
+Menu.iniciar()
+#######################################################DIVISOR DE CLASSE##########################################
+
+
+
+class menu_2:
+
+    def __init__(self):
+    
+        self.window2 = tk.Tk()
+        self.window2.geometry("200x300")
+        self.window2.resizable(False, False)
+        self.window2.title("ESCOLHA O SEU TAMAGOTSHI")
+        self.window2.rowconfigure(0, minsize = 100) #Geometria da página
+        self.window2.rowconfigure(1, minsize = 100)
+        self.window2.rowconfigure(2, minsize = 100)
+        self.window2.columnconfigure(0, minsize = 200)
+
+        
+        self.img_squirtle = tk.PhotoImage(file = "squirtle.png")
+        self.button_squirtle = tk.Button(self.window2, image = self.img_squirtle)
+        self.button_squirtle.grid(row = 0, column = 0, sticky = "nsew")
+#        self.button_squirtle.configure(command = escolher_squirtle)
+        
+#        self.img_charmander = tk.PhotoImage(file = "charmander.png")                       #PRECISO DAS FOTOS PARA ISSO FUNCIONAR
+#        self.button_charmander = tk.Button(self.window2, image = self.img_charmander)
+#        self.button_charmander.grid(row = 1, column = 0, sticky = "nsew")
+#        self.button_charmander.configure(command = escolher_charmander)
+
+#        self.img_bulbasaur = tk.PhotoImage(file = "bulbasaur.png")                         #PRECISO DAS FOTOS PARA ISSO FUNCIONAR 
+#        self.button_bulbasaur = tk.Button(self.window2, image = self.img_bulbasaur)
+#        self.button_bulbasaur.grid(row = 2, column = 0, sticky = "nsew")
+#        self.button_bubalsaur.configure(command = escolher_bulbasaur)
+        
+        
+#------------------------------------------------------------------------------
+    def iniciar(self):
+        if self.classmenu_1.continuar() == 0:       #  COMEÇA A DAR PAU AQUI
+            self.window2.mainloop()                 #  PORQUE NÃO SEI IMPORTAR  
+                                                    #  COISAS ENTRE CLASSES
+            
+    def escolher_squirtle (self):
+        return "squirtle"
+        
+    def escolher_charmander (self):
+        return "charmander"
+        
+    def escolher_bulbasaur (self):
+        return "bulbasaur" 
+
+
+
+Menu = menu_2()
+Menu.iniciar()
+########################################################DIVISOR DE CLASSE#########################################
+
+
+
 class Tamagotchi:
     
     def __init__(self):
