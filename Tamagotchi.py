@@ -184,19 +184,19 @@ class Tamagotchi:
         self.window_tamagotchi.columnconfigure(2, minsize = 100)
         
         # Labels
-        self.label_dia = tk.Label()
+        self.label_dia = tk.Label(self.window_tamagotchi)
         self.label_dia.configure(background = 'white')
         self.label_dia.grid(row = 0, column = 0, columnspan = 3)
         
-        self.label_fome = tk.Label()
+        self.label_fome = tk.Label(self.window_tamagotchi)
         self.label_fome.configure(background = 'white')
         self.label_fome.grid(row = 1, column = 0)
         
-        self.label_saude = tk.Label()
+        self.label_saude = tk.Label(self.window_tamagotchi)
         self.label_saude.configure(background = 'white')
         self.label_saude.grid(row = 1, column = 1)
                 
-        self.label_sono = tk.Label()
+        self.label_sono = tk.Label(self.window_tamagotchi)
         self.label_sono.configure(background = 'white')
         self.label_sono.grid(row = 1, column = 2)
         
