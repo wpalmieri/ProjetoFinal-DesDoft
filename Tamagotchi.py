@@ -3,115 +3,152 @@ import time
 from datetime import datetime
 from tkinter import messagebox
 
-class menu_1:
+class Janela_Principal():
     
     def __init__(self):
         
-        self.window1 = tk.Tk ()
-        self.window1.geometry("200x300")
-        self.window1.resizable(False, False)
-        self.window1.title("MENU PRINCIPAL")
-        self.window1.rowconfigure(0, minsize = 150) #Geometria da página
-        self.window1.rowconfigure(1, minsize = 150)
-        self.window1.columnconfigure(0, minsize = 200)
-        
-        self.button_continuar = tk.Button(self.window1)
-        self.button_continuar = tk.Button(self.window1, text = "Continuar", height = 1, width = 5)        
-        self.button_continuar.grid(row = 0, column = 0, sticky = "nsew")
-        self.button_continuar.configure(command = self.continuar)
-        
-        
-        self.button_novojogo = tk.Button(self.window1)
-        self.button_novojogo = tk.Button(self.window1, text = "Novo Jogo", height = 1, width = 5)        
-        self.button_novojogo.grid(row = 1, column = 0, sticky = "nsew")
-        self.button_novojogo.configure(command = self.novo_jogo)
-        
-        
-#--------------------------------------FUNÇÕES---------------------------------
-        
-    def iniciar(self):
-        self.window1.mainloop()
-        
-    def continuar (self):
-        self.window1.destroy()
-        return 0       
-        
-    def novo_jogo (self):
-        self.window1.destroy()
-        return 1
-        
-        
-Menu = menu_1()
-Menu.iniciar()
-#######################################################DIVISOR DE CLASSE##########################################
-
-
-
-class menu_2:
-
-    def __init__(self):
-    
-        self.window2 = tk.Tk()
-        self.window2.geometry("200x300")
-        self.window2.resizable(False, False)
-        self.window2.title("ESCOLHA O SEU TAMAGOTSHI")
-        self.window2.rowconfigure(0, minsize = 100) #Geometria da página
-        self.window2.rowconfigure(1, minsize = 100)
-        self.window2.rowconfigure(2, minsize = 100)
-        self.window2.columnconfigure(0, minsize = 200)
-
-        
-        self.img_squirtle = tk.PhotoImage(file = "squirtle.png")
-        self.button_squirtle = tk.Button(self.window2, image = self.img_squirtle)
-        self.button_squirtle.grid(row = 0, column = 0, sticky = "nsew")
-#        self.button_squirtle.configure(command = escolher_squirtle)
-        
-#        self.img_charmander = tk.PhotoImage(file = "charmander.png")                       #PRECISO DAS FOTOS PARA ISSO FUNCIONAR
-#        self.button_charmander = tk.Button(self.window2, image = self.img_charmander)
-#        self.button_charmander.grid(row = 1, column = 0, sticky = "nsew")
-#        self.button_charmander.configure(command = escolher_charmander)
-
-#        self.img_bulbasaur = tk.PhotoImage(file = "bulbasaur.png")                         #PRECISO DAS FOTOS PARA ISSO FUNCIONAR 
-#        self.button_bulbasaur = tk.Button(self.window2, image = self.img_bulbasaur)
-#        self.button_bulbasaur.grid(row = 2, column = 0, sticky = "nsew")
-#        self.button_bubalsaur.configure(command = escolher_bulbasaur)
-        
-        
-#------------------------------------------------------------------------------
-    def iniciar(self):
-        if self.classmenu_1.continuar() == 0:       #  COMEÇA A DAR PAU AQUI
-            self.window2.mainloop()                 #  PORQUE NÃO SEI IMPORTAR  
-                                                    #  COISAS ENTRE CLASSES
-            
-    def escolher_squirtle (self):
-        return "squirtle"
-        
-    def escolher_charmander (self):
-        return "charmander"
-        
-    def escolher_bulbasaur (self):
-        return "bulbasaur" 
-
-
-
-Menu = menu_2()
-Menu.iniciar()
-########################################################DIVISOR DE CLASSE#########################################
-
-
-
-class Tamagotchi:
-    
-    def __init__(self):
-
         self.window = tk.Tk()
         self.window.geometry("300x450+100+100")
         self.window.title("Tamagotchi")
         self.window.configure(background = 'white')
         self.window.resizable(False, False)
-        self.window.protocol("WM_DELETE_WINDOW", self.sair)
         
-        self.canvas = tk.Canvas(self.window, width = 192, height = 192)
+        # Geometria da página
+        self.window.rowconfigure(0, minsize = 450)
+        self.window.columnconfigure(0, minsize = 300)
+        
+        # Menu Principal
+        self.menu_principal = Menu_Principal(self)
+        
+        # Escolha dos personagens
+        self.esc_personagens = Escolha_Personagem(self)
+        
+        # Jogo
+        self.jogo = Tamagotchi(self)
+        
+        self.menu_principal.mostrar()
+        
+    def mostra_menu_principal(self):
+        self.menu_principal.mostrar()
+        
+    def mostra_tamagotchi(self):
+        self.jogo.mostrar()
+        
+    def mostra_escolher_personagem(self):
+        self.esc_personagens.mostrar()
+        
+    def iniciar(self):
+        self.window.mainloop()
+        
+class Menu_Principal():
+    
+    def __init__(self, janela_principal):
+        
+        self.janela_principal = janela_principal
+        self.window1 = tk.Frame(self.janela_principal.window)
+        self.window1.grid(row = 0, column = 0, sticky = "nsew")
+
+#        self.window1.title("MENU PRINCIPAL")
+        
+#        self.theme = "C:\\Users\\Usuario\\Documents\\Insper\\D.S\\Tamagotchi\\Teste Menu Principal\\Música.mp3"
+#        self.sound = mp3play.load("Fire Red Main Theme Extended")
+#        self.sound.play() 
+                
+        self.window1.rowconfigure(0, minsize = 100) #Geometria da página
+        self.window1.rowconfigure(1, minsize = 110)
+        self.window1.rowconfigure(2, minsize = 120)
+        self.window1.rowconfigure(3, minsize = 120)
+        
+        self.window1.columnconfigure(0, minsize = 300)
+        
+        self.pokebola = tk.PhotoImage(file = "Pokeball.png")
+        self.pokebola_label = tk.Label(self.window1, image = self.pokebola, height = 1, width = 1)
+        self.pokebola_label.grid(row = 0, column = 0, sticky = "nsew")
+        
+        self.titulo_label = tk.Label(self.window1, text = "Seja um Treinador", font = "Bauhaus 24")
+        self.titulo_label.grid(row = 1, column = 0)
+
+        self.button_continuar = tk.Button(self.window1, text = "Continuar", height = 5, width = 30)        
+        self.button_continuar.grid(row = 2, column = 0)
+        self.button_continuar.configure(command = self.continuar)
+        
+        self.button_novojogo = tk.Button(self.window1, text = "Novo Jogo", height = 5, width = 30)        
+        self.button_novojogo.grid(row = 3, column = 0)
+        self.button_novojogo.configure(command = self.novo_jogo)
+        
+    def continuar(self):
+        self.janela_principal.mostra_tamagotchi()
+    
+    def novo_jogo(self):
+        self.janela_principal.mostra_escolher_personagem()
+        
+    def mostrar(self):
+        self.window1.tkraise()
+        
+        
+class Escolha_Personagem():
+    
+    def __init__(self, janela_principal):
+        
+        self.janela_principal = janela_principal
+        self.window_escolha = tk.Frame(self.janela_principal.window)
+        self.window_escolha.grid(row = 0, column = 0, sticky = "nsew")
+        
+        self.window_escolha.rowconfigure(0, minsize = 90)
+        self.window_escolha.rowconfigure(1, minsize = 120)
+        self.window_escolha.rowconfigure(2, minsize = 120)
+        self.window_escolha.rowconfigure(3, minsize = 120)
+        
+        self.window_escolha.columnconfigure(0, minsize = 300)
+        
+        self.titulo_label = tk.Label(self.window_escolha, text = "Escolha seu Pokemon", font = "Bauhaus 20")
+        self.titulo_label.grid(row = 0, column = 0, sticky = "nsew")
+        
+        self.char_imagem = tk.PhotoImage(file = "Charmander.png")
+        self.charmander = tk.Button(self.window_escolha, image = self.char_imagem, height = 100, width = 100)
+        self.charmander.grid(row = 1, column = 0)
+        self.charmander.configure(command = self.escolhe_char)
+        
+        self.squir_imagem = tk.PhotoImage(file = "Squirtle.png")
+        self.squirtle = tk.Button(self.window_escolha, image = self.squir_imagem, height = 100, width = 100)
+        self.squirtle.grid(row = 2, column = 0)
+        self.squirtle.configure(command = self.escolhe_squir)
+        
+        self.bulb_imagem = tk.PhotoImage(file = "Bulbasaur.png")
+        self.bulbasaur = tk.Button(self.window_escolha, image = self.bulb_imagem, height = 100, width = 100)
+        self.bulbasaur.grid(row = 3, column = 0)
+        self.bulbasaur.configure(command = self.escolhe_bulb)
+        
+        
+    def escolhe_char(self):
+        print("Charmander")
+        
+    def escolhe_squir(self):
+        print("Squirtle")
+        
+    def escolhe_bulb(self):
+        print("Bulbasaur")
+        
+    def mostrar(self):
+        self.window_escolha.tkraise()
+
+        
+class Tamagotchi:
+    
+    def __init__(self, janela_principal):
+        
+        self.janela_principal = janela_principal
+        self.window_tamagotchi = tk.Frame(self.janela_principal.window)
+        self.window_tamagotchi.grid(row = 0, column = 0, sticky = "nsew")
+
+#        self.window_tamagotchi = tk.Tk()
+#        self.window_tamagotchi.geometry("300x450+100+100")
+
+#        self.window_tamagotchi.title("Tamagotchi")
+#        self.window_tamagotchi.configure(background = 'white')
+#        self.window_tamagotchi.resizable(False, False)
+        
+        self.canvas = tk.Canvas(self.window_tamagotchi, width = 192, height = 192)
         self.canvas.grid(row = 2 , column = 0, columnspan = 3)
         self.p = "squirtle"
         
@@ -137,15 +174,14 @@ class Tamagotchi:
         self.days = self.last_day
         
         # Geometria da página
-        self.window.rowconfigure(0, minsize = 50)
-        self.window.rowconfigure(1, minsize = 50)
-        self.window.rowconfigure(2, minsize = 250)
-        self.window.rowconfigure(3, minsize = 100)
+        self.window_tamagotchi.rowconfigure(0, minsize = 50)
+        self.window_tamagotchi.rowconfigure(1, minsize = 50)
+        self.window_tamagotchi.rowconfigure(2, minsize = 250)
+        self.window_tamagotchi.rowconfigure(3, minsize = 100)
         
-        self.window.columnconfigure(0, minsize = 100)
-        self.window.columnconfigure(1, minsize = 100)
-        self.window.columnconfigure(2, minsize = 100)
-        self.window.columnconfigure(3, minsize = 100)
+        self.window_tamagotchi.columnconfigure(0, minsize = 100)
+        self.window_tamagotchi.columnconfigure(1, minsize = 100)
+        self.window_tamagotchi.columnconfigure(2, minsize = 100)
         
         # Labels
         self.label_dia = tk.Label()
@@ -166,25 +202,25 @@ class Tamagotchi:
         
         # Botões
         self.icone_comer = tk.PhotoImage(file = "comer_icone.png")
-        self.button_feed = tk.Button(self.window, image = self.icone_comer, height = 1, width = 5)
+        self.button_feed = tk.Button(self.window_tamagotchi, image = self.icone_comer, height = 1, width = 5)
         self.button_feed.grid(row = 3, column = 0, sticky = "nsew")
         self.button_feed.configure(command = self.update_hunger, background = 'white')
         
         self.icone_limpar = tk.PhotoImage(file = "banho_icone.png")
-        self.button_clean = tk.Button(self.window, image = self.icone_limpar, height = 1, width = 5)
+        self.button_clean = tk.Button(self.window_tamagotchi, image = self.icone_limpar, height = 1, width = 5)
         self.button_clean.grid(row = 3, column = 1, sticky = "nsew")
         self.button_clean.configure(command = self.update_clean, background = 'white')      
         
         self.icone_dormir = tk.PhotoImage(file = "dormir_icone.png")
-        self.button_sleep = tk.Button(self.window, image = self.icone_dormir, height = 1, width = 5)
+        self.button_sleep = tk.Button(self.window_tamagotchi, image = self.icone_dormir, height = 1, width = 5)
         self.button_sleep.grid(row = 3, column = 2, sticky = "nsew")
         self.button_sleep.configure(command = self.update_sleep, background = 'white')
         
-        self.window.after(0, self.get_hungry)
-        self.window.after(0, self.get_sleepy)
-        self.window.after(0, self.get_dirty)
-        self.window.after(0, self.pass_day)
-        self.window.after(0, self.animação)
+        self.window_tamagotchi.after(0, self.get_hungry)
+        self.window_tamagotchi.after(0, self.get_sleepy)
+        self.window_tamagotchi.after(0, self.get_dirty)
+        self.window_tamagotchi.after(0, self.pass_day)
+        self.window_tamagotchi.after(0, self.animação)
         
 # ---------------------------------------------------
 # Tempo
@@ -255,7 +291,7 @@ class Tamagotchi:
                     
 #botões    
     def get_hungry(self):
-        
+        print("Oi")
         if self.hunger != 0:
             
             self.hunger -= 1
@@ -268,7 +304,7 @@ class Tamagotchi:
             
             
             
-        self.window.after(1000, self.get_hungry)
+        self.window_tamagotchi.after(1000, self.get_hungry)
         
         
     def get_sleepy(self):
@@ -282,7 +318,7 @@ class Tamagotchi:
             self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
             
             
-        self.window.after(1000, self.get_sleepy)
+        self.window_tamagotchi.after(1000, self.get_sleepy)
     
     
     def get_dirty(self):
@@ -296,7 +332,7 @@ class Tamagotchi:
         else:
             self.label_saude.configure(text = "Limpeza:\n{0}".format(self.clean))
            
-        self.window.after(1000, self.get_dirty)
+        self.window_tamagotchi.after(1000, self.get_dirty)
     
     
     def pass_day(self):
@@ -305,15 +341,15 @@ class Tamagotchi:
             
         self.label_dia.configure(text = "Dia:\n{0}".format(self.days))
             
-        self.window.after(10000, self.pass_day)
-  
+        self.window_tamagotchi.after(10000, self.pass_day)
+
   
 # ---------------------------------------------------  
 # Consequências:
     
     def morto(self):
-        tk.messagebox.showinfo ('Morreu', 'seu pokemon morreu')
-        self.window.quit()
+        tk.messagebox.showinfo ('Morreu', 'Seu pokemon morreu')
+        self.window_tamagotchi.quit()
 
 #    
 #    def sujo(self):
@@ -325,9 +361,10 @@ class Tamagotchi:
 # --------------------------------------------------
 # Iniciar e sair     
      
-    def iniciar(self):
-        self.window.mainloop()
-    
+    def mostrar(self):
+        
+        self.window_tamagotchi.tkraise()
+        
     def sair(self):
         
         horario = datetime.now().time()
@@ -337,7 +374,7 @@ class Tamagotchi:
                    self.clean, self.sleep))
         save.close()
         
-        self.window.quit()
+        self.window_tamagotchi.quit()
         
 #------------------------------------------------------  
 # Animação
@@ -437,7 +474,7 @@ class Tamagotchi:
             self.canvas.create_image(192/2,192/2,image = j)
             self.canvas.update()
             time.sleep(0.02)
-        self.window.after(0, self.animação)         
+        self.window_tamagotchi.after(0, self.animação)
 
     def troca_imagem(self):
 
@@ -481,8 +518,7 @@ class Tamagotchi:
                 return "bulbasaur_B"
                 
             else:
-                return "bulbasaur_A"      
-
-
-tamag = Tamagotchi()
-tamag.iniciar()
+                return "bulbasaur_A"
+                
+app = Janela_Principal()
+app.iniciar()
