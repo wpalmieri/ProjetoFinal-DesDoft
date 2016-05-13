@@ -408,77 +408,77 @@ class Tamagotchi:
             elif self.v == "squirtle_B":
                 self.lista.append(tk.PhotoImage(file ='Squirtle_B/SquirtleB%s.gif'%i))
                 
-#            elif self.v == "wartortle_A":
-#                self.lista.append(tk.PhotoImage(file ='Squirtle/wartortleA%s.gif'%i))
-#            elif self.v == "wartortle_F":
-#                self.lista.append(tk.PhotoImage(file ='Squirtle_F/WartortleF%s.gif'%i))
-#            elif self.v == "wartortle_S":
-#                self.lista.append(tk.PhotoImage(file ='Squirtle_S/WartortleS%s.gif'%i))
-#            elif self.v == "wartortle_B":
-#                self.lista.append(tk.PhotoImage(file ='Squirtle_B/WartortleB%s.gif'%i))
-#        
-#            elif self.v == "blastoise_A":
-#                self.lista.append(tk.PhotoImage(file ='Squirtle/BlastoiseA%s.gif'%i))
-#            elif self.v == "blastoise_F":
-#                self.lista.append(tk.PhotoImage(file ='Squirtle_F/BlastoiseF%s.gif'%i))
-#            elif self.v == "blastoise_S":
-#                self.lista.append(tk.PhotoImage(file ='Squirtle_S/BlastoiseF%s.gif'%i))
-#            elif self.v == "blastoise_B":
-#                self.lista.append(tk.PhotoImage(file ='Squirtle_B/BlastoiseB%s.gif'%i))        
-##-----------------------------------------------------------------------------------
-#            elif self.v == "charmander_A":
-#                self.lista.append(tk.PhotoImage(file ='Charmander/charmanderA%s.gif'%i))
-#            elif self.v == "charmander_F":
-#                self.lista.append(tk.PhotoImage(file ='Charmander_F/charmanderF%s.gif'%i))
-#            elif self.v == "charmander_S":
-#                self.lista.append(tk.PhotoImage(file ='Charmander_S/charmanderS%s.gif'%i))
-#            elif self.v == "charmander_B":
-#                self.lista.append(tk.PhotoImage(file ='Charmander_B/charmanderB%s.gif'%i))
-#                
-#            elif self.v == "charmeleon_A":
-#                self.lista.append(tk.PhotoImage(file ='Charmeleon/charmeleonA%s.gif'%i))
-#            elif self.v == "charmeleon_F":
-#                self.lista.append(tk.PhotoImage(file ='Charmeleon_F/charmeleonF%s.gif'%i))
-#            elif self.v == "charmeleon_S":
-#                self.lista.append(tk.PhotoImage(file ='Charmeleon_S/charmeleonS%s.gif'%i))
-#            elif self.v == "charmeleon_B":
-#                self.lista.append(tk.PhotoImage(file ='Charmeleon_B/charmeleonB%s.gif'%i))
-#        
-#            elif self.v == "charizard_A":
-#                self.lista.append(tk.PhotoImage(file ='Charizard/charizardA%s.gif'%i))
-#            elif self.v == "charizard_F":
-#                self.lista.append(tk.PhotoImage(file ='Charizard_F/charizardF%s.gif'%i))
-#            elif self.v == "charizard_S":
-#                self.lista.append(tk.PhotoImage(file ='Charizard_S/charizardF%s.gif'%i))
-#            elif self.v == "charizard_B":
-#                self.lista.append(tk.PhotoImage(file ='Charizard_B/charizardB%s.gif'%i))         
-#
-#            elif self.v == "bulbasaur_A":
-#                self.lista.append(tk.PhotoImage(file ='Bulbasaur/bulbasaurA%s.gif'%i))
-#            elif self.v == "bulbasaur_F":
-#                self.lista.append(tk.PhotoImage(file ='Bulbasaur_F/bulbasaurF%s.gif'%i))
-#            elif self.v == "bulbasaur_S":
-#                self.lista.append(tk.PhotoImage(file ='Bulbasaur_S/bulbasaurS%s.gif'%i))
-#            elif self.v == "bulbasaur_B":
-#                self.lista.append(tk.PhotoImage(file ='Bulbasaur_B/bulbasaurB%s.gif'%i))
-#                
-#            elif self.v == "ivysaur_A":
-#                self.lista.append(tk.PhotoImage(file ='Ivysaur/ivysaurA%s.gif'%i))
-#            elif self.v == "ivysaur_F":
-#                self.lista.append(tk.PhotoImage(file ='Ivysaur_F/ivysaurF%s.gif'%i))
-#            elif self.v == "ivysaur_S":
-#                self.lista.append(tk.PhotoImage(file ='Ivysaur_S/ivysaurS%s.gif'%i))
-#            elif self.v == "ivysaur_B":
-#                self.lista.append(tk.PhotoImage(file ='Ivysaur_B/ivysaurB%s.gif'%i))
-#        
-#            elif self.v == "venusar_A":
-#                self.lista.append(tk.PhotoImage(file ='Venusar/venusarA%s.gif'%i))
-#            elif self.v == "venusar_F":
-#                self.lista.append(tk.PhotoImage(file ='Venusar_F/venusaurF%s.gif'%i))
-#            elif self.v == "venusar_S":
-#                self.lista.append(tk.PhotoImage(file ='Venusar_S/venusaurF%s.gif'%i))
-#            elif self.v == "venusar_B":
-#                self.lista.append(tk.PhotoImage(file ='Venusar_B/venusaurB%s.gif'%i)) 
+            elif self.v == "wartortle_A":
+                self.lista.append(tk.PhotoImage(file ='Squirtle/wartortleA%s.gif'%i))
+            elif self.v == "wartortle_F":
+                self.lista.append(tk.PhotoImage(file ='Squirtle_F/WartortleF%s.gif'%i))
+            elif self.v == "wartortle_S":
+                self.lista.append(tk.PhotoImage(file ='Squirtle_S/WartortleS%s.gif'%i))
+            elif self.v == "wartortle_B":
+                self.lista.append(tk.PhotoImage(file ='Squirtle_B/WartortleB%s.gif'%i))
+        
+            elif self.v == "blastoise_A":
+                self.lista.append(tk.PhotoImage(file ='Squirtle/BlastoiseA%s.gif'%i))
+            elif self.v == "blastoise_F":
+                self.lista.append(tk.PhotoImage(file ='Squirtle_F/BlastoiseF%s.gif'%i))
+            elif self.v == "blastoise_S":
+                self.lista.append(tk.PhotoImage(file ='Squirtle_S/BlastoiseF%s.gif'%i))
+            elif self.v == "blastoise_B":
+                self.lista.append(tk.PhotoImage(file ='Squirtle_B/BlastoiseB%s.gif'%i))        
+#-----------------------------------------------------------------------------------
+            elif self.v == "charmander_A":
+                self.lista.append(tk.PhotoImage(file ='Charmander/charmanderA%s.gif'%i))
+            elif self.v == "charmander_F":
+                self.lista.append(tk.PhotoImage(file ='Charmander_F/charmanderF%s.gif'%i))
+            elif self.v == "charmander_S":
+                self.lista.append(tk.PhotoImage(file ='Charmander_S/charmanderS%s.gif'%i))
+            elif self.v == "charmander_B":
+                self.lista.append(tk.PhotoImage(file ='Charmander_B/charmanderB%s.gif'%i))
+                
+            elif self.v == "charmeleon_A":
+                self.lista.append(tk.PhotoImage(file ='Charmeleon/charmeleonA%s.gif'%i))
+            elif self.v == "charmeleon_F":
+                self.lista.append(tk.PhotoImage(file ='Charmeleon_F/charmeleonF%s.gif'%i))
+            elif self.v == "charmeleon_S":
+                self.lista.append(tk.PhotoImage(file ='Charmeleon_S/charmeleonS%s.gif'%i))
+            elif self.v == "charmeleon_B":
+                self.lista.append(tk.PhotoImage(file ='Charmeleon_B/charmeleonB%s.gif'%i))
+        
+            elif self.v == "charizard_A":
+                self.lista.append(tk.PhotoImage(file ='Charizard/charizardA%s.gif'%i))
+            elif self.v == "charizard_F":
+                self.lista.append(tk.PhotoImage(file ='Charizard_F/charizardF%s.gif'%i))
+            elif self.v == "charizard_S":
+                self.lista.append(tk.PhotoImage(file ='Charizard_S/charizardF%s.gif'%i))
+            elif self.v == "charizard_B":
+                self.lista.append(tk.PhotoImage(file ='Charizard_B/charizardB%s.gif'%i))         
+
+            elif self.v == "bulbasaur_A":
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur/bulbasaurA%s.gif'%i))
+            elif self.v == "bulbasaur_F":
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur_F/bulbasaurF%s.gif'%i))
+            elif self.v == "bulbasaur_S":
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur_S/bulbasaurS%s.gif'%i))
+            elif self.v == "bulbasaur_B":
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur_B/bulbasaurB%s.gif'%i))
+                
+            elif self.v == "ivysaur_A":
+                self.lista.append(tk.PhotoImage(file ='Ivysaur/ivysaurA%s.gif'%i))
+            elif self.v == "ivysaur_F":
+                self.lista.append(tk.PhotoImage(file ='Ivysaur_F/ivysaurF%s.gif'%i))
+            elif self.v == "ivysaur_S":
+                self.lista.append(tk.PhotoImage(file ='Ivysaur_S/ivysaurS%s.gif'%i))
+            elif self.v == "ivysaur_B":
+                self.lista.append(tk.PhotoImage(file ='Ivysaur_B/ivysaurB%s.gif'%i))
+        
+            elif self.v == "venusar_A":
+                self.lista.append(tk.PhotoImage(file ='Venusar/venusarA%s.gif'%i))
+            elif self.v == "venusar_F":
+                self.lista.append(tk.PhotoImage(file ='Venusar_F/venusaurF%s.gif'%i))
+            elif self.v == "venusar_S":
+                self.lista.append(tk.PhotoImage(file ='Venusar_S/venusaurF%s.gif'%i))
+            elif self.v == "venusar_B":
+                self.lista.append(tk.PhotoImage(file ='Venusar_B/venusaurB%s.gif'%i)) 
         for z in self.lista[::-1]:
             self.listaIn.append(z)
         for k in self.listaIn:
