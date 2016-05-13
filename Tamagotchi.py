@@ -5,8 +5,7 @@ from tkinter import messagebox
 
 class Janela_Principal():
     
-    def __init__(self):
-        
+    def __init__(self):        
         
         self.window = tk.Tk()
         self.window.geometry("300x450+100+100")
@@ -28,6 +27,9 @@ class Janela_Principal():
         # Jogo
         self.jogo = Tamagotchi(self)
         
+        # Loja
+        self.loja = Loja(self)
+        
         # Começar mostrando o menu
         self.menu_principal.mostrar()
         
@@ -43,6 +45,9 @@ class Janela_Principal():
         
     def mostra_escolher_personagem(self):
         self.esc_personagens.mostrar()
+        
+    def mostra_loja(self):
+        self.loja.mostrar()
         
     def iniciar(self):
         self.window.mainloop()
@@ -84,6 +89,7 @@ class Menu_Principal():
         
     def continuar(self):      
         self.janela_principal.mostra_tamagotchi()
+        self.janela_principal.jogo.comeca_tamagotchi()
     
     def novo_jogo(self):
         self.janela_principal.mostra_escolher_personagem()
@@ -129,17 +135,123 @@ class Escolha_Personagem():
     def escolhe_char(self):
         self.janela_principal.jogo.reset("charmander")
         self.janela_principal.mostra_tamagotchi()
+        self.janela_principal.jogo.comeca_tamagotchi()
    
     def escolhe_squir(self):
         self.janela_principal.jogo.reset("squirtle")
         self.janela_principal.mostra_tamagotchi()
+        self.janela_principal.jogo.comeca_tamagotchi()
    
     def escolhe_bulb(self):
         self.janela_principal.jogo.reset("bulbasaur")
         self.janela_principal.mostra_tamagotchi()
+        self.janela_principal.jogo.comeca_tamagotchi()
     
     def mostrar(self):
         self.window_escolha.tkraise()
+        
+        
+class Loja:
+    
+    def __init__(self, janela_principal):
+        
+        self.janela_principal = janela_principal
+        self.window_loja = tk.Frame(self.janela_principal.window)
+        self.window_loja.grid(row = 0, column = 0, sticky = "nsew")
+        
+        self.window_loja.rowconfigure(0, minsize = 90)
+        self.window_loja.rowconfigure(1, minsize = 100)
+        self.window_loja.rowconfigure(2, minsize = 20)
+        self.window_loja.rowconfigure(3, minsize = 100)
+        self.window_loja.rowconfigure(4, minsize = 20)
+        self.window_loja.rowconfigure(5, minsize = 100)
+        self.window_loja.rowconfigure(6, minsize = 20)
+        
+        self.window_loja.columnconfigure(0, minsize = 100)
+        self.window_loja.columnconfigure(1, minsize = 100)
+        self.window_loja.columnconfigure(2, minsize = 100)
+        
+        # Imagens       
+        self.bigode = tk.PhotoImage(file = "Bigode.png")
+        self.oculos = tk.PhotoImage(file = "Oculos.png")
+        self.chapeu = tk.PhotoImage(file = "Chapeu.png")
+        self.carne = tk.PhotoImage(file = "Carne.png")
+        self.salada = tk.PhotoImage(file = "Salada.png")
+        self.magikarp = tk.PhotoImage(file = "Magikarp.png")
+        self.rare_candy = tk.PhotoImage(file = "Rare_Candy.png")
+        self.super_rod = tk.PhotoImage(file = "Super_Rod.png")
+        
+        
+        # Buttons        
+        self.botao1 = tk.Button(self.window_loja, text = "Voltar", height = 2, width = 6)
+        self.botao1.grid(row = 0, column = 0)
+        self.botao1.configure(command = self.voltar)
+        
+        self.label2 = tk.Label(self.window_loja, text = "Loja")
+        self.label2.grid(row = 0, column = 1, sticky = "nsew")
+        
+        self.label3 = tk.Label(self.window_loja, text = "Dinheiro:\n100")
+        self.label3.grid(row = 0, column = 2, sticky = "nsew")
+        
+        self.botao4 = tk.Button(self.window_loja, image = self.bigode)
+        self.botao4.grid(row = 1, column = 0, sticky = "nsew")
+        
+        self.botao5 = tk.Button(self.window_loja, image = self.oculos)
+        self.botao5.grid(row = 1, column = 1, sticky = "nsew")
+        
+        self.botao6 = tk.Button(self.window_loja, image = self.chapeu)
+        self.botao6.grid(row = 1, column = 2, sticky = "nsew")
+        
+        self.botao7 = tk.Button(self.window_loja, image = self.salada)
+        self.botao7.grid(row = 3, column = 0, sticky = "nsew")
+        
+        self.botao8 = tk.Button(self.window_loja, image = self.carne)
+        self.botao8.grid(row = 3, column = 1, sticky = "nsew")
+        
+        self.botao9 = tk.Button(self.window_loja, image = self.magikarp)
+        self.botao9.grid(row = 3, column = 2, sticky = "nsew")
+        
+        self.botao10 = tk.Button(self.window_loja, image = self.rare_candy)
+        self.botao10.grid(row = 5, column = 0, sticky = "nsew")
+        
+        self.botao11 = tk.Button(self.window_loja, image = self.super_rod)
+        self.botao11.grid(row = 5, column = 1, sticky = "nsew")
+        
+        self.botao12 = tk.Button(self.window_loja, text = "12")
+        self.botao12.grid(row = 5, column = 2, sticky = "nsew")
+        
+        
+        # Labels        
+        self.label1 = tk.Label(self.window_loja, text = "Bigode - $5")
+        self.label1.grid(row = 2, column = 0, sticky = "nsew")
+        
+        self.label2 = tk.Label(self.window_loja, text = "Oculos - $20")
+        self.label2.grid(row = 2, column = 1, sticky = "nsew")
+        
+        self.label3 = tk.Label(self.window_loja, text = "Chapeu - $40")
+        self.label3.grid(row = 2, column = 2, sticky = "nsew")
+        
+        self.label4 = tk.Label(self.window_loja, text = "Salada - $5")
+        self.label4.grid(row = 4, column = 0, sticky = "nsew")
+        
+        self.label5 = tk.Label(self.window_loja, text = "Carne - $20")
+        self.label5.grid(row = 4, column = 1, sticky = "nsew")
+        
+        self.label6 = tk.Label(self.window_loja, text = "Magikarp - $40")
+        self.label6.grid(row = 4, column = 2, sticky = "nsew")
+        
+        self.label7 = tk.Label(self.window_loja, text = "Rare Candy - $75")
+        self.label7.grid(row = 6, column = 0, sticky = "nsew")
+        
+        self.label8 = tk.Label(self.window_loja, text = "Super Rod - $50")
+        self.label8.grid(row = 6, column = 1, sticky = "nsew")
+        
+        
+    def mostrar(self):
+        self.window_loja.tkraise()
+        
+    def voltar(self):
+        self.janela_principal.mostra_tamagotchi()
 
         
 class Tamagotchi:
@@ -220,6 +332,10 @@ class Tamagotchi:
         self.button_sleep = tk.Button(self.window_tamagotchi, image = self.icone_dormir, height = 1, width = 5)
         self.button_sleep.grid(row = 3, column = 2, sticky = "nsew")
         self.button_sleep.configure(command = self.update_sleep, background = 'white')
+        
+        self.botao_loja = tk.Button(self.window_tamagotchi, text = "Loja", height = 1, width = 6)
+        self.botao_loja.grid(row = 0, column = 2)
+        self.botao_loja.configure(command = self.acessa_loja)
     
     def reset(self,p):
         self.p = p
@@ -374,11 +490,13 @@ class Tamagotchi:
 #        return s
         
 # --------------------------------------------------
-# Iniciar e sair     
+# Iniciar e sair 
+        
+    def acessa_loja(self):
+        self.janela_principal.mostra_loja()
      
     def mostrar(self):       
         self.window_tamagotchi.tkraise()
-        self.comeca_tamagotchi()
         
     def sair(self):
         
