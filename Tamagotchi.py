@@ -5,8 +5,7 @@ from tkinter import messagebox
 
 class Janela_Principal():
     
-    def __init__(self):
-        
+    def __init__(self):        
         
         self.window = tk.Tk()
         self.window.geometry("300x450+100+100")
@@ -90,6 +89,7 @@ class Menu_Principal():
         
     def continuar(self):      
         self.janela_principal.mostra_tamagotchi()
+        self.janela_principal.jogo.comeca_tamagotchi()
     
     def novo_jogo(self):
         self.janela_principal.mostra_escolher_personagem()
@@ -135,14 +135,17 @@ class Escolha_Personagem():
     def escolhe_char(self):
         self.janela_principal.jogo.reset("charmander")
         self.janela_principal.mostra_tamagotchi()
+        self.janela_principal.jogo.comeca_tamagotchi()
    
     def escolhe_squir(self):
         self.janela_principal.jogo.reset("squirtle")
         self.janela_principal.mostra_tamagotchi()
+        self.janela_principal.jogo.comeca_tamagotchi()
    
     def escolhe_bulb(self):
         self.janela_principal.jogo.reset("bulbasaur")
         self.janela_principal.mostra_tamagotchi()
+        self.janela_principal.jogo.comeca_tamagotchi()
     
     def mostrar(self):
         self.window_escolha.tkraise()
@@ -494,7 +497,6 @@ class Tamagotchi:
      
     def mostrar(self):       
         self.window_tamagotchi.tkraise()
-        self.comeca_tamagotchi()
         
     def sair(self):
         
