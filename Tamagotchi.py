@@ -534,6 +534,89 @@ class Tamagotchi:
                 
             else:
                 return "bulbasaur_A"
+
+        elif self.p == "wartortle":
+            
+            if self.sleep <= 30:
+                return "wartortle_S"
+        
+            elif self.hunger <= 30:
+                return  "wartortle_F"
+
+            elif self.clean <= 30 :
+                return  "wartortle_B"
                 
+            else:
+                return "wartortle_A"
+        
+        elif self.p == "charmeleon":
+            
+            if self.sleep <= 30:
+                return  "charmeleon_S"
+        
+            elif self.hunger <= 30:
+                return  "charmeleon_F"
+
+            elif self.clean <= 30 :
+                return  "charmeleon_B"
+                
+            else:
+                return "charmeleon_A"
+        
+        elif self.p == "ivysaur":
+            
+            if self.sleep <= 30:
+                return "ivysaur_S"
+        
+            elif self.hunger <= 30:
+                return "ivysaur_F"
+
+            elif self.clean <= 30 :
+                return "ivysaur_B"
+                
+            else:
+                return "ivysaur_A"                
+
+        elif self.p == "blastoise":
+            
+            if self.sleep <= 30:
+                return "blastoise_S"
+        
+            elif self.hunger <= 30:
+                return  "blastoise_F"
+
+            elif self.clean <= 30 :
+                return  "blastoise_B"
+                
+            else:
+                return "blastoise_A"
+        
+        elif self.p == "charizard":
+            
+            if self.sleep <= 30:
+                return  "charizard_S"
+        
+            elif self.hunger <= 30:
+                return  "charizard_F"
+
+            elif self.clean <= 30 :
+                return  "charizard_B"
+                
+            else:
+                return "charizard_A"
+        
+        elif self.p == "venusaur":
+            
+            if self.sleep <= 30:
+                return "venusaur_S"
+        
+            elif self.hunger <= 30:
+                return "venusaur_F"
+
+            elif self.clean <= 30 :
+                return "venusaur_B"
+                
+            else:
+                return "venusaur_A"                
 app = Janela_Principal()
 app.iniciar()
