@@ -7,11 +7,13 @@ class Janela_Principal():
     
     def __init__(self):
         
+        
         self.window = tk.Tk()
         self.window.geometry("300x450+100+100")
         self.window.title("Tamagotchi")
         self.window.configure(background = 'white')
         self.window.resizable(False, False)
+        self.window.protocol("WM_DELETE_WINDOW", self.sair)
         
         # Geometria da página
         self.window.rowconfigure(0, minsize = 450)
@@ -26,7 +28,12 @@ class Janela_Principal():
         # Jogo
         self.jogo = Tamagotchi(self)
         
+        # Começar mostrando o menu
         self.menu_principal.mostrar()
+        
+    def sair(self):
+        self.jogo.sair()
+        self.window.quit()
         
     def mostra_menu_principal(self):
         self.menu_principal.mostrar()
@@ -40,6 +47,7 @@ class Janela_Principal():
     def iniciar(self):
         self.window.mainloop()
         
+        
 class Menu_Principal():
     
     def __init__(self, janela_principal):
@@ -47,8 +55,6 @@ class Menu_Principal():
         self.janela_principal = janela_principal
         self.window1 = tk.Frame(self.janela_principal.window)
         self.window1.grid(row = 0, column = 0, sticky = "nsew")
-
-#        self.window1.title("MENU PRINCIPAL")
         
 #        self.theme = "C:\\Users\\Usuario\\Documents\\Insper\\D.S\\Tamagotchi\\Teste Menu Principal\\Música.mp3"
 #        self.sound = mp3play.load("Fire Red Main Theme Extended")
@@ -76,7 +82,7 @@ class Menu_Principal():
         self.button_novojogo.grid(row = 3, column = 0)
         self.button_novojogo.configure(command = self.novo_jogo)
         
-    def continuar(self):
+    def continuar(self):      
         self.janela_principal.mostra_tamagotchi()
     
     def novo_jogo(self):
@@ -121,17 +127,17 @@ class Escolha_Personagem():
         
         
     def escolhe_char(self):
-        print("Charmander")
+        self.janela_principal.jogo.reset("charmander")
         self.janela_principal.mostra_tamagotchi()
-        
+   
     def escolhe_squir(self):
-        print("Squirtle")
+        self.janela_principal.jogo.reset("squirtle")
         self.janela_principal.mostra_tamagotchi()
-        
+   
     def escolhe_bulb(self):
-        print("Bulbasaur")
+        self.janela_principal.jogo.reset("bulbasaur")
         self.janela_principal.mostra_tamagotchi()
-        
+    
     def mostrar(self):
         self.window_escolha.tkraise()
 
@@ -143,20 +149,14 @@ class Tamagotchi:
         self.janela_principal = janela_principal
         self.window_tamagotchi = tk.Frame(self.janela_principal.window)
         self.window_tamagotchi.grid(row = 0, column = 0, sticky = "nsew")
-
-#        self.window_tamagotchi = tk.Tk()
-#        self.window_tamagotchi.geometry("300x450+100+100")
-
-#        self.window_tamagotchi.title("Tamagotchi")
-#        self.window_tamagotchi.configure(background = 'white')
-#        self.window_tamagotchi.resizable(False, False)
+        self.window_tamagotchi.configure(bg = "white")
         
         self.canvas = tk.Canvas(self.window_tamagotchi, width = 192, height = 192)
+        self.canvas.configure(bg = "white", highlightthickness = 0)
         self.canvas.grid(row = 2 , column = 0, columnspan = 3)
         self.p = "squirtle"
         
         # Pegando últimos status
-
         self.arquivo = open("Save", "r")
         self.lista = self.arquivo.readlines()
         self.last_line = self.lista[-1]
@@ -218,6 +218,15 @@ class Tamagotchi:
         self.button_sleep = tk.Button(self.window_tamagotchi, image = self.icone_dormir, height = 1, width = 5)
         self.button_sleep.grid(row = 3, column = 2, sticky = "nsew")
         self.button_sleep.configure(command = self.update_sleep, background = 'white')
+    
+    def reset(self,p):
+        self.p = p
+        self.hunger = 101
+        self.clean = 101
+        self.sleep = 101
+        self.days = 0
+        
+    def comeca_tamagotchi(self):
         
         self.window_tamagotchi.after(0, self.get_hungry)
         self.window_tamagotchi.after(0, self.get_sleepy)
@@ -317,6 +326,7 @@ class Tamagotchi:
             self.sleep -= 1
                 
             self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
+            
         else:
             self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
             
@@ -364,9 +374,9 @@ class Tamagotchi:
 # --------------------------------------------------
 # Iniciar e sair     
      
-    def mostrar(self):
-        
+    def mostrar(self):       
         self.window_tamagotchi.tkraise()
+        self.comeca_tamagotchi()
         
     def sair(self):
         
@@ -377,7 +387,7 @@ class Tamagotchi:
                    self.clean, self.sleep))
         save.close()
         
-        self.window_tamagotchi.quit()
+        
         
 #------------------------------------------------------  
 # Animação
