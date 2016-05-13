@@ -122,12 +122,15 @@ class Escolha_Personagem():
         
     def escolhe_char(self):
         print("Charmander")
+        self.janela_principal.mostra_tamagotchi()
         
     def escolhe_squir(self):
         print("Squirtle")
+        self.janela_principal.mostra_tamagotchi()
         
     def escolhe_bulb(self):
         print("Bulbasaur")
+        self.janela_principal.mostra_tamagotchi()
         
     def mostrar(self):
         self.window_escolha.tkraise()
