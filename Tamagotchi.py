@@ -263,7 +263,7 @@ class Tamagotchi:
         self.canvas = tk.Canvas(self.window_tamagotchi, width = 192, height = 192)
         self.canvas.configure(bg = "white", highlightthickness = 0)
         self.canvas.grid(row = 2 , column = 0, columnspan = 3)
-        self.p = "squirtle"
+#        self.p = "squirtle"
         
         # Pegando últimos status
         self.arquivo = open("Save", "r")
@@ -278,6 +278,8 @@ class Tamagotchi:
         self.last_hunger = int(self.str_split[2])
         self.last_clean = int(self.str_split[3])
         self.last_sleep = int(self.str_split[4])
+        self.p = (self.str_split[5])
+        print(self.p)
         
         # Atributos do Tamagotchi
         self.hunger = self.last_hunger
@@ -498,9 +500,9 @@ class Tamagotchi:
         
         horario = datetime.now().time()
         
-        save = open('Save', 'a')
-        save.write("\n{0}, {1}, {2}, {3}, {4}".format(horario, self.days, self.hunger, 
-                   self.clean, self.sleep))
+        save = open('Save', 'w')
+        save.write("{0}, {1}, {2}, {3}, {4},{5}".format(horario, self.days, self.hunger, 
+                   self.clean, self.sleep, self.p))
         save.close()
         
         
@@ -552,22 +554,22 @@ class Tamagotchi:
                 self.lista.append(tk.PhotoImage(file ='Charmander_B/charmanderB%s.gif'%i))
                 
             elif self.v == "charmeleon_A":
-                self.lista.append(tk.PhotoImage(file ='Charmeleon/charmeleonA%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Charmander/charmeleonA%s.gif'%i))
             elif self.v == "charmeleon_F":
-                self.lista.append(tk.PhotoImage(file ='Charmeleon_F/charmeleonF%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Charmander_F/charmeleonF%s.gif'%i))
             elif self.v == "charmeleon_S":
-                self.lista.append(tk.PhotoImage(file ='Charmeleon_S/charmeleonS%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Charmander_S/charmeleonS%s.gif'%i))
             elif self.v == "charmeleon_B":
-                self.lista.append(tk.PhotoImage(file ='Charmeleon_B/charmeleonB%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Charmander_B/charmeleonB%s.gif'%i))
         
             elif self.v == "charizard_A":
-                self.lista.append(tk.PhotoImage(file ='Charizard/charizardA%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Charmander/charizardA%s.gif'%i))
             elif self.v == "charizard_F":
-                self.lista.append(tk.PhotoImage(file ='Charizard_F/charizardF%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Charmander_F/charizardF%s.gif'%i))
             elif self.v == "charizard_S":
-                self.lista.append(tk.PhotoImage(file ='Charizard_S/charizardF%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Charmander_S/charizardF%s.gif'%i))
             elif self.v == "charizard_B":
-                self.lista.append(tk.PhotoImage(file ='Charizard_B/charizardB%s.gif'%i))         
+                self.lista.append(tk.PhotoImage(file ='Charmander_B/charizardB%s.gif'%i))         
 
             elif self.v == "bulbasaur_A":
                 self.lista.append(tk.PhotoImage(file ='Bulbasaur/bulbasaurA%s.gif'%i))
@@ -579,22 +581,22 @@ class Tamagotchi:
                 self.lista.append(tk.PhotoImage(file ='Bulbasaur_B/bulbasaurB%s.gif'%i))
                 
             elif self.v == "ivysaur_A":
-                self.lista.append(tk.PhotoImage(file ='Ivysaur/ivysaurA%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur/ivysaurA%s.gif'%i))
             elif self.v == "ivysaur_F":
-                self.lista.append(tk.PhotoImage(file ='Ivysaur_F/ivysaurF%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur_F/ivysaurF%s.gif'%i))
             elif self.v == "ivysaur_S":
-                self.lista.append(tk.PhotoImage(file ='Ivysaur_S/ivysaurS%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur_S/ivysaurS%s.gif'%i))
             elif self.v == "ivysaur_B":
-                self.lista.append(tk.PhotoImage(file ='Ivysaur_B/ivysaurB%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur/ivysaurB%s.gif'%i))
         
             elif self.v == "venusar_A":
-                self.lista.append(tk.PhotoImage(file ='Venusar/venusarA%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur/venusarA%s.gif'%i))
             elif self.v == "venusar_F":
-                self.lista.append(tk.PhotoImage(file ='Venusar_F/venusaurF%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur_F/venusaurF%s.gif'%i))
             elif self.v == "venusar_S":
-                self.lista.append(tk.PhotoImage(file ='Venusar_S/venusaurF%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur_S/venusaurF%s.gif'%i))
             elif self.v == "venusar_B":
-                self.lista.append(tk.PhotoImage(file ='Venusar_B/venusaurB%s.gif'%i)) 
+                self.lista.append(tk.PhotoImage(file ='Bulbasaur_B/venusaurB%s.gif'%i)) 
         for z in self.lista[::-1]:
             self.listaIn.append(z)
         for k in self.listaIn:
@@ -648,6 +650,89 @@ class Tamagotchi:
                 
             else:
                 return "bulbasaur_A"
+
+        elif self.p == "wartortle":
+            
+            if self.sleep <= 30:
+                return "wartortle_S"
+        
+            elif self.hunger <= 30:
+                return  "wartortle_F"
+
+            elif self.clean <= 30 :
+                return  "wartortle_B"
                 
+            else:
+                return "wartortle_A"
+        
+        elif self.p == "charmeleon":
+            
+            if self.sleep <= 30:
+                return  "charmeleon_S"
+        
+            elif self.hunger <= 30:
+                return  "charmeleon_F"
+
+            elif self.clean <= 30 :
+                return  "charmeleon_B"
+                
+            else:
+                return "charmeleon_A"
+        
+        elif self.p == "ivysaur":
+            
+            if self.sleep <= 30:
+                return "ivysaur_S"
+        
+            elif self.hunger <= 30:
+                return "ivysaur_F"
+
+            elif self.clean <= 30 :
+                return "ivysaur_B"
+                
+            else:
+                return "ivysaur_A"                
+
+        elif self.p == "blastoise":
+            
+            if self.sleep <= 30:
+                return "blastoise_S"
+        
+            elif self.hunger <= 30:
+                return  "blastoise_F"
+
+            elif self.clean <= 30 :
+                return  "blastoise_B"
+                
+            else:
+                return "blastoise_A"
+        
+        elif self.p == "charizard":
+            
+            if self.sleep <= 30:
+                return  "charizard_S"
+        
+            elif self.hunger <= 30:
+                return  "charizard_F"
+
+            elif self.clean <= 30 :
+                return  "charizard_B"
+                
+            else:
+                return "charizard_A"
+        
+        elif self.p == "venusaur":
+            
+            if self.sleep <= 30:
+                return "venusaur_S"
+        
+            elif self.hunger <= 30:
+                return "venusaur_F"
+
+            elif self.clean <= 30 :
+                return "venusaur_B"
+                
+            else:
+                return "venusaur_A"                
 app = Janela_Principal()
 app.iniciar()
