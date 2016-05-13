@@ -154,7 +154,7 @@ class Tamagotchi:
         self.canvas = tk.Canvas(self.window_tamagotchi, width = 192, height = 192)
         self.canvas.configure(bg = "white", highlightthickness = 0)
         self.canvas.grid(row = 2 , column = 0, columnspan = 3)
-        self.p = "squirtle"
+#        self.p = "squirtle"
         
         # Pegando últimos status
         self.arquivo = open("Save", "r")
@@ -169,6 +169,8 @@ class Tamagotchi:
         self.last_hunger = int(self.str_split[2])
         self.last_clean = int(self.str_split[3])
         self.last_sleep = int(self.str_split[4])
+        self.p = (self.str_split[5])
+        print(self.p)
         
         # Atributos do Tamagotchi
         self.hunger = self.last_hunger
@@ -382,9 +384,9 @@ class Tamagotchi:
         
         horario = datetime.now().time()
         
-        save = open('Save', 'a')
-        save.write("\n{0}, {1}, {2}, {3}, {4}".format(horario, self.days, self.hunger, 
-                   self.clean, self.sleep))
+        save = open('Save', 'w')
+        save.write("{0}, {1}, {2}, {3}, {4},{5}".format(horario, self.days, self.hunger, 
+                   self.clean, self.sleep, self.p))
         save.close()
         
         
