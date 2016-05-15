@@ -485,6 +485,7 @@ class Tamagotchi:
     def pass_day(self):
         
         self.days += 1
+        self.xp += 17
             
         self.label_dia.configure(text = "Dia:\n{0}".format(self.days))
             
