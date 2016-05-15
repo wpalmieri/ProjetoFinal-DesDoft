@@ -350,6 +350,7 @@ class Tamagotchi:
         self.clean = 101
         self.sleep = 101
         self.days = 0
+        self.xp = 0
         
     def comeca_tamagotchi(self):
         
