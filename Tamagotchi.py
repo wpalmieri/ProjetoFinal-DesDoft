@@ -282,13 +282,15 @@ class Tamagotchi:
         self.last_clean = int(self.str_split[3])
         self.last_sleep = int(self.str_split[4])
         self.p = (self.str_split[5])
-        print(self.p)
+        self.last_xp = int(self.str_split[6])
+        print (self.last_xp)
         
         # Atributos do Tamagotchi
         self.hunger = self.last_hunger
         self.clean = self.last_clean
         self.sleep = self.last_sleep
         self.days = self.last_day
+        self.xp = self.last_xp
         
         # Geometria da página
         self.window_tamagotchi.rowconfigure(0, minsize = 50)
@@ -301,6 +303,11 @@ class Tamagotchi:
         self.window_tamagotchi.columnconfigure(2, minsize = 100)
         
         # Labels
+        self.label_xp = tk.Label(self.window_tamagotchi)
+        self.label_xp.configure(background = 'white')
+        self.label_xp.grid(row = 0, column = 0)
+        
+        
         self.label_dia = tk.Label(self.window_tamagotchi)
         self.label_dia.configure(background = 'white')
         self.label_dia.grid(row = 0, column = 0, columnspan = 3)
@@ -388,6 +395,7 @@ class Tamagotchi:
         else:
             
             self.hunger += 10
+            self.xp += 2
         
     
     def update_clean(self):
@@ -403,6 +411,7 @@ class Tamagotchi:
         else:
             
             self.clean += 10
+            self.xp += 2
     
         
     def update_sleep(self):
@@ -418,6 +427,7 @@ class Tamagotchi:
         else:
             
             self.sleep = 100
+            self.xp += 2
                     
 #botões    
     def get_hungry(self):
@@ -427,6 +437,7 @@ class Tamagotchi:
             self.hunger -= 1
             
             self.label_fome.configure(text = "Fome:\n{0}".format(self.hunger))
+            self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
                 
         else:
             self.label_fome.configure(text = "Fome:\n{0}".format(self.hunger))
@@ -444,9 +455,11 @@ class Tamagotchi:
             self.sleep -= 1
                 
             self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
+            self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
             
         else:
             self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
+            self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
             
             
         self.window_tamagotchi.after(1000, self.get_sleepy)
@@ -459,9 +472,11 @@ class Tamagotchi:
             self.clean -= 1
             
             self.label_saude.configure(text = "Limpeza:\n{0}".format(self.clean))
+            self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
             
         else:
             self.label_saude.configure(text = "Limpeza:\n{0}".format(self.clean))
+            self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
            
         self.window_tamagotchi.after(1000, self.get_dirty)
     
@@ -503,8 +518,8 @@ class Tamagotchi:
         horario = datetime.now().time()
         
         save = open('Save', 'w')
-        save.write("{0}, {1}, {2}, {3}, {4},{5}".format(horario, self.days, self.hunger, 
-                   self.clean, self.sleep, self.p))
+        save.write("{0}, {1}, {2}, {3}, {4},{5}, {6}".format(horario, self.days, self.hunger, 
+                   self.clean, self.sleep, self.p, self.xp))
         save.close()
         
         
