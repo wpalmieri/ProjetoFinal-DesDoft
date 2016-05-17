@@ -181,7 +181,6 @@ class Loja:
         self.rare_candy = tk.PhotoImage(file = "Rare_Candy.png")
         self.super_rod = tk.PhotoImage(file = "Super_Rod.png")
         
-        
         # Buttons        
         self.botao1 = tk.Button(self.window_loja, text = "Voltar", height = 2, width = 6)
         self.botao1.grid(row = 0, column = 0)
@@ -190,7 +189,7 @@ class Loja:
         self.label2 = tk.Label(self.window_loja, text = "Loja")
         self.label2.grid(row = 0, column = 1, sticky = "nsew")
         
-        self.label3 = tk.Label(self.window_loja, text = "Dinheiro:\n100")
+        self.label3 = tk.Label(self.window_loja)
         self.label3.grid(row = 0, column = 2, sticky = "nsew")
         
         self.botao4 = tk.Button(self.window_loja, image = self.bigode)
@@ -222,30 +221,37 @@ class Loja:
         
         
         # Labels        
-        self.label1 = tk.Label(self.window_loja, text = "Bigode - $5")
-        self.label1.grid(row = 2, column = 0, sticky = "nsew")
+        self.label13 = tk.Label(self.window_loja, text = "Bigode - $5")
+        self.label13.grid(row = 2, column = 0, sticky = "nsew")
         
-        self.label2 = tk.Label(self.window_loja, text = "Oculos - $20")
-        self.label2.grid(row = 2, column = 1, sticky = "nsew")
+        self.label14 = tk.Label(self.window_loja, text = "Oculos - $20")
+        self.label14.grid(row = 2, column = 1, sticky = "nsew")
         
-        self.label3 = tk.Label(self.window_loja, text = "Chapeu - $40")
-        self.label3.grid(row = 2, column = 2, sticky = "nsew")
+        self.label15 = tk.Label(self.window_loja, text = "Chapeu - $40")
+        self.label15.grid(row = 2, column = 2, sticky = "nsew")
         
-        self.label4 = tk.Label(self.window_loja, text = "Salada - $5")
-        self.label4.grid(row = 4, column = 0, sticky = "nsew")
+        self.label16 = tk.Label(self.window_loja, text = "Salada - $5")
+        self.label16.grid(row = 4, column = 0, sticky = "nsew")
         
-        self.label5 = tk.Label(self.window_loja, text = "Carne - $20")
-        self.label5.grid(row = 4, column = 1, sticky = "nsew")
+        self.label17 = tk.Label(self.window_loja, text = "Carne - $20")
+        self.label17.grid(row = 4, column = 1, sticky = "nsew")
         
-        self.label6 = tk.Label(self.window_loja, text = "Magikarp - $40")
-        self.label6.grid(row = 4, column = 2, sticky = "nsew")
+        self.label18 = tk.Label(self.window_loja, text = "Magikarp - $40")
+        self.label18.grid(row = 4, column = 2, sticky = "nsew")
         
-        self.label7 = tk.Label(self.window_loja, text = "Rare Candy - $75")
-        self.label7.grid(row = 6, column = 0, sticky = "nsew")
+        self.label19 = tk.Label(self.window_loja, text = "Rare Candy - $75")
+        self.label19.grid(row = 6, column = 0, sticky = "nsew")
         
-        self.label8 = tk.Label(self.window_loja, text = "Super Rod - $50")
-        self.label8.grid(row = 6, column = 1, sticky = "nsew")
+        self.label20 = tk.Label(self.window_loja, text = "Super Rod - $50")
+        self.label20.grid(row = 6, column = 1, sticky = "nsew")
         
+        self.window_loja.after(0, self.update_money)
+                
+    def update_money(self):
+        self.dinheiros = self.janela_principal.jogo.dinheiro
+        self.label3.configure(text = "Dinheiros:\n {0}".format(self.dinheiros))
+        self.window_loja.after(10000, self.update_money)
+        print(self.dinheiros)
         
     def mostrar(self):
         self.window_loja.tkraise()
@@ -283,7 +289,7 @@ class Tamagotchi:
         self.last_sleep = int(self.str_split[4])
         self.p = (self.str_split[5])
         self.last_xp = int(self.str_split[6])
-        print (self.last_xp)
+        self.last_money = int(self.str_split[7])
         
         # Atributos do Tamagotchi
         self.hunger = self.last_hunger
@@ -291,6 +297,7 @@ class Tamagotchi:
         self.sleep = self.last_sleep
         self.days = self.last_day
         self.xp = self.last_xp
+        self.dinheiro = self.last_money
         
         # Geometria da página
         self.window_tamagotchi.rowconfigure(0, minsize = 50)
@@ -306,7 +313,6 @@ class Tamagotchi:
         self.label_xp = tk.Label(self.window_tamagotchi)
         self.label_xp.configure(background = 'white')
         self.label_xp.grid(row = 0, column = 0)
-        
         
         self.label_dia = tk.Label(self.window_tamagotchi)
         self.label_dia.configure(background = 'white')
@@ -343,7 +349,8 @@ class Tamagotchi:
         self.botao_loja = tk.Button(self.window_tamagotchi, text = "Loja", height = 1, width = 6)
         self.botao_loja.grid(row = 0, column = 2)
         self.botao_loja.configure(command = self.acessa_loja)
-    
+        
+
     def reset(self,p):
         self.p = p
         self.hunger = 101
@@ -351,6 +358,7 @@ class Tamagotchi:
         self.sleep = 101
         self.days = 0
         self.xp = 0
+        self.dinheiro = 0
         
     def comeca_tamagotchi(self):
         
@@ -429,10 +437,10 @@ class Tamagotchi:
             
             self.sleep = 100
             self.xp += 2
+            
                     
-#botões    
     def get_hungry(self):
-        print("Oi")
+        
         if self.hunger != 0:
             
             self.hunger -= 1
@@ -443,8 +451,6 @@ class Tamagotchi:
         else:
             self.label_fome.configure(text = "Fome:\n{0}".format(self.hunger))
             self.morto()
-            
-            
             
         self.window_tamagotchi.after(1000, self.get_hungry)
         
@@ -461,7 +467,6 @@ class Tamagotchi:
         else:
             self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
             self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
-            
             
         self.window_tamagotchi.after(1000, self.get_sleepy)
     
@@ -486,6 +491,7 @@ class Tamagotchi:
         
         self.days += 1
         self.xp += 17
+        self.dinheiro += 5
             
         self.label_dia.configure(text = "Dia:\n{0}".format(self.days))
             
@@ -499,7 +505,6 @@ class Tamagotchi:
         tk.messagebox.showinfo ('Morreu', 'Seu pokemon morreu')
         self.window_tamagotchi.quit()
 
-#    
 #    def sujo(self):
 #        return f
     
@@ -520,10 +525,9 @@ class Tamagotchi:
         horario = datetime.now().time()
         
         save = open('Save', 'w')
-        save.write("{0}, {1}, {2}, {3}, {4},{5}, {6}".format(horario, self.days, self.hunger, 
-                   self.clean, self.sleep, self.p, self.xp))
+        save.write("{0}, {1}, {2}, {3}, {4},{5}, {6}, {7}".format(horario, self.days, self.hunger, 
+                   self.clean, self.sleep, self.p, self.xp, self.dinheiro))
         save.close()
-        
         
         
 #------------------------------------------------------  
@@ -752,6 +756,7 @@ class Tamagotchi:
                 return "venusaur_B"
                 
             else:
-                return "venusaur_A"                
+                return "venusaur_A"     
+                
 app = Janela_Principal()
 app.iniciar()
