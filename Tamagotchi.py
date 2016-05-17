@@ -176,8 +176,8 @@ class Loja:
         self.oculos = tk.PhotoImage(file = "Oculos.png")
         self.chapeu = tk.PhotoImage(file = "Chapeu.png")
         self.carne = tk.PhotoImage(file = "Carne.png")
-        self.salada = tk.PhotoImage(file = "Salada.png")
-        self.magikarp = tk.PhotoImage(file = "Magikarp.png")
+        self.cafe = tk.PhotoImage(file = "Cafe.png")
+        self.sabao = tk.PhotoImage(file = "Sabao.png")
         self.rare_candy = tk.PhotoImage(file = "Rare_Candy.png")
         self.super_rod = tk.PhotoImage(file = "Super_Rod.png")
         
@@ -201,13 +201,13 @@ class Loja:
         self.botao6 = tk.Button(self.window_loja, image = self.chapeu)
         self.botao6.grid(row = 1, column = 2, sticky = "nsew")
         
-        self.botao7 = tk.Button(self.window_loja, image = self.salada)
+        self.botao7 = tk.Button(self.window_loja, image = self.carne)
         self.botao7.grid(row = 3, column = 0, sticky = "nsew")
         
-        self.botao8 = tk.Button(self.window_loja, image = self.carne)
+        self.botao8 = tk.Button(self.window_loja, image = self.sabao)
         self.botao8.grid(row = 3, column = 1, sticky = "nsew")
         
-        self.botao9 = tk.Button(self.window_loja, image = self.magikarp)
+        self.botao9 = tk.Button(self.window_loja, image = self.cafe)
         self.botao9.grid(row = 3, column = 2, sticky = "nsew")
         
         self.botao10 = tk.Button(self.window_loja, image = self.rare_candy)
@@ -219,39 +219,38 @@ class Loja:
         self.botao12 = tk.Button(self.window_loja, text = "12")
         self.botao12.grid(row = 5, column = 2, sticky = "nsew")
         
-        
         # Labels        
-        self.label13 = tk.Label(self.window_loja, text = "Bigode - $5")
+        self.label13 = tk.Label(self.window_loja, text = "Bigode - $100")
         self.label13.grid(row = 2, column = 0, sticky = "nsew")
         
-        self.label14 = tk.Label(self.window_loja, text = "Oculos - $20")
+        self.label14 = tk.Label(self.window_loja, text = "Oculos - $100")
         self.label14.grid(row = 2, column = 1, sticky = "nsew")
         
-        self.label15 = tk.Label(self.window_loja, text = "Chapeu - $40")
+        self.label15 = tk.Label(self.window_loja, text = "Chapeu - $100")
         self.label15.grid(row = 2, column = 2, sticky = "nsew")
         
-        self.label16 = tk.Label(self.window_loja, text = "Salada - $5")
+        self.label16 = tk.Label(self.window_loja, text = "Alimento - $10")
         self.label16.grid(row = 4, column = 0, sticky = "nsew")
         
-        self.label17 = tk.Label(self.window_loja, text = "Carne - $20")
+        self.label17 = tk.Label(self.window_loja, text = "Sabão - $10")
         self.label17.grid(row = 4, column = 1, sticky = "nsew")
         
-        self.label18 = tk.Label(self.window_loja, text = "Magikarp - $40")
+        self.label18 = tk.Label(self.window_loja, text = "Café - $10")
         self.label18.grid(row = 4, column = 2, sticky = "nsew")
         
-        self.label19 = tk.Label(self.window_loja, text = "Rare Candy - $75")
+        self.label19 = tk.Label(self.window_loja, text = "Rare Candy - $275")
         self.label19.grid(row = 6, column = 0, sticky = "nsew")
         
-        self.label20 = tk.Label(self.window_loja, text = "Super Rod - $50")
+        self.label20 = tk.Label(self.window_loja, text = "Super Rod - $150")
         self.label20.grid(row = 6, column = 1, sticky = "nsew")
         
+        # Iniciar o after
         self.window_loja.after(0, self.update_money)
                 
     def update_money(self):
         self.dinheiros = self.janela_principal.jogo.dinheiro
         self.label3.configure(text = "Dinheiros:\n {0}".format(self.dinheiros))
         self.window_loja.after(10000, self.update_money)
-        print(self.dinheiros)
         
     def mostrar(self):
         self.window_loja.tkraise()
@@ -348,7 +347,6 @@ class Tamagotchi:
         self.botao_loja = tk.Button(self.window_tamagotchi, text = "Loja", height = 1, width = 6)
         self.botao_loja.grid(row = 0, column = 2)
         self.botao_loja.configure(command = self.acessa_loja)
-        
 
     def reset(self,p):
         self.p = p
@@ -359,8 +357,7 @@ class Tamagotchi:
         self.xp = 0
         self.dinheiro = 0
         
-    def comeca_tamagotchi(self):
-        
+    def comeca_tamagotchi(self):        
         self.window_tamagotchi.after(0, self.get_hungry)
         self.window_tamagotchi.after(0, self.get_sleepy)
         self.window_tamagotchi.after(0, self.get_dirty)
