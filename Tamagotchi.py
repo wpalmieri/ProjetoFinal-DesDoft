@@ -275,7 +275,6 @@ class Tamagotchi:
         self.arquivo.close()
             
         self.str_split = self.last_line.split(",")
-        
         self.last_timetable = self.str_split[0]
         self.last_day = int(self.str_split[1])
         self.last_hunger = int(self.str_split[2])
@@ -359,7 +358,7 @@ class Tamagotchi:
         self.window_tamagotchi.after(0, self.get_dirty)
         self.window_tamagotchi.after(0, self.pass_day)
         self.window_tamagotchi.after(0, self.animação)
-        
+       
 # ---------------------------------------------------
 # Tempo
         
@@ -528,11 +527,27 @@ class Tamagotchi:
         
 #------------------------------------------------------  
 # Animação
+    def evolução(self):
+        if self.p == "charmeleon" and self.xp >= 500:
+            self.p = "charizard"
+        elif self.p == "charmander" and self.xp >= 300:
+            self.p = "charmeleon"
+        elif self.p == "ivysaur" and self.xp >= 500:
+            self.p = "venusaur"
+        elif self.p == "bulbasaur" and self.xp >= 300:
+            self.p = "ivysaur"
+        elif self.p == "wartortle" and self.xp >= 500:
+            self.p = "blastoise"
+        elif self.p == "squirtle" and self.xp >= 300:
+            self.p = "wartortle"
+    
+        
      
     def animação(self):
         self.lista = []
         self.listagif = []
         self.listaIn = []
+        self.evolução()
         self.v = self.troca_imagem()
         
         for i in range (1,32):
@@ -559,7 +574,7 @@ class Tamagotchi:
             elif self.v == "blastoise_F":
                 self.lista.append(tk.PhotoImage(file ='Squirtle_F/BlastoiseF%s.gif'%i))
             elif self.v == "blastoise_S":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_S/BlastoiseF%s.gif'%i))
+                self.lista.append(tk.PhotoImage(file ='Squirtle_S/BlastoiseS%s.gif'%i))
             elif self.v == "blastoise_B":
                 self.lista.append(tk.PhotoImage(file ='Squirtle_B/BlastoiseB%s.gif'%i))        
 #-----------------------------------------------------------------------------------
