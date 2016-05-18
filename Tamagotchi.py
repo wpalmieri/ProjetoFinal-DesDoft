@@ -609,7 +609,7 @@ class Tamagotchi:
             "charmeleon_B",
             "charizard_A",
             "charizard_F",
-            "charizard_S",
+#            "charizard_S",
             "charizard_B",
             "bulbasaur_A",
             "bulbasaur_F",
