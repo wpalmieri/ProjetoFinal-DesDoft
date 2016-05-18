@@ -268,6 +268,8 @@ class Tamagotchi:
         self.window_tamagotchi.grid(row = 0, column = 0, sticky = "nsew")
         self.window_tamagotchi.configure(bg = "white")
         
+        self.le_todas_as_imagens()
+        
         self.canvas = tk.Canvas(self.window_tamagotchi, width = 192, height = 192)
         self.canvas.configure(bg = "white", highlightthickness = 0)
         self.canvas.grid(row = 2 , column = 0, columnspan = 3)
@@ -356,6 +358,167 @@ class Tamagotchi:
         self.days = 0
         self.xp = 0
         self.dinheiro = 0
+
+    def base_arquivo_imagens(self, tipo):
+        s = tipo.split("_")
+        print(s)
+        if s[0] == "squirtle":
+            num_imagens = 31
+        elif s[0] == "wartortle":
+            num_imagens = 33
+        elif s[0] == "blastoise":
+            num_imagens = 81            
+        elif s[0] == "charmander":
+            num_imagens = 39
+        elif s[0] == "charmeleon":
+            num_imagens = 64           
+        elif s[0] == "charizard":
+            num_imagens = 51           
+        elif s[0] == "bulbasaur":
+            num_imagens = 43           
+        elif s[0] == "ivysaur":
+            num_imagens = 51           
+        elif s[0] == "venusaur":
+            num_imagens = 31 
+        # XXXXX etc. terminar
+            
+        if tipo == "squirtle_A":
+            base = 'Squirtle/squirtleA'
+        elif tipo == "squirtle_F":
+            base = 'Squirtle_F/SquirtleF'
+        elif tipo == "squirtle_S":
+            base = 'Squirtle_S/SquirtleS'
+        elif tipo == "squirtle_B":
+            base = 'Squirtle_B/SquirtleB'
+#        else:
+#            # XXXXX terminar.
+#            base = 'Squirtle/squirtleA'
+#            num_imagens = 31
+            
+        elif tipo == "wartortle_A":
+            base = 'Squirtle/wartortleA'
+        elif tipo == "wartortle_F":
+            base = 'Squirtle_F/WartortleF'
+        elif tipo == "wartortle_S":
+            base = 'Squirtle_S/WartortleS'
+        elif tipo == "wartortle_B":
+            base = 'Squirtle_B/WartortleB'
+    
+        elif tipo == "blastoise_A":
+            base = 'Squirtle/BlastoiseA'
+        elif tipo == "blastoise_F":
+            base = 'Squirtle_F/BlastoiseF'
+        elif tipo == "blastoise_S":
+            base = 'Squirtle_S/BlastoiseS'
+        elif tipo == "blastoise_B":
+            base = 'Squirtle_B/BlastoiseB'        
+
+        elif tipo == "charmander_A":
+            base = 'Charmander/charmanderA'
+        elif tipo == "charmander_F":
+            base = 'Charmander_F/charmanderF'
+        elif tipo == "charmander_S":
+            base = 'Charmander_S/charmanderS'
+        elif tipo == "charmander_B":
+            base = 'Charmander_B/charmanderB'
+            
+        elif tipo == "charmeleon_A":
+            base = 'Charmander/charmeleonA'
+        elif tipo == "charmeleon_F":
+            base = 'Charmander_F/charmeleonF'
+        elif tipo == "charmeleon_S":
+            base = 'Charmander_S/charmeleonS'
+        elif tipo == "charmeleon_B":
+            base = 'Charmander_B/charmeleonB'
+    
+        elif tipo == "charizard_A":
+            base = 'Charmander/charizardA'
+        elif tipo == "charizard_F":
+            base = 'Charmander_F/charizardF'
+        elif tipo == "charizard_S":
+            base = 'Charmander_S/charizardS'
+        elif tipo == "charizard_B":
+            base = 'Charmander_B/charizardB'         
+
+        elif tipo == "bulbasaur_A":
+            base = 'Bulbasaur/bulbasaurA'
+        elif tipo == "bulbasaur_F":
+            base = 'Bulbasaur_F/bulbasaurF'
+        elif tipo == "bulbasaur_S":
+            base = 'Bulbasaur_S/bulbasaurS'
+        elif tipo == "bulbasaur_B":
+            base = 'Bulbasaur_B/bulbasaurB'
+            
+        elif tipo == "ivysaur_A":
+            base = 'Bulbasaur/ivysaurA'
+        elif tipo == "ivysaur_F":
+            base = 'Bulbasaur_F/ivysaurF'
+        elif tipo == "ivysaur_S":
+            base = 'Bulbasaur_S/ivysaurS'
+        elif tipo == "ivysaur_B":
+            base = 'Bulbasaur_B/ivysaurB'
+    
+#        elif tipo == "venusar_A":
+#            base = 'Bulbasaur/venusarA'
+#        elif tipo == "venusar_F":
+#            base = 'Bulbasaur_F/venusaurF'
+#        elif tipo == "venusar_S":
+#            base = 'Bulbasaur_S/venusaurF'
+#        elif tipo == "venusar_B":
+#            base = 'Bulbasaur_B/venusaurB' 
+
+        return base, num_imagens        
+        
+    def le_imagens(self, base, num_imagens):
+        lista_imagens = []
+        for i in range(1, (num_imagens + 1)):
+            lista_imagens.append(tk.PhotoImage(file ='{0}{1}.gif'.format(base, i)))
+        lista_imagens = lista_imagens[::-1]
+        return lista_imagens
+        
+    def le_todas_as_imagens(self):
+        tipos = [
+            "squirtle_A",
+            "squirtle_F",
+            "squirtle_S",
+            "squirtle_B",
+            "wartortle_A",
+            "wartortle_F",
+            "wartortle_S",
+            "wartortle_B",
+            "blastoise_A",
+            "blastoise_F",
+            "blastoise_S",
+            "blastoise_B",
+            "charmander_A",
+            "charmander_F",
+            "charmander_S",
+            "charmander_B",
+            "charmeleon_A",
+            "charmeleon_F",
+            "charmeleon_S",
+            "charmeleon_B",
+            "charizard_A",
+            "charizard_F",
+            "charizard_S",
+            "charizard_B",
+            "bulbasaur_A",
+            "bulbasaur_F",
+            "bulbasaur_S",
+            "bulbasaur_B",
+            "ivysaur_A",
+            "ivysaur_F",
+            "ivysaur_S",
+            "ivysaur_B"]
+#            "venusar_A",
+#            "venusar_F",
+#            "venusar_S",
+#            "venusar_B"]
+        
+        self.imagens = {}
+        for tipo in tipos:
+            base, num_imagens = self.base_arquivo_imagens(tipo)
+            self.imagens[tipo] = self.le_imagens(base, num_imagens)
         
     def comeca_tamagotchi(self):        
         self.window_tamagotchi.after(0, self.get_hungry)
@@ -545,101 +708,17 @@ class Tamagotchi:
         
      
     def animação(self):
-        self.lista = []
-        self.listagif = []
-        self.listaIn = []
         self.evolução()
-        self.v = self.troca_imagem()
         
-        for i in range (1,32):
-            if self.v == "squirtle_A":
-                self.lista.append(tk.PhotoImage(file ='Squirtle/squirtleA%s.gif'%i))
-            elif self.v == "squirtle_F":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_F/SquirtleF%s.gif'%i))
-            elif self.v == "squirtle_S":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_S/SquirtleS%s.gif'%i))
-            elif self.v == "squirtle_B":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_B/SquirtleB%s.gif'%i))
-                
-            elif self.v == "wartortle_A":
-                self.lista.append(tk.PhotoImage(file ='Squirtle/wartortleA%s.gif'%i))
-            elif self.v == "wartortle_F":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_F/WartortleF%s.gif'%i))
-            elif self.v == "wartortle_S":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_S/WartortleS%s.gif'%i))
-            elif self.v == "wartortle_B":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_B/WartortleB%s.gif'%i))
+        v = self.troca_imagem()
         
-            elif self.v == "blastoise_A":
-                self.lista.append(tk.PhotoImage(file ='Squirtle/BlastoiseA%s.gif'%i))
-            elif self.v == "blastoise_F":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_F/BlastoiseF%s.gif'%i))
-            elif self.v == "blastoise_S":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_S/BlastoiseS%s.gif'%i))
-            elif self.v == "blastoise_B":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_B/BlastoiseB%s.gif'%i))        
-#-----------------------------------------------------------------------------------
-            elif self.v == "charmander_A":
-                self.lista.append(tk.PhotoImage(file ='Charmander/charmanderA%s.gif'%i))
-            elif self.v == "charmander_F":
-                self.lista.append(tk.PhotoImage(file ='Charmander_F/charmanderF%s.gif'%i))
-            elif self.v == "charmander_S":
-                self.lista.append(tk.PhotoImage(file ='Charmander_S/charmanderS%s.gif'%i))
-            elif self.v == "charmander_B":
-                self.lista.append(tk.PhotoImage(file ='Charmander_B/charmanderB%s.gif'%i))
-                
-            elif self.v == "charmeleon_A":
-                self.lista.append(tk.PhotoImage(file ='Charmander/charmeleonA%s.gif'%i))
-            elif self.v == "charmeleon_F":
-                self.lista.append(tk.PhotoImage(file ='Charmander_F/charmeleonF%s.gif'%i))
-            elif self.v == "charmeleon_S":
-                self.lista.append(tk.PhotoImage(file ='Charmander_S/charmeleonS%s.gif'%i))
-            elif self.v == "charmeleon_B":
-                self.lista.append(tk.PhotoImage(file ='Charmander_B/charmeleonB%s.gif'%i))
-        
-            elif self.v == "charizard_A":
-                self.lista.append(tk.PhotoImage(file ='Charmander/charizardA%s.gif'%i))
-            elif self.v == "charizard_F":
-                self.lista.append(tk.PhotoImage(file ='Charmander_F/charizardF%s.gif'%i))
-            elif self.v == "charizard_S":
-                self.lista.append(tk.PhotoImage(file ='Charmander_S/charizardF%s.gif'%i))
-            elif self.v == "charizard_B":
-                self.lista.append(tk.PhotoImage(file ='Charmander_B/charizardB%s.gif'%i))         
+        self.canvas.delete(tk.ALL)
 
-            elif self.v == "bulbasaur_A":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur/bulbasaurA%s.gif'%i))
-            elif self.v == "bulbasaur_F":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_F/bulbasaurF%s.gif'%i))
-            elif self.v == "bulbasaur_S":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_S/bulbasaurS%s.gif'%i))
-            elif self.v == "bulbasaur_B":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_B/bulbasaurB%s.gif'%i))
-                
-            elif self.v == "ivysaur_A":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur/ivysaurA%s.gif'%i))
-            elif self.v == "ivysaur_F":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_F/ivysaurF%s.gif'%i))
-            elif self.v == "ivysaur_S":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_S/ivysaurS%s.gif'%i))
-            elif self.v == "ivysaur_B":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur/ivysaurB%s.gif'%i))
-        
-            elif self.v == "venusar_A":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur/venusarA%s.gif'%i))
-            elif self.v == "venusar_F":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_F/venusaurF%s.gif'%i))
-            elif self.v == "venusar_S":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_S/venusaurF%s.gif'%i))
-            elif self.v == "venusar_B":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_B/venusaurB%s.gif'%i)) 
-        for z in self.lista[::-1]:
-            self.listaIn.append(z)
-        for k in self.listaIn:
-            self.listagif.append(k)
-        for j in self.listagif:
-            self.canvas.create_image(192/2,192/2,image = j)
+        for j in self.imagens[v]:
+            self.canvas.create_image(192//2, 192//2, image = j)
             self.canvas.update()
             time.sleep(0.02)
+        
         self.window_tamagotchi.after(0, self.animação)
 
     def troca_imagem(self):
