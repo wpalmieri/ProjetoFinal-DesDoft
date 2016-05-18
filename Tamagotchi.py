@@ -1,7 +1,7 @@
 import tkinter as tk
 import time
 from datetime import datetime
-from tkinter import messagebox
+import tkinter.messagebox as tkm
 
 class Janela_Principal():
     
@@ -65,7 +65,7 @@ class Menu_Principal():
 #        self.sound = mp3play.load("Fire Red Main Theme Extended")
 #        self.sound.play() 
                 
-        self.window1.rowconfigure(0, minsize = 100) #Geometria da página
+        self.window1.rowconfigure(0, minsize = 100)
         self.window1.rowconfigure(1, minsize = 110)
         self.window1.rowconfigure(2, minsize = 120)
         self.window1.rowconfigure(3, minsize = 120)
@@ -189,68 +189,177 @@ class Loja:
         self.label2 = tk.Label(self.window_loja, text = "Loja")
         self.label2.grid(row = 0, column = 1, sticky = "nsew")
         
-        self.label3 = tk.Label(self.window_loja)
-        self.label3.grid(row = 0, column = 2, sticky = "nsew")
+        self.label_dinheiro = tk.Label(self.window_loja)
+        self.label_dinheiro.grid(row = 0, column = 2, sticky = "nsew")
         
-        self.botao4 = tk.Button(self.window_loja, image = self.bigode)
-        self.botao4.grid(row = 1, column = 0, sticky = "nsew")
+        self.botao_bigode = tk.Button(self.window_loja, image = self.bigode)
+        self.botao_bigode.grid(row = 1, column = 0, sticky = "nsew")
+        self.botao_bigode.config(command = self.compra_bigode)
         
-        self.botao5 = tk.Button(self.window_loja, image = self.oculos)
-        self.botao5.grid(row = 1, column = 1, sticky = "nsew")
+        self.botao_oculos = tk.Button(self.window_loja, image = self.oculos)
+        self.botao_oculos.grid(row = 1, column = 1, sticky = "nsew")
+        self.botao_oculos.config(command = self.compra_oculos)
         
-        self.botao6 = tk.Button(self.window_loja, image = self.chapeu)
-        self.botao6.grid(row = 1, column = 2, sticky = "nsew")
+        self.botao_chapeu = tk.Button(self.window_loja, image = self.chapeu)
+        self.botao_chapeu.grid(row = 1, column = 2, sticky = "nsew")
+        self.botao_chapeu.config(command = self.compra_chapeu)
         
-        self.botao7 = tk.Button(self.window_loja, image = self.carne)
-        self.botao7.grid(row = 3, column = 0, sticky = "nsew")
+        self.botao_carne = tk.Button(self.window_loja, image = self.carne)
+        self.botao_carne.grid(row = 3, column = 0, sticky = "nsew")
+        self.botao_carne.config(command = self.compra_carne)
         
-        self.botao8 = tk.Button(self.window_loja, image = self.sabao)
-        self.botao8.grid(row = 3, column = 1, sticky = "nsew")
+        self.botao_sabao = tk.Button(self.window_loja, image = self.sabao)
+        self.botao_sabao.grid(row = 3, column = 1, sticky = "nsew")
+        self.botao_sabao.config(command = self.compra_sabao)
         
-        self.botao9 = tk.Button(self.window_loja, image = self.cafe)
-        self.botao9.grid(row = 3, column = 2, sticky = "nsew")
+        self.botao_cafe = tk.Button(self.window_loja, image = self.cafe)
+        self.botao_cafe.grid(row = 3, column = 2, sticky = "nsew")
+        self.botao_cafe.config(command = self.compra_cafe)
         
-        self.botao10 = tk.Button(self.window_loja, image = self.rare_candy)
-        self.botao10.grid(row = 5, column = 0, sticky = "nsew")
+        self.botao_rc = tk.Button(self.window_loja, image = self.rare_candy)
+        self.botao_rc.grid(row = 5, column = 0, sticky = "nsew")
+        self.botao_rc.config(command = self.compra_rc)
         
-        self.botao11 = tk.Button(self.window_loja, image = self.super_rod)
-        self.botao11.grid(row = 5, column = 1, sticky = "nsew")
+        self.botao_sr = tk.Button(self.window_loja, image = self.super_rod)
+        self.botao_sr.grid(row = 5, column = 1, sticky = "nsew")
+        self.botao_sr.config(command = self.compra_sr)
         
         self.botao12 = tk.Button(self.window_loja, text = "12")
         self.botao12.grid(row = 5, column = 2, sticky = "nsew")
         
         # Labels        
-        self.label13 = tk.Label(self.window_loja, text = "Bigode - $100")
-        self.label13.grid(row = 2, column = 0, sticky = "nsew")
+        self.label_bigode = tk.Label(self.window_loja, text = "Bigode - $500")
+        self.label_bigode.grid(row = 2, column = 0, sticky = "nsew")
         
-        self.label14 = tk.Label(self.window_loja, text = "Oculos - $100")
-        self.label14.grid(row = 2, column = 1, sticky = "nsew")
+        self.label_oculos = tk.Label(self.window_loja, text = "Óculos - $500")
+        self.label_oculos.grid(row = 2, column = 1, sticky = "nsew")
         
-        self.label15 = tk.Label(self.window_loja, text = "Chapeu - $100")
-        self.label15.grid(row = 2, column = 2, sticky = "nsew")
+        self.label_chapeu = tk.Label(self.window_loja, text = "Chapéu - $500")
+        self.label_chapeu.grid(row = 2, column = 2, sticky = "nsew")
         
-        self.label16 = tk.Label(self.window_loja, text = "Alimento - $10")
-        self.label16.grid(row = 4, column = 0, sticky = "nsew")
+        self.label_carne = tk.Label(self.window_loja, text = "Alimento - $20")
+        self.label_carne.grid(row = 4, column = 0, sticky = "nsew")
         
-        self.label17 = tk.Label(self.window_loja, text = "Sabão - $10")
-        self.label17.grid(row = 4, column = 1, sticky = "nsew")
+        self.label_sabao = tk.Label(self.window_loja, text = "Sabão - $20")
+        self.label_sabao.grid(row = 4, column = 1, sticky = "nsew")
         
-        self.label18 = tk.Label(self.window_loja, text = "Café - $10")
-        self.label18.grid(row = 4, column = 2, sticky = "nsew")
+        self.label_cafe = tk.Label(self.window_loja, text = "Café - $20")
+        self.label_cafe.grid(row = 4, column = 2, sticky = "nsew")
         
-        self.label19 = tk.Label(self.window_loja, text = "Rare Candy - $275")
-        self.label19.grid(row = 6, column = 0, sticky = "nsew")
+        self.label_rc = tk.Label(self.window_loja, text = "Rare Candy - $775")
+        self.label_rc.grid(row = 6, column = 0, sticky = "nsew")
         
-        self.label20 = tk.Label(self.window_loja, text = "Super Rod - $150")
-        self.label20.grid(row = 6, column = 1, sticky = "nsew")
+        self.label_sr = tk.Label(self.window_loja, text = "Super Rod - $650")
+        self.label_sr.grid(row = 6, column = 1, sticky = "nsew")
         
         # Iniciar o after
         self.window_loja.after(0, self.update_money)
-                
+        
+    # Compras
+    def compra_bigode(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 500:
+            
+            self.janela_principal.jogo.dinheiro -= 500
+            self.botao_bigode.configure(state = "disabled")
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+    
+    def compra_oculos(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 500:
+            
+            self.janela_principal.jogo.dinheiro -= 500
+            self.botao_oculos.configure(state = "disabled")
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+    
+    def compra_chapeu(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 500:
+            
+            self.janela_principal.jogo.dinheiro -= 500
+            self.botao_chapeu.configure(state = "disabled")
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+        
+    def compra_carne(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 20:
+            
+            self.janela_principal.jogo.dinheiro -= 20
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+
+
+    def compra_sabao(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 20:
+            
+            self.janela_principal.jogo.dinheiro -= 20
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+            
+    def compra_cafe(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 20:
+            
+            self.janela_principal.jogo.dinheiro -= 20
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+            
+    def compra_rc(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 775:
+            
+            self.janela_principal.jogo.dinheiro -= 775
+            self.botao_rc.configure(state = "disabled")
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+            
+    def compra_sr(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 650:
+            
+            self.janela_principal.jogo.dinheiro -= 650
+            self.botao_sr.configure(state = "disabled")
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+    
+    # Ganhar dinheiro por dia                
     def update_money(self):
-        self.dinheiros = self.janela_principal.jogo.dinheiro
-        self.label3.configure(text = "Dinheiros:\n {0}".format(self.dinheiros))
-        self.window_loja.after(10000, self.update_money)
+        self.label_dinheiro.configure(text = "Dinheiros:\n {0}"
+        .format(self.janela_principal.jogo.dinheiro))
         
     def mostrar(self):
         self.window_loja.tkraise()
