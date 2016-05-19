@@ -88,8 +88,11 @@ class Menu_Principal():
         self.button_novojogo.configure(command = self.novo_jogo)
         
     def continuar(self):      
-        self.janela_principal.mostra_tamagotchi()
-        self.janela_principal.jogo.comeca_tamagotchi()
+        if self.janela_principal.jogo.p =="x":
+            tk.messagebox.showinfo ('Escolha','Você ainda nao escolheu seu pokemon')   
+        else:
+            self.janela_principal.mostra_tamagotchi()
+            self.janela_principal.jogo.comeca_tamagotchi()
     
     def novo_jogo(self):
         self.janela_principal.mostra_escolher_personagem()
@@ -470,7 +473,6 @@ class Tamagotchi:
 
     def base_arquivo_imagens(self, tipo):
         s = tipo.split("_")
-        print(s)
         if s[0] == "squirtle":
             num_imagens = 31
         elif s[0] == "wartortle":
@@ -771,6 +773,8 @@ class Tamagotchi:
     
     def morto(self):
         tk.messagebox.showinfo ('Morreu', 'Seu pokemon morreu')
+        self.reset("x")
+        self.sair()
         self.window_tamagotchi.quit()
 
 #    def sujo(self):
