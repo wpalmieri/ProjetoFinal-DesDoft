@@ -800,7 +800,7 @@ class Tamagotchi:
         horario = datetime.now().time()
         
         save = open('Save', 'w')
-        save.write("{0}, {1}, {2}, {3}, {4},{5}, {6}, {7}".format(horario, self.days, self.hunger, 
+        save.write("{0}, {1}, {2}, {3}, {4},{5}, {6}, {7}, {8}".format(horario, self.days, self.hunger, 
                    self.clean, self.sleep, self.p, self.xp, self.dinheiro, self.level))
         save.close()
         
