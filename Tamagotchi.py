@@ -88,8 +88,11 @@ class Menu_Principal():
         self.button_novojogo.configure(command = self.novo_jogo)
         
     def continuar(self):      
-        self.janela_principal.mostra_tamagotchi()
-        self.janela_principal.jogo.comeca_tamagotchi()
+        if self.janela_principal.jogo.p =="x":
+            tk.messagebox.showinfo ('Escolha','Você ainda nao escolheu seu pokemon')   
+        else:
+            self.janela_principal.mostra_tamagotchi()
+            self.janela_principal.jogo.comeca_tamagotchi()
     
     def novo_jogo(self):
         self.janela_principal.mostra_escolher_personagem()
@@ -473,6 +476,7 @@ class Tamagotchi:
         self.p = (self.str_split[5])
         self.last_xp = int(self.str_split[6])
         self.last_money = int(self.str_split[7])
+        self.last_level = int(self.str_split[17])
         
 #        self.tem_bigode = int(self.str_split[8])
 #        self.tem_oculos = int(self.str_split[9])
@@ -491,6 +495,7 @@ class Tamagotchi:
         self.days = self.last_day
         self.xp = self.last_xp
         self.dinheiro = self.last_money
+        self.level = self.last_level
         
         # Geometria da página
         self.window_tamagotchi.rowconfigure(0, minsize = 50)
@@ -503,9 +508,9 @@ class Tamagotchi:
         self.window_tamagotchi.columnconfigure(2, minsize = 100)
         
         # Labels
-        self.label_xp = tk.Label(self.window_tamagotchi)
-        self.label_xp.configure(background = 'white')
-        self.label_xp.grid(row = 0, column = 0)
+        self.label_level = tk.Label(self.window_tamagotchi)
+        self.label_level.configure(background = 'white')
+        self.label_level.grid(row = 0, column = 0)
         
         self.label_dia = tk.Label(self.window_tamagotchi)
         self.label_dia.configure(background = 'white')
@@ -551,6 +556,7 @@ class Tamagotchi:
         self.days = 0
         self.xp = 0
         self.dinheiro = 0
+        self.level = 0
 
     def base_arquivo_imagens(self, tipo):
         s = tipo.split("_")
@@ -797,7 +803,7 @@ class Tamagotchi:
             self.hunger -= 1
             
             self.label_fome.configure(text = "Fome:\n{0}".format(self.hunger))
-            self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
+            self.label_level.configure(text = "Level:\n{0}".format(self.xp//50))
                 
         else:
             self.label_fome.configure(text = "Fome:\n{0}".format(self.hunger))
@@ -813,11 +819,11 @@ class Tamagotchi:
             self.sleep -= 1
                 
             self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
-            self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
+            self.label_level.configure(text = "Level:\n{0}".format(self.xp//50))
             
         else:
             self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
-            self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
+            self.label_level.configure(text = "Level:\n{0}".format(self.xp//50))
             
         self.window_tamagotchi.after(1000, self.get_sleepy)
     
@@ -829,11 +835,11 @@ class Tamagotchi:
             self.clean -= 1
             
             self.label_saude.configure(text = "Limpeza:\n{0}".format(self.clean))
-            self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
+            self.label_level.configure(text = "Level:\n{0}".format(self.xp//50))
             
         else:
             self.label_saude.configure(text = "Limpeza:\n{0}".format(self.clean))
-            self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
+            self.label_level.configure(text = "Level:\n{0}".format(self.xp//50))
            
         self.window_tamagotchi.after(1000, self.get_dirty)
     
@@ -854,6 +860,8 @@ class Tamagotchi:
     
     def morto(self):
         tk.messagebox.showinfo ('Morreu', 'Seu pokemon morreu')
+        self.reset("x")
+        self.sair()
         self.window_tamagotchi.quit()
 
 #    def sujo(self):
@@ -876,13 +884,13 @@ class Tamagotchi:
         horario = datetime.now().time()
         
         save = open('Save', 'w')
-        save.write("{0}, {1}, {2}, {3}, {4},{5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}, {16}".format
+        save.write("{0}, {1}, {2}, {3}, {4},{5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}, {16}, {17}".format
         (horario, self.days, self.hunger, self.clean, self.sleep, self.p, self.xp, self.dinheiro,
                    self.janela_principal.loja.n_bigode, self.janela_principal.loja.n_oculos,
                    self.janela_principal.loja.n_chapeu, self.janela_principal.loja.n_carne,
                    self.janela_principal.loja.n_sabao, self.janela_principal.loja.n_cafe,
                    self.janela_principal.loja.n_rc, self.janela_principal.loja.n_sr,
-                   self.janela_principal.loja.n_12))
+                   self.janela_principal.loja.n_12, self.level))
                    
         save.close()
         
