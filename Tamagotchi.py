@@ -1,7 +1,7 @@
 import tkinter as tk
 import time
 from datetime import datetime
-from tkinter import messagebox
+import tkinter.messagebox as tkm
 
 class Janela_Principal():
     
@@ -65,7 +65,7 @@ class Menu_Principal():
 #        self.sound = mp3play.load("Fire Red Main Theme Extended")
 #        self.sound.play() 
                 
-        self.window1.rowconfigure(0, minsize = 100) #Geometria da página
+        self.window1.rowconfigure(0, minsize = 100)
         self.window1.rowconfigure(1, minsize = 110)
         self.window1.rowconfigure(2, minsize = 120)
         self.window1.rowconfigure(3, minsize = 120)
@@ -176,11 +176,10 @@ class Loja:
         self.oculos = tk.PhotoImage(file = "Oculos.png")
         self.chapeu = tk.PhotoImage(file = "Chapeu.png")
         self.carne = tk.PhotoImage(file = "Carne.png")
-        self.salada = tk.PhotoImage(file = "Salada.png")
-        self.magikarp = tk.PhotoImage(file = "Magikarp.png")
+        self.cafe = tk.PhotoImage(file = "Cafe.png")
+        self.sabao = tk.PhotoImage(file = "Sabao.png")
         self.rare_candy = tk.PhotoImage(file = "Rare_Candy.png")
         self.super_rod = tk.PhotoImage(file = "Super_Rod.png")
-        
         
         # Buttons        
         self.botao1 = tk.Button(self.window_loja, text = "Voltar", height = 2, width = 6)
@@ -190,62 +189,177 @@ class Loja:
         self.label2 = tk.Label(self.window_loja, text = "Loja")
         self.label2.grid(row = 0, column = 1, sticky = "nsew")
         
-        self.label3 = tk.Label(self.window_loja, text = "Dinheiro:\n100")
-        self.label3.grid(row = 0, column = 2, sticky = "nsew")
+        self.label_dinheiro = tk.Label(self.window_loja)
+        self.label_dinheiro.grid(row = 0, column = 2, sticky = "nsew")
         
-        self.botao4 = tk.Button(self.window_loja, image = self.bigode)
-        self.botao4.grid(row = 1, column = 0, sticky = "nsew")
+        self.botao_bigode = tk.Button(self.window_loja, image = self.bigode)
+        self.botao_bigode.grid(row = 1, column = 0, sticky = "nsew")
+        self.botao_bigode.config(command = self.compra_bigode)
         
-        self.botao5 = tk.Button(self.window_loja, image = self.oculos)
-        self.botao5.grid(row = 1, column = 1, sticky = "nsew")
+        self.botao_oculos = tk.Button(self.window_loja, image = self.oculos)
+        self.botao_oculos.grid(row = 1, column = 1, sticky = "nsew")
+        self.botao_oculos.config(command = self.compra_oculos)
         
-        self.botao6 = tk.Button(self.window_loja, image = self.chapeu)
-        self.botao6.grid(row = 1, column = 2, sticky = "nsew")
+        self.botao_chapeu = tk.Button(self.window_loja, image = self.chapeu)
+        self.botao_chapeu.grid(row = 1, column = 2, sticky = "nsew")
+        self.botao_chapeu.config(command = self.compra_chapeu)
         
-        self.botao7 = tk.Button(self.window_loja, image = self.salada)
-        self.botao7.grid(row = 3, column = 0, sticky = "nsew")
+        self.botao_carne = tk.Button(self.window_loja, image = self.carne)
+        self.botao_carne.grid(row = 3, column = 0, sticky = "nsew")
+        self.botao_carne.config(command = self.compra_carne)
         
-        self.botao8 = tk.Button(self.window_loja, image = self.carne)
-        self.botao8.grid(row = 3, column = 1, sticky = "nsew")
+        self.botao_sabao = tk.Button(self.window_loja, image = self.sabao)
+        self.botao_sabao.grid(row = 3, column = 1, sticky = "nsew")
+        self.botao_sabao.config(command = self.compra_sabao)
         
-        self.botao9 = tk.Button(self.window_loja, image = self.magikarp)
-        self.botao9.grid(row = 3, column = 2, sticky = "nsew")
+        self.botao_cafe = tk.Button(self.window_loja, image = self.cafe)
+        self.botao_cafe.grid(row = 3, column = 2, sticky = "nsew")
+        self.botao_cafe.config(command = self.compra_cafe)
         
-        self.botao10 = tk.Button(self.window_loja, image = self.rare_candy)
-        self.botao10.grid(row = 5, column = 0, sticky = "nsew")
+        self.botao_rc = tk.Button(self.window_loja, image = self.rare_candy)
+        self.botao_rc.grid(row = 5, column = 0, sticky = "nsew")
+        self.botao_rc.config(command = self.compra_rc)
         
-        self.botao11 = tk.Button(self.window_loja, image = self.super_rod)
-        self.botao11.grid(row = 5, column = 1, sticky = "nsew")
+        self.botao_sr = tk.Button(self.window_loja, image = self.super_rod)
+        self.botao_sr.grid(row = 5, column = 1, sticky = "nsew")
+        self.botao_sr.config(command = self.compra_sr)
         
         self.botao12 = tk.Button(self.window_loja, text = "12")
         self.botao12.grid(row = 5, column = 2, sticky = "nsew")
         
-        
         # Labels        
-        self.label1 = tk.Label(self.window_loja, text = "Bigode - $5")
-        self.label1.grid(row = 2, column = 0, sticky = "nsew")
+        self.label_bigode = tk.Label(self.window_loja, text = "Bigode - $500")
+        self.label_bigode.grid(row = 2, column = 0, sticky = "nsew")
         
-        self.label2 = tk.Label(self.window_loja, text = "Oculos - $20")
-        self.label2.grid(row = 2, column = 1, sticky = "nsew")
+        self.label_oculos = tk.Label(self.window_loja, text = "Óculos - $500")
+        self.label_oculos.grid(row = 2, column = 1, sticky = "nsew")
         
-        self.label3 = tk.Label(self.window_loja, text = "Chapeu - $40")
-        self.label3.grid(row = 2, column = 2, sticky = "nsew")
+        self.label_chapeu = tk.Label(self.window_loja, text = "Chapéu - $500")
+        self.label_chapeu.grid(row = 2, column = 2, sticky = "nsew")
         
-        self.label4 = tk.Label(self.window_loja, text = "Salada - $5")
-        self.label4.grid(row = 4, column = 0, sticky = "nsew")
+        self.label_carne = tk.Label(self.window_loja, text = "Alimento - $20")
+        self.label_carne.grid(row = 4, column = 0, sticky = "nsew")
         
-        self.label5 = tk.Label(self.window_loja, text = "Carne - $20")
-        self.label5.grid(row = 4, column = 1, sticky = "nsew")
+        self.label_sabao = tk.Label(self.window_loja, text = "Sabão - $20")
+        self.label_sabao.grid(row = 4, column = 1, sticky = "nsew")
         
-        self.label6 = tk.Label(self.window_loja, text = "Magikarp - $40")
-        self.label6.grid(row = 4, column = 2, sticky = "nsew")
+        self.label_cafe = tk.Label(self.window_loja, text = "Café - $20")
+        self.label_cafe.grid(row = 4, column = 2, sticky = "nsew")
         
-        self.label7 = tk.Label(self.window_loja, text = "Rare Candy - $75")
-        self.label7.grid(row = 6, column = 0, sticky = "nsew")
+        self.label_rc = tk.Label(self.window_loja, text = "Rare Candy - $775")
+        self.label_rc.grid(row = 6, column = 0, sticky = "nsew")
         
-        self.label8 = tk.Label(self.window_loja, text = "Super Rod - $50")
-        self.label8.grid(row = 6, column = 1, sticky = "nsew")
+        self.label_sr = tk.Label(self.window_loja, text = "Super Rod - $650")
+        self.label_sr.grid(row = 6, column = 1, sticky = "nsew")
         
+        # Iniciar o after
+        self.window_loja.after(0, self.update_money)
+        
+    # Compras
+    def compra_bigode(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 500:
+            
+            self.janela_principal.jogo.dinheiro -= 500
+            self.botao_bigode.configure(state = "disabled")
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+    
+    def compra_oculos(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 500:
+            
+            self.janela_principal.jogo.dinheiro -= 500
+            self.botao_oculos.configure(state = "disabled")
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+    
+    def compra_chapeu(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 500:
+            
+            self.janela_principal.jogo.dinheiro -= 500
+            self.botao_chapeu.configure(state = "disabled")
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+        
+    def compra_carne(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 20:
+            
+            self.janela_principal.jogo.dinheiro -= 20
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+
+
+    def compra_sabao(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 20:
+            
+            self.janela_principal.jogo.dinheiro -= 20
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+            
+    def compra_cafe(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 20:
+            
+            self.janela_principal.jogo.dinheiro -= 20
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+            
+    def compra_rc(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 775:
+            
+            self.janela_principal.jogo.dinheiro -= 775
+            self.botao_rc.configure(state = "disabled")
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+            
+    def compra_sr(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 650:
+            
+            self.janela_principal.jogo.dinheiro -= 650
+            self.botao_sr.configure(state = "disabled")
+            self.update_money()
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+    
+    # Ganhar dinheiro por dia                
+    def update_money(self):
+        self.label_dinheiro.configure(text = "Dinheiros:\n {0}"
+        .format(self.janela_principal.jogo.dinheiro))
         
     def mostrar(self):
         self.window_loja.tkraise()
@@ -263,6 +377,8 @@ class Tamagotchi:
         self.window_tamagotchi.grid(row = 0, column = 0, sticky = "nsew")
         self.window_tamagotchi.configure(bg = "white")
         
+        self.le_todas_as_imagens()
+        
         self.canvas = tk.Canvas(self.window_tamagotchi, width = 192, height = 192)
         self.canvas.configure(bg = "white", highlightthickness = 0)
         self.canvas.grid(row = 2 , column = 0, columnspan = 3)
@@ -275,7 +391,6 @@ class Tamagotchi:
         self.arquivo.close()
             
         self.str_split = self.last_line.split(",")
-        
         self.last_timetable = self.str_split[0]
         self.last_day = int(self.str_split[1])
         self.last_hunger = int(self.str_split[2])
@@ -283,7 +398,7 @@ class Tamagotchi:
         self.last_sleep = int(self.str_split[4])
         self.p = (self.str_split[5])
         self.last_xp = int(self.str_split[6])
-        print (self.last_xp)
+        self.last_money = int(self.str_split[7])
         
         # Atributos do Tamagotchi
         self.hunger = self.last_hunger
@@ -291,6 +406,7 @@ class Tamagotchi:
         self.sleep = self.last_sleep
         self.days = self.last_day
         self.xp = self.last_xp
+        self.dinheiro = self.last_money
         
         # Geometria da página
         self.window_tamagotchi.rowconfigure(0, minsize = 50)
@@ -306,7 +422,6 @@ class Tamagotchi:
         self.label_xp = tk.Label(self.window_tamagotchi)
         self.label_xp.configure(background = 'white')
         self.label_xp.grid(row = 0, column = 0)
-        
         
         self.label_dia = tk.Label(self.window_tamagotchi)
         self.label_dia.configure(background = 'white')
@@ -343,7 +458,7 @@ class Tamagotchi:
         self.botao_loja = tk.Button(self.window_tamagotchi, text = "Loja", height = 1, width = 6)
         self.botao_loja.grid(row = 0, column = 2)
         self.botao_loja.configure(command = self.acessa_loja)
-    
+
     def reset(self,p):
         self.p = p
         self.hunger = 101
@@ -351,15 +466,176 @@ class Tamagotchi:
         self.sleep = 101
         self.days = 0
         self.xp = 0
+        self.dinheiro = 0
+
+    def base_arquivo_imagens(self, tipo):
+        s = tipo.split("_")
+        print(s)
+        if s[0] == "squirtle":
+            num_imagens = 31
+        elif s[0] == "wartortle":
+            num_imagens = 33
+        elif s[0] == "blastoise":
+            num_imagens = 81            
+        elif s[0] == "charmander":
+            num_imagens = 39
+        elif s[0] == "charmeleon":
+            num_imagens = 64           
+        elif s[0] == "charizard":
+            num_imagens = 51           
+        elif s[0] == "bulbasaur":
+            num_imagens = 43           
+        elif s[0] == "ivysaur":
+            num_imagens = 51           
+        elif s[0] == "venusaur":
+            num_imagens = 31 
+        # XXXXX etc. terminar
+            
+        if tipo == "squirtle_A":
+            base = 'Squirtle/squirtleA'
+        elif tipo == "squirtle_F":
+            base = 'Squirtle_F/SquirtleF'
+        elif tipo == "squirtle_S":
+            base = 'Squirtle_S/SquirtleS'
+        elif tipo == "squirtle_B":
+            base = 'Squirtle_B/SquirtleB'
+#        else:
+#            # XXXXX terminar.
+#            base = 'Squirtle/squirtleA'
+#            num_imagens = 31
+            
+        elif tipo == "wartortle_A":
+            base = 'Squirtle/wartortleA'
+        elif tipo == "wartortle_F":
+            base = 'Squirtle_F/WartortleF'
+        elif tipo == "wartortle_S":
+            base = 'Squirtle_S/WartortleS'
+        elif tipo == "wartortle_B":
+            base = 'Squirtle_B/WartortleB'
+    
+        elif tipo == "blastoise_A":
+            base = 'Squirtle/BlastoiseA'
+        elif tipo == "blastoise_F":
+            base = 'Squirtle_F/BlastoiseF'
+        elif tipo == "blastoise_S":
+            base = 'Squirtle_S/BlastoiseS'
+        elif tipo == "blastoise_B":
+            base = 'Squirtle_B/BlastoiseB'        
+
+        elif tipo == "charmander_A":
+            base = 'Charmander/charmanderA'
+        elif tipo == "charmander_F":
+            base = 'Charmander_F/charmanderF'
+        elif tipo == "charmander_S":
+            base = 'Charmander_S/charmanderS'
+        elif tipo == "charmander_B":
+            base = 'Charmander_B/charmanderB'
+            
+        elif tipo == "charmeleon_A":
+            base = 'Charmander/charmeleonA'
+        elif tipo == "charmeleon_F":
+            base = 'Charmander_F/charmeleonF'
+        elif tipo == "charmeleon_S":
+            base = 'Charmander_S/charmeleonS'
+        elif tipo == "charmeleon_B":
+            base = 'Charmander_B/charmeleonB'
+    
+        elif tipo == "charizard_A":
+            base = 'Charmander/charizardA'
+        elif tipo == "charizard_F":
+            base = 'Charmander_F/charizardF'
+        elif tipo == "charizard_S":
+            base = 'Charmander_S/charizardS'
+        elif tipo == "charizard_B":
+            base = 'Charmander_B/charizardB'         
+
+        elif tipo == "bulbasaur_A":
+            base = 'Bulbasaur/bulbasaurA'
+        elif tipo == "bulbasaur_F":
+            base = 'Bulbasaur_F/bulbasaurF'
+        elif tipo == "bulbasaur_S":
+            base = 'Bulbasaur_S/bulbasaurS'
+        elif tipo == "bulbasaur_B":
+            base = 'Bulbasaur_B/bulbasaurB'
+            
+        elif tipo == "ivysaur_A":
+            base = 'Bulbasaur/ivysaurA'
+        elif tipo == "ivysaur_F":
+            base = 'Bulbasaur_F/ivysaurF'
+        elif tipo == "ivysaur_S":
+            base = 'Bulbasaur_S/ivysaurS'
+        elif tipo == "ivysaur_B":
+            base = 'Bulbasaur_B/ivysaurB'
+    
+#        elif tipo == "venusar_A":
+#            base = 'Bulbasaur/venusarA'
+#        elif tipo == "venusar_F":
+#            base = 'Bulbasaur_F/venusaurF'
+#        elif tipo == "venusar_S":
+#            base = 'Bulbasaur_S/venusaurF'
+#        elif tipo == "venusar_B":
+#            base = 'Bulbasaur_B/venusaurB' 
+
+        return base, num_imagens        
         
-    def comeca_tamagotchi(self):
+    def le_imagens(self, base, num_imagens):
+        lista_imagens = []
+        for i in range(1, (num_imagens + 1)):
+            lista_imagens.append(tk.PhotoImage(file ='{0}{1}.gif'.format(base, i)))
+        lista_imagens = lista_imagens[::-1]
+        return lista_imagens
         
+    def le_todas_as_imagens(self):
+        tipos = [
+            "squirtle_A",
+            "squirtle_F",
+            "squirtle_S",
+            "squirtle_B",
+            "wartortle_A",
+            "wartortle_F",
+            "wartortle_S",
+            "wartortle_B",
+            "blastoise_A",
+            "blastoise_F",
+            "blastoise_S",
+            "blastoise_B",
+            "charmander_A",
+            "charmander_F",
+            "charmander_S",
+            "charmander_B",
+            "charmeleon_A",
+            "charmeleon_F",
+            "charmeleon_S",
+            "charmeleon_B",
+            "charizard_A",
+            "charizard_F",
+            "charizard_S",
+            "charizard_B",
+            "bulbasaur_A",
+            "bulbasaur_F",
+            "bulbasaur_S",
+            "bulbasaur_B",
+            "ivysaur_A",
+            "ivysaur_F",
+            "ivysaur_S",
+            "ivysaur_B"]
+#            "venusar_A",
+#            "venusar_F",
+#            "venusar_S",
+#            "venusar_B"]
+        
+        self.imagens = {}
+        for tipo in tipos:
+            base, num_imagens = self.base_arquivo_imagens(tipo)
+            self.imagens[tipo] = self.le_imagens(base, num_imagens)
+        
+    def comeca_tamagotchi(self):        
         self.window_tamagotchi.after(0, self.get_hungry)
         self.window_tamagotchi.after(0, self.get_sleepy)
         self.window_tamagotchi.after(0, self.get_dirty)
         self.window_tamagotchi.after(0, self.pass_day)
         self.window_tamagotchi.after(0, self.animação)
-        
+       
 # ---------------------------------------------------
 # Tempo
         
@@ -429,10 +705,10 @@ class Tamagotchi:
             
             self.sleep = 100
             self.xp += 2
+            
                     
-#botões    
     def get_hungry(self):
-        print("Oi")
+        
         if self.hunger != 0:
             
             self.hunger -= 1
@@ -443,8 +719,6 @@ class Tamagotchi:
         else:
             self.label_fome.configure(text = "Fome:\n{0}".format(self.hunger))
             self.morto()
-            
-            
             
         self.window_tamagotchi.after(1000, self.get_hungry)
         
@@ -461,7 +735,6 @@ class Tamagotchi:
         else:
             self.label_sono.configure(text = "Sono:\n{0}".format(self.sleep))
             self.label_xp.configure(text = "XP:\n{0}".format(self.xp))
-            
             
         self.window_tamagotchi.after(1000, self.get_sleepy)
     
@@ -486,6 +759,7 @@ class Tamagotchi:
         
         self.days += 1
         self.xp += 17
+        self.dinheiro += 5
             
         self.label_dia.configure(text = "Dia:\n{0}".format(self.days))
             
@@ -499,7 +773,6 @@ class Tamagotchi:
         tk.messagebox.showinfo ('Morreu', 'Seu pokemon morreu')
         self.window_tamagotchi.quit()
 
-#    
 #    def sujo(self):
 #        return f
     
@@ -520,110 +793,41 @@ class Tamagotchi:
         horario = datetime.now().time()
         
         save = open('Save', 'w')
-        save.write("{0}, {1}, {2}, {3}, {4},{5}, {6}".format(horario, self.days, self.hunger, 
-                   self.clean, self.sleep, self.p, self.xp))
+        save.write("{0}, {1}, {2}, {3}, {4},{5}, {6}, {7}".format(horario, self.days, self.hunger, 
+                   self.clean, self.sleep, self.p, self.xp, self.dinheiro))
         save.close()
-        
         
         
 #------------------------------------------------------  
 # Animação
+    def evolução(self):
+        if self.p == "charmeleon" and self.xp >= 500:
+            self.p = "charizard"
+        elif self.p == "charmander" and self.xp >= 300:
+            self.p = "charmeleon"
+        elif self.p == "ivysaur" and self.xp >= 500:
+            self.p = "venusaur"
+        elif self.p == "bulbasaur" and self.xp >= 300:
+            self.p = "ivysaur"
+        elif self.p == "wartortle" and self.xp >= 500:
+            self.p = "blastoise"
+        elif self.p == "squirtle" and self.xp >= 300:
+            self.p = "wartortle"
+    
+        
      
     def animação(self):
-        self.lista = []
-        self.listagif = []
-        self.listaIn = []
-        self.v = self.troca_imagem()
+        self.evolução()
         
-        for i in range (1,32):
-            if self.v == "squirtle_A":
-                self.lista.append(tk.PhotoImage(file ='Squirtle/squirtleA%s.gif'%i))
-            elif self.v == "squirtle_F":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_F/SquirtleF%s.gif'%i))
-            elif self.v == "squirtle_S":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_S/SquirtleS%s.gif'%i))
-            elif self.v == "squirtle_B":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_B/SquirtleB%s.gif'%i))
-                
-            elif self.v == "wartortle_A":
-                self.lista.append(tk.PhotoImage(file ='Squirtle/wartortleA%s.gif'%i))
-            elif self.v == "wartortle_F":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_F/WartortleF%s.gif'%i))
-            elif self.v == "wartortle_S":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_S/WartortleS%s.gif'%i))
-            elif self.v == "wartortle_B":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_B/WartortleB%s.gif'%i))
+        v = self.troca_imagem()
         
-            elif self.v == "blastoise_A":
-                self.lista.append(tk.PhotoImage(file ='Squirtle/BlastoiseA%s.gif'%i))
-            elif self.v == "blastoise_F":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_F/BlastoiseF%s.gif'%i))
-            elif self.v == "blastoise_S":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_S/BlastoiseF%s.gif'%i))
-            elif self.v == "blastoise_B":
-                self.lista.append(tk.PhotoImage(file ='Squirtle_B/BlastoiseB%s.gif'%i))        
-#-----------------------------------------------------------------------------------
-            elif self.v == "charmander_A":
-                self.lista.append(tk.PhotoImage(file ='Charmander/charmanderA%s.gif'%i))
-            elif self.v == "charmander_F":
-                self.lista.append(tk.PhotoImage(file ='Charmander_F/charmanderF%s.gif'%i))
-            elif self.v == "charmander_S":
-                self.lista.append(tk.PhotoImage(file ='Charmander_S/charmanderS%s.gif'%i))
-            elif self.v == "charmander_B":
-                self.lista.append(tk.PhotoImage(file ='Charmander_B/charmanderB%s.gif'%i))
-                
-            elif self.v == "charmeleon_A":
-                self.lista.append(tk.PhotoImage(file ='Charmander/charmeleonA%s.gif'%i))
-            elif self.v == "charmeleon_F":
-                self.lista.append(tk.PhotoImage(file ='Charmander_F/charmeleonF%s.gif'%i))
-            elif self.v == "charmeleon_S":
-                self.lista.append(tk.PhotoImage(file ='Charmander_S/charmeleonS%s.gif'%i))
-            elif self.v == "charmeleon_B":
-                self.lista.append(tk.PhotoImage(file ='Charmander_B/charmeleonB%s.gif'%i))
-        
-            elif self.v == "charizard_A":
-                self.lista.append(tk.PhotoImage(file ='Charmander/charizardA%s.gif'%i))
-            elif self.v == "charizard_F":
-                self.lista.append(tk.PhotoImage(file ='Charmander_F/charizardF%s.gif'%i))
-            elif self.v == "charizard_S":
-                self.lista.append(tk.PhotoImage(file ='Charmander_S/charizardF%s.gif'%i))
-            elif self.v == "charizard_B":
-                self.lista.append(tk.PhotoImage(file ='Charmander_B/charizardB%s.gif'%i))         
+        self.canvas.delete(tk.ALL)
 
-            elif self.v == "bulbasaur_A":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur/bulbasaurA%s.gif'%i))
-            elif self.v == "bulbasaur_F":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_F/bulbasaurF%s.gif'%i))
-            elif self.v == "bulbasaur_S":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_S/bulbasaurS%s.gif'%i))
-            elif self.v == "bulbasaur_B":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_B/bulbasaurB%s.gif'%i))
-                
-            elif self.v == "ivysaur_A":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur/ivysaurA%s.gif'%i))
-            elif self.v == "ivysaur_F":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_F/ivysaurF%s.gif'%i))
-            elif self.v == "ivysaur_S":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_S/ivysaurS%s.gif'%i))
-            elif self.v == "ivysaur_B":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur/ivysaurB%s.gif'%i))
-        
-            elif self.v == "venusar_A":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur/venusarA%s.gif'%i))
-            elif self.v == "venusar_F":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_F/venusaurF%s.gif'%i))
-            elif self.v == "venusar_S":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_S/venusaurF%s.gif'%i))
-            elif self.v == "venusar_B":
-                self.lista.append(tk.PhotoImage(file ='Bulbasaur_B/venusaurB%s.gif'%i)) 
-        for z in self.lista[::-1]:
-            self.listaIn.append(z)
-        for k in self.listaIn:
-            self.listagif.append(k)
-        for j in self.listagif:
-            self.canvas.create_image(192/2,192/2,image = j)
+        for j in self.imagens[v]:
+            self.canvas.create_image(192//2, 192//2, image = j)
             self.canvas.update()
             time.sleep(0.02)
+        
         self.window_tamagotchi.after(0, self.animação)
 
     def troca_imagem(self):
@@ -752,6 +956,7 @@ class Tamagotchi:
                 return "venusaur_B"
                 
             else:
-                return "venusaur_A"                
+                return "venusaur_A"     
+                
 app = Janela_Principal()
 app.iniciar()
