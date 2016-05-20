@@ -95,7 +95,7 @@ class Menu_Principal():
             self.janela_principal.jogo.comeca_tamagotchi()
     
     def novo_jogo(self):
-        self.janela_principal.mostra_escolher_personagem()
+        self.janela_principal.mostra_escolher_personagem()          
         
     def mostrar(self):
         self.window1.tkraise()
@@ -555,8 +555,26 @@ class Tamagotchi:
         self.sleep = 101
         self.days = 0
         self.xp = 0
-        self.dinheiro = 0
+        self.dinheiro = 95
         self.level = 0
+        
+        self.janela_principal.loja.n_bigode = 0
+        self.janela_principal.loja.n_oculos = 0
+        self.janela_principal.loja.n_chapeu = 0
+        self.janela_principal.loja.n_carne = 5
+        self.janela_principal.loja.n_sabao = 5
+        self.janela_principal.loja.n_cafe = 5
+        self.janela_principal.loja.n_rc = 0
+        self.janela_principal.loja.n_sr = 0
+        self.janela_principal.loja.n_12 = 0
+        
+        self.janela_principal.loja.botao_bigode.configure(state = "active")
+        self.janela_principal.loja.botao_oculos.configure(state = "active")
+        self.janela_principal.loja.botao_chapeu.configure(state = "active")
+
+        self.janela_principal.loja.botao_sr.configure(state = "active")
+#        self.janela_principal.loja.botao_12.configure(state = "active")
+
 
     def base_arquivo_imagens(self, tipo):
         s = tipo.split("_")
@@ -750,50 +768,76 @@ class Tamagotchi:
     
     def update_hunger(self):
         
-        if self.hunger >= 90:
+        if self.janela_principal.loja.n_carne > 0:    
+        
+            if self.hunger >= 90:
+                
+                self.hunger = 101
+                
+            elif self.hunger >= 100:
+                
+                return None
+                
+            else:
+                
+                self.hunger += 10
+                self.xp += 2
             
-            self.hunger = 101
-            
-        elif self.hunger >= 100:
-            
-            return None
-            
+            self.janela_principal.loja.n_carne -= 1
+                
         else:
             
-            self.hunger += 10
-            self.xp += 2
+            tkm.showinfo(title = "Alimento", message = "Você não tem comida!")
         
     
     def update_clean(self):
         
-        if self.clean >= 90:
-            
-            self.clean = 101
-            
-        elif self.clean >= 100:
-            
-            return None
+        if self.janela_principal.loja.n_sabao > 0:
+        
+            if self.clean >= 90:
+                
+                self.clean = 101
+                
+            elif self.clean >= 100:
+                
+                return None
+                
+            else:
+                
+                self.clean += 10
+                self.xp += 2
+                
+            self.janela_principal.loja.n_sabao -= 1
             
         else:
             
-            self.clean += 10
-            self.xp += 2
+            tkm.showinfo(title = "Limpeza", message = "Você não tem sabão!")
     
         
     def update_sleep(self):
         
-        if self.sleep >= 90:
+        if self.janela_principal.loja.n_cafe > 0:
+        
+            if self.sleep >= 90:
+                
+                self.sleep = 101
+                
+            elif self.sleep >= 100:
+                
+                return None
+                
+            else:
+                
+                self.sleep = 100
+                self.xp += 2
             
-            self.sleep = 101
-            
-        elif self.sleep >= 100:
-            
-            return None
+        
+            self.janela_principal.loja.n_cafe -= 1
             
         else:
             
-            self.sleep = 100
-            self.xp += 2
+            tkm.showinfo(title = "Café", message = "Você não tem café suficiente!")
+
             
                     
     def get_hungry(self):
@@ -851,6 +895,8 @@ class Tamagotchi:
         self.dinheiro += 5
             
         self.label_dia.configure(text = "Dia:\n{0}".format(self.days))
+        
+        self.janela_principal.loja.update_money()
             
         self.window_tamagotchi.after(10000, self.pass_day)
 
