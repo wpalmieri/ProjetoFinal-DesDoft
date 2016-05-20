@@ -458,7 +458,7 @@ class Tamagotchi:
         
         self.canvas = tk.Canvas(self.window_tamagotchi, width = 192, height = 192)
         self.canvas.configure(bg = "white", highlightthickness = 0)
-        self.canvas.grid(row = 2, rowspan = 3, column = 0, columnspan = 3)
+        self.canvas.grid(row = 2 , column = 0, columnspan = 3)
 #        self.p = "squirtle"
         
         # Pegando últimos status
@@ -500,10 +500,8 @@ class Tamagotchi:
         # Geometria da página
         self.window_tamagotchi.rowconfigure(0, minsize = 50)
         self.window_tamagotchi.rowconfigure(1, minsize = 50)
-        self.window_tamagotchi.rowconfigure(2, minsize = 84)
-        self.window_tamagotchi.rowconfigure(3, minsize = 84)
-        self.window_tamagotchi.rowconfigure(4, minsize = 82)
-        self.window_tamagotchi.rowconfigure(5, minsize = 100)
+        self.window_tamagotchi.rowconfigure(2, minsize = 250)
+        self.window_tamagotchi.rowconfigure(3, minsize = 100)
         
         self.window_tamagotchi.columnconfigure(0, minsize = 100)
         self.window_tamagotchi.columnconfigure(1, minsize = 100)
@@ -533,52 +531,22 @@ class Tamagotchi:
         # Botões
         self.icone_comer = tk.PhotoImage(file = "comer_icone.png")
         self.button_feed = tk.Button(self.window_tamagotchi, image = self.icone_comer, height = 1, width = 5)
-        self.button_feed.grid(row = 5, column = 0, sticky = "nsew")
+        self.button_feed.grid(row = 3, column = 0, sticky = "nsew")
         self.button_feed.configure(command = self.update_hunger, background = 'white')
         
         self.icone_limpar = tk.PhotoImage(file = "banho_icone.png")
         self.button_clean = tk.Button(self.window_tamagotchi, image = self.icone_limpar, height = 1, width = 5)
-        self.button_clean.grid(row = 5, column = 1, sticky = "nsew")
+        self.button_clean.grid(row = 3, column = 1, sticky = "nsew")
         self.button_clean.configure(command = self.update_clean, background = 'white')      
         
         self.icone_dormir = tk.PhotoImage(file = "dormir_icone.png")
         self.button_sleep = tk.Button(self.window_tamagotchi, image = self.icone_dormir, height = 1, width = 5)
-        self.button_sleep.grid(row = 5, column = 2, sticky = "nsew")
+        self.button_sleep.grid(row = 3, column = 2, sticky = "nsew")
         self.button_sleep.configure(command = self.update_sleep, background = 'white')
         
         self.botao_loja = tk.Button(self.window_tamagotchi, text = "Loja", height = 1, width = 6)
         self.botao_loja.grid(row = 0, column = 2)
         self.botao_loja.configure(command = self.acessa_loja)
-        
-        self.bigode_img = tk.PhotoImage(file = "bigode_2.png")
-        self.button_bigode = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_bigode.grid(row = 2, column = 0, sticky = "w")
-        self.button_bigode.configure(image = self.bigode_img)
-                
-        self.oculos_img = tk.PhotoImage(file = "oculos_2.png")        
-        self.button_oculos = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_oculos.grid(row = 3, column = 0, sticky = "w")
-        self.button_oculos.configure(image = self.oculos_img)
-        
-        self.chapeu_img = tk.PhotoImage(file = "chapeu_2.png")
-        self.button_chapeu = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_chapeu.grid(row = 4, column = 0, sticky = "w")
-        self.button_chapeu.configure(image = self.chapeu_img)
-        
-        self.rc_img = tk.PhotoImage(file = "Rare_Candy_2.png")
-        self.button_rc = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_rc.grid(row = 2, column = 2, sticky = "e")
-        self.button_rc.configure(image = self.rc_img)
-        
-        self.sr_img = tk.PhotoImage(file = "Super_Rod_2.png")
-        self.button_sr = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_sr.grid(row = 3, column = 2, sticky = "e")
-        self.button_sr.configure(image = self.sr_img)
-
-        self.poster_img = tk.PhotoImage(file = "insper_2.png")
-        self.button_poster = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_poster.grid(row = 4, column = 2, sticky = "e")
-        self.button_poster.configure(image = self.poster_img)
 
     def reset(self,p):
         self.p = p
@@ -845,50 +813,25 @@ class Tamagotchi:
             
             tkm.showinfo(title = "Limpeza", message = "Você não tem sabão!")
     
-    def durmindo(self):
-        self.sleep = 100
-        self.button_feed.configure(state = "normal")
-        self.button_clean.configure(state = "normal")
-        self.button_sleep.configure(state = "normal")        
-        
         
     def update_sleep(self):
+        
         if self.janela_principal.loja.n_cafe > 0:
         
-            if self.sleep > 80:
+            if self.sleep >= 90:
+                
+                self.sleep = 101
+                
+            elif self.sleep >= 100:
+                
                 return None
-
-            elif self.sleep >= 60:
-               self.button_feed.configure(state = "disabled")
-               self.button_clean.configure(state = "disabled")
-               self.button_sleep.configure(state = "disabled")
-               self.xp += 2
-               self.window_tamagotchi.after(10000, self.durmindo)
-
+                
+            else:
+                
+                self.sleep = 100
+                self.xp += 2
             
-            elif self.sleep >= 20:
-               self.button_feed.configure(state = "disabled")
-               self.button_clean.configure(state = "disabled")
-               self.button_sleep.configure(state = "disabled") 
-               self.xp += 2
-               self.window_tamagotchi.after(50000, self.durmindo)
-
         
-            elif self.sleep >= 1:
-               self.button_feed.configure(state = "disabled")
-               self.button_clean.configure(state = "disabled")
-               self.button_sleep.configure(state = "disabled")
-               self.xp += 2
-               self.window_tamagotchi.after(100000, self.durmindo)
-
-        
-            else :
-               self.button_feed.configure(state = "disabled")
-               self.button_clean.configure(state = "disabled")
-               self.button_sleep.configure(state = "disabled")
-               self.xp += 2
-               self.window_tamagotchi.after(120000, self.durmindo)
-
             self.janela_principal.loja.n_cafe -= 1
             
         else:
