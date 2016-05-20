@@ -813,25 +813,50 @@ class Tamagotchi:
             
             tkm.showinfo(title = "Limpeza", message = "Você não tem sabão!")
     
+    def durmindo(self):
+        self.sleep = 100
+        self.button_feed.configure(state = "normal")
+        self.button_clean.configure(state = "normal")
+        self.button_sleep.configure(state = "normal")        
+        
         
     def update_sleep(self):
-        
         if self.janela_principal.loja.n_cafe > 0:
         
-            if self.sleep >= 90:
-                
-                self.sleep = 101
-                
-            elif self.sleep >= 100:
-                
+            if self.sleep > 80:
                 return None
-                
-            else:
-                
-                self.sleep = 100
-                self.xp += 2
+
+            elif self.sleep >= 60:
+               self.button_feed.configure(state = "disabled")
+               self.button_clean.configure(state = "disabled")
+               self.button_sleep.configure(state = "disabled")
+               self.xp += 2
+               self.window_tamagotchi.after(10000, self.durmindo)
+
             
+            elif self.sleep >= 20:
+               self.button_feed.configure(state = "disabled")
+               self.button_clean.configure(state = "disabled")
+               self.button_sleep.configure(state = "disabled") 
+               self.xp += 2
+               self.window_tamagotchi.after(50000, self.durmindo)
+
         
+            elif self.sleep >= 1:
+               self.button_feed.configure(state = "disabled")
+               self.button_clean.configure(state = "disabled")
+               self.button_sleep.configure(state = "disabled")
+               self.xp += 2
+               self.window_tamagotchi.after(100000, self.durmindo)
+
+        
+            else :
+               self.button_feed.configure(state = "disabled")
+               self.button_clean.configure(state = "disabled")
+               self.button_sleep.configure(state = "disabled")
+               self.xp += 2
+               self.window_tamagotchi.after(120000, self.durmindo)
+
             self.janela_principal.loja.n_cafe -= 1
             
         else:
