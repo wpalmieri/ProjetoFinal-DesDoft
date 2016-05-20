@@ -183,6 +183,7 @@ class Loja:
         self.sabao = tk.PhotoImage(file = "Sabao.png")
         self.rare_candy = tk.PhotoImage(file = "Rare_Candy.png")
         self.super_rod = tk.PhotoImage(file = "Super_Rod.png")
+        self.insper_img = tk.PhotoImage(file = "Insper.png")
         
         # Buttons        
         self.botao1 = tk.Button(self.window_loja, text = "Voltar", height = 2, width = 6)
@@ -227,7 +228,7 @@ class Loja:
         self.botao_sr.grid(row = 5, column = 1, sticky = "nsew")
         self.botao_sr.config(command = self.compra_sr)
         
-        self.botao12 = tk.Button(self.window_loja, text = "12")
+        self.botao12 = tk.Button(self.window_loja, image = self.insper_img)
         self.botao12.grid(row = 5, column = 2, sticky = "nsew")
         
         # Labels        
@@ -255,7 +256,7 @@ class Loja:
         self.label_sr = tk.Label(self.window_loja, text = "Super Rod - $650")
         self.label_sr.grid(row = 6, column = 1, sticky = "nsew")
         
-        self.label_12 = tk.Label(self.window_loja, text = "??? - $???")
+        self.label_12 = tk.Label(self.window_loja, text = "Poster - $200")
         self.label_12.grid(row = 6, column = 2, sticky = "nsew")
         
         # Iniciar o after
