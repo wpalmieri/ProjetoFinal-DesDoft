@@ -255,8 +255,53 @@ class Loja:
         self.label_sr = tk.Label(self.window_loja, text = "Super Rod - $650")
         self.label_sr.grid(row = 6, column = 1, sticky = "nsew")
         
+        self.label_12 = tk.Label(self.window_loja, text = "??? - $???")
+        self.label_12.grid(row = 6, column = 2, sticky = "nsew")
+        
         # Iniciar o after
         self.window_loja.after(0, self.update_money)
+        
+        # Ler o save
+        self.arquivo = open("Save", "r")
+        self.lista = self.arquivo.readlines()
+        self.last_line = self.lista[-1]
+        self.arquivo.close()
+        
+        self.str_split = self.last_line.split(",")
+        self.tem_bigode = int(self.str_split[8])
+        self.tem_oculos = int(self.str_split[9])
+        self.tem_chapeu = int(self.str_split[10])
+        self.qtd_carne = int(self.str_split[11])
+        self.qtd_sabao = int(self.str_split[12])
+        self.qtd_cafe = int(self.str_split[13])
+        self.qtd_rc = int(self.str_split[14])
+        self.tem_sr = int(self.str_split[15])
+        self.tem_12 = int(self.str_split[16])
+        
+        # Inventário
+        self.n_bigode = self.tem_bigode
+        self.n_oculos = self.tem_oculos
+        self.n_chapeu = self.tem_chapeu
+        self.n_carne = self.qtd_carne
+        self.n_sabao = self.qtd_sabao
+        self.n_cafe = self.qtd_cafe
+        self.n_rc = self.qtd_rc
+        self.n_sr = self.tem_sr
+        self.n_12 = self.tem_12
+        
+        if self.tem_bigode == 1:
+            self.botao_bigode.configure(state = "disabled")
+            
+        if self.tem_oculos == 1:
+            self.botao_oculos.configure(state = "disabled")
+            
+        if self.tem_chapeu == 1:
+            self.botao_chapeu.configure(state = "disabled")
+            
+        if self.tem_sr == 1:
+            self.botao_sr.configure(state = "disabled")
+
+
         
     # Compras
     def compra_bigode(self):
@@ -265,7 +310,9 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_bigode.configure(state = "disabled")
+            self.n_bigode += 1
             self.update_money()
+            print(self.n_bigode)
             
         else:
             
@@ -278,7 +325,9 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_oculos.configure(state = "disabled")
+            self.n_oculos += 1
             self.update_money()
+            print(self.n_oculos)
             
         else:
             
@@ -291,7 +340,9 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_chapeu.configure(state = "disabled")
+            self.n_chapeu += 1
             self.update_money()
+            print(self.n_chapeu)
             
         else:
             
@@ -303,7 +354,9 @@ class Loja:
         if self.janela_principal.jogo.dinheiro >= 20:
             
             self.janela_principal.jogo.dinheiro -= 20
+            self.n_carne += 1
             self.update_money()
+            print(self.n_carne)
             
         else:
             
@@ -315,7 +368,9 @@ class Loja:
         if self.janela_principal.jogo.dinheiro >= 20:
             
             self.janela_principal.jogo.dinheiro -= 20
+            self.n_sabao += 1
             self.update_money()
+            print(self.n_sabao)
             
         else:
             
@@ -327,7 +382,9 @@ class Loja:
         if self.janela_principal.jogo.dinheiro >= 20:
             
             self.janela_principal.jogo.dinheiro -= 20
+            self.n_cafe += 1
             self.update_money()
+            print(self.n_cafe)
             
         else:
             
@@ -339,8 +396,9 @@ class Loja:
         if self.janela_principal.jogo.dinheiro >= 775:
             
             self.janela_principal.jogo.dinheiro -= 775
-            self.botao_rc.configure(state = "disabled")
+            self.n_rc += 1
             self.update_money()
+            print(self.n_rc)
             
         else:
             
@@ -353,6 +411,22 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 650
             self.botao_sr.configure(state = "disabled")
+            self.n_sr += 1
+            self.update_money()
+            print(self.n_sr)
+            
+        else:
+            
+            tkm.showinfo(title = "Dinheiro", message = "Dinheiro Insuficiente!")
+            
+            
+    def compra_12(self):
+        
+        if self.janela_principal.jogo.dinheiro >= 0:
+            
+            self.janela_principal.jogo.dinheiro -= 0
+            self.botao_12.configure(state = "disabled")
+            self.n_12 += 1
             self.update_money()
             
         else:
@@ -402,7 +476,17 @@ class Tamagotchi:
         self.p = (self.str_split[5])
         self.last_xp = int(self.str_split[6])
         self.last_money = int(self.str_split[7])
-        self.last_level = int(self.str_split[8])
+        self.last_level = int(self.str_split[17])
+        
+#        self.tem_bigode = int(self.str_split[8])
+#        self.tem_oculos = int(self.str_split[9])
+#        self.tem_chapeu = int(self.str_split[10])
+#        self.qtd_carne = int(self.str_split[11])
+#        self.qtd_sabao = int(self.str_split[12])
+#        self.qtd_cafe = int(self.str_split[13])
+#        self.qtd_rc = int(self.str_split[14])
+#        self.tem_sr = int(self.str_split[15])
+#        self.tem_12 = int(self.str_split[16])
         
         # Atributos do Tamagotchi
         self.hunger = self.last_hunger
@@ -800,8 +884,14 @@ class Tamagotchi:
         horario = datetime.now().time()
         
         save = open('Save', 'w')
-        save.write("{0}, {1}, {2}, {3}, {4},{5}, {6}, {7}".format(horario, self.days, self.hunger, 
-                   self.clean, self.sleep, self.p, self.xp, self.dinheiro, self.level))
+        save.write("{0}, {1}, {2}, {3}, {4},{5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}, {16}, {17}".format
+        (horario, self.days, self.hunger, self.clean, self.sleep, self.p, self.xp, self.dinheiro,
+                   self.janela_principal.loja.n_bigode, self.janela_principal.loja.n_oculos,
+                   self.janela_principal.loja.n_chapeu, self.janela_principal.loja.n_carne,
+                   self.janela_principal.loja.n_sabao, self.janela_principal.loja.n_cafe,
+                   self.janela_principal.loja.n_rc, self.janela_principal.loja.n_sr,
+                   self.janela_principal.loja.n_12, self.level))
+                   
         save.close()
         
         
