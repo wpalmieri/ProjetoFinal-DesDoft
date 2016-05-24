@@ -183,7 +183,6 @@ class Loja:
         self.sabao = tk.PhotoImage(file = "Sabao.png")
         self.rare_candy = tk.PhotoImage(file = "Rare_Candy.png")
         self.super_rod = tk.PhotoImage(file = "Super_Rod.png")
-        self.insper_img = tk.PhotoImage(file = "Insper.png")
         
         # Buttons        
         self.botao1 = tk.Button(self.window_loja, text = "Voltar", height = 2, width = 6)
@@ -228,9 +227,8 @@ class Loja:
         self.botao_sr.grid(row = 5, column = 1, sticky = "nsew")
         self.botao_sr.config(command = self.compra_sr)
         
-        self.botao12 = tk.Button(self.window_loja, image = self.insper_img)
+        self.botao12 = tk.Button(self.window_loja, text = "12")
         self.botao12.grid(row = 5, column = 2, sticky = "nsew")
-        self.botao12.config(command = self.compra_12)
         
         # Labels        
         self.label_bigode = tk.Label(self.window_loja, text = "Bigode - $500")
@@ -257,7 +255,7 @@ class Loja:
         self.label_sr = tk.Label(self.window_loja, text = "Super Rod - $650")
         self.label_sr.grid(row = 6, column = 1, sticky = "nsew")
         
-        self.label_12 = tk.Label(self.window_loja, text = "Poster - $200")
+        self.label_12 = tk.Label(self.window_loja, text = "??? - $???")
         self.label_12.grid(row = 6, column = 2, sticky = "nsew")
         
         # Iniciar o after
@@ -312,7 +310,6 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_bigode.configure(state = "disabled")
-            self.janela_principal.jogo.button_bigode.configure(state = "active")
             self.n_bigode += 1
             self.update_money()
             print(self.n_bigode)
@@ -328,7 +325,6 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_oculos.configure(state = "disabled")
-            self.janela_principal.jogo.button_oculos.configure(state = "active")
             self.n_oculos += 1
             self.update_money()
             print(self.n_oculos)
@@ -344,7 +340,6 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_chapeu.configure(state = "disabled")
-            self.janela_principal.jogo.button_chapeu.configure(state = "active")
             self.n_chapeu += 1
             self.update_money()
             print(self.n_chapeu)
@@ -401,7 +396,6 @@ class Loja:
         if self.janela_principal.jogo.dinheiro >= 775:
             
             self.janela_principal.jogo.dinheiro -= 775
-            self.janela_principal.jogo.button_rc.configure(state = "active")
             self.n_rc += 1
             self.update_money()
             print(self.n_rc)
@@ -417,7 +411,6 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 650
             self.botao_sr.configure(state = "disabled")
-            self.janela_principal.jogo.button_sr.configure(state = "active")
             self.n_sr += 1
             self.update_money()
             print(self.n_sr)
@@ -429,11 +422,10 @@ class Loja:
             
     def compra_12(self):
         
-        if self.janela_principal.jogo.dinheiro >= 200:
+        if self.janela_principal.jogo.dinheiro >= 0:
             
-            self.janela_principal.jogo.dinheiro -= 200
-            self.botao_12.configure (state = "disabled")
-            self.janela_principal.jogo.button_poster.configure(state = "active")
+            self.janela_principal.jogo.dinheiro -= 0
+            self.botao_12.configure(state = "disabled")
             self.n_12 += 1
             self.update_money()
             
@@ -466,7 +458,7 @@ class Tamagotchi:
         
         self.canvas = tk.Canvas(self.window_tamagotchi, width = 192, height = 192)
         self.canvas.configure(bg = "white", highlightthickness = 0)
-        self.canvas.grid(row = 2, rowspan = 3, column = 0, columnspan = 3)
+        self.canvas.grid(row = 2 , column = 0, columnspan = 3)
 #        self.p = "squirtle"
         
         # Pegando últimos status
@@ -508,10 +500,8 @@ class Tamagotchi:
         # Geometria da página
         self.window_tamagotchi.rowconfigure(0, minsize = 50)
         self.window_tamagotchi.rowconfigure(1, minsize = 50)
-        self.window_tamagotchi.rowconfigure(2, minsize = 84)
-        self.window_tamagotchi.rowconfigure(3, minsize = 84)
-        self.window_tamagotchi.rowconfigure(4, minsize = 82)
-        self.window_tamagotchi.rowconfigure(5, minsize = 100)
+        self.window_tamagotchi.rowconfigure(2, minsize = 250)
+        self.window_tamagotchi.rowconfigure(3, minsize = 100)
         
         self.window_tamagotchi.columnconfigure(0, minsize = 100)
         self.window_tamagotchi.columnconfigure(1, minsize = 100)
@@ -541,52 +531,22 @@ class Tamagotchi:
         # Botões
         self.icone_comer = tk.PhotoImage(file = "comer_icone.png")
         self.button_feed = tk.Button(self.window_tamagotchi, image = self.icone_comer, height = 1, width = 5)
-        self.button_feed.grid(row = 5, column = 0, sticky = "nsew")
+        self.button_feed.grid(row = 3, column = 0, sticky = "nsew")
         self.button_feed.configure(command = self.update_hunger, background = 'white')
         
         self.icone_limpar = tk.PhotoImage(file = "banho_icone.png")
         self.button_clean = tk.Button(self.window_tamagotchi, image = self.icone_limpar, height = 1, width = 5)
-        self.button_clean.grid(row = 5, column = 1, sticky = "nsew")
+        self.button_clean.grid(row = 3, column = 1, sticky = "nsew")
         self.button_clean.configure(command = self.update_clean, background = 'white')      
         
         self.icone_dormir = tk.PhotoImage(file = "dormir_icone.png")
         self.button_sleep = tk.Button(self.window_tamagotchi, image = self.icone_dormir, height = 1, width = 5)
-        self.button_sleep.grid(row = 5, column = 2, sticky = "nsew")
+        self.button_sleep.grid(row = 3, column = 2, sticky = "nsew")
         self.button_sleep.configure(command = self.update_sleep, background = 'white')
         
         self.botao_loja = tk.Button(self.window_tamagotchi, text = "Loja", height = 1, width = 6)
         self.botao_loja.grid(row = 0, column = 2)
         self.botao_loja.configure(command = self.acessa_loja)
-        
-        self.bigode_img = tk.PhotoImage(file = "bigode_2.png")
-        self.button_bigode = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_bigode.grid(row = 2, column = 0, sticky = "w")
-        self.button_bigode.configure(image = self.bigode_img, state = "disabled")
-                
-        self.oculos_img = tk.PhotoImage(file = "oculos_2.png")        
-        self.button_oculos = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_oculos.grid(row = 3, column = 0, sticky = "w")
-        self.button_oculos.configure(image = self.oculos_img, state = "disabled")
-        
-        self.chapeu_img = tk.PhotoImage(file = "chapeu_2.png")
-        self.button_chapeu = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_chapeu.grid(row = 4, column = 0, sticky = "w")
-        self.button_chapeu.configure(image = self.chapeu_img, state = "disabled")
-        
-        self.rc_img = tk.PhotoImage(file = "Rare_Candy_2.png")
-        self.button_rc = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_rc.grid(row = 2, column = 2, sticky = "e")
-        self.button_rc.configure(image = self.rc_img, state = "disabled")
-        
-        self.sr_img = tk.PhotoImage(file = "Super_Rod_2.png")
-        self.button_sr = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_sr.grid(row = 3, column = 2, sticky = "e")
-        self.button_sr.configure(image = self.sr_img, state = "disabled")
-
-        self.poster_img = tk.PhotoImage(file = "insper_2.png")
-        self.button_poster = tk.Button(self.window_tamagotchi, height = 32, width = 32)
-        self.button_poster.grid(row = 4, column = 2, sticky = "e")
-        self.button_poster.configure(image = self.poster_img, state = "disabled")
 
     def reset(self,p):
         self.p = p
@@ -853,50 +813,25 @@ class Tamagotchi:
             
             tkm.showinfo(title = "Limpeza", message = "Você não tem sabão!")
     
-    def durmindo(self):
-        self.sleep = 100
-        self.button_feed.configure(state = "normal")
-        self.button_clean.configure(state = "normal")
-        self.button_sleep.configure(state = "normal")        
-        
         
     def update_sleep(self):
+        
         if self.janela_principal.loja.n_cafe > 0:
         
-            if self.sleep > 80:
+            if self.sleep >= 90:
+                
+                self.sleep = 101
+                
+            elif self.sleep >= 100:
+                
                 return None
-
-            elif self.sleep >= 60:
-               self.button_feed.configure(state = "disabled")
-               self.button_clean.configure(state = "disabled")
-               self.button_sleep.configure(state = "disabled")
-               self.xp += 2
-               self.window_tamagotchi.after(10000, self.durmindo)
-
+                
+            else:
+                
+                self.sleep = 100
+                self.xp += 2
             
-            elif self.sleep >= 20:
-               self.button_feed.configure(state = "disabled")
-               self.button_clean.configure(state = "disabled")
-               self.button_sleep.configure(state = "disabled") 
-               self.xp += 2
-               self.window_tamagotchi.after(50000, self.durmindo)
-
         
-            elif self.sleep >= 1:
-               self.button_feed.configure(state = "disabled")
-               self.button_clean.configure(state = "disabled")
-               self.button_sleep.configure(state = "disabled")
-               self.xp += 2
-               self.window_tamagotchi.after(100000, self.durmindo)
-
-        
-            else :
-               self.button_feed.configure(state = "disabled")
-               self.button_clean.configure(state = "disabled")
-               self.button_sleep.configure(state = "disabled")
-               self.xp += 2
-               self.window_tamagotchi.after(120000, self.durmindo)
-
             self.janela_principal.loja.n_cafe -= 1
             
         else:
@@ -1010,22 +945,16 @@ class Tamagotchi:
 # Animação
     def evolução(self):
         if self.p == "charmeleon" and self.xp >= 500:
-            tkm.showinfo(title = "Evolução", message = "Seu Pokémon evoluiu!")
             self.p = "charizard"
         elif self.p == "charmander" and self.xp >= 300:
-            tkm.showinfo(title = "Evolução", message = "Seu Pokémon evoluiu!")
             self.p = "charmeleon"
         elif self.p == "ivysaur" and self.xp >= 500:
-            tkm.showinfo(title = "Evolução", message = "Seu Pokémon evoluiu!")
             self.p = "venusaur"
         elif self.p == "bulbasaur" and self.xp >= 300:
-            tkm.showinfo(title = "Evolução", message = "Seu Pokémon evoluiu!")
             self.p = "ivysaur"
         elif self.p == "wartortle" and self.xp >= 500:
-            tkm.showinfo(title = "Evolução", message = "Seu Pokémon evoluiu!")
             self.p = "blastoise"
         elif self.p == "squirtle" and self.xp >= 300:
-            tkm.showinfo(title = "Evolução", message = "Seu Pokémon evoluiu!")
             self.p = "wartortle"
     
         
