@@ -312,7 +312,7 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_bigode.configure(state = "disabled")
-            self.janela_principal.jogo.button_bigode.configure(state = "active")
+            
             self.n_bigode += 1
             self.update_money()
             print(self.n_bigode)
@@ -587,6 +587,11 @@ class Tamagotchi:
         self.button_poster = tk.Button(self.window_tamagotchi, height = 32, width = 32)
         self.button_poster.grid(row = 4, column = 2, sticky = "e")
         self.button_poster.configure(image = self.poster_img, state = "disabled")
+        
+    def func_button_bigode(self):
+        if self.janela_principal.loja.n_bigode == 1:
+            self.janela_principal.jogo.button_bigode.configure(state = "active")
+            
 
     def reset(self,p):
         self.p = p
