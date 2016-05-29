@@ -52,7 +52,7 @@ class Janela_Principal():
     def iniciar(self):
         self.window.mainloop()
         
-        
+#------------------------------------------------------------------------------        
 class Menu_Principal():
     
     def __init__(self, janela_principal):
@@ -74,6 +74,7 @@ class Menu_Principal():
         
         self.window1.columnconfigure(0, minsize = 300)
         
+        # Estética da página (imagem e detalhes dos botões)
         self.pokebola = tk.PhotoImage(file = "Pokeball.png")
         self.pokebola_label = tk.Label(self.window1, image = self.pokebola, height = 1, width = 1)
         self.pokebola_label.grid(row = 0, column = 0, sticky = "nsew")
@@ -90,19 +91,19 @@ class Menu_Principal():
         self.button_novojogo.configure(command = self.novo_jogo)
         
     def continuar(self):      
-        if self.janela_principal.jogo.p =="x":
+        if self.janela_principal.jogo.p =="x": # Para que o jogador não possa continuar o jogo sem ter um save
             tk.messagebox.showinfo ('Escolha','Você ainda nao escolheu seu pokemon')   
         else:
             self.janela_principal.mostra_tamagotchi()
             self.janela_principal.jogo.comeca_tamagotchi()
     
     def novo_jogo(self):
-        self.janela_principal.mostra_escolher_personagem()          
+        self.janela_principal.mostra_escolher_personagem()    
         
     def mostrar(self):
-        self.window1.tkraise()
-        
-        
+        self.window1.tkraise()       
+
+#------------------------------------------------------------------------------        
 class Escolha_Personagem():
     
     def __init__(self, janela_principal):
@@ -111,6 +112,7 @@ class Escolha_Personagem():
         self.window_escolha = tk.Frame(self.janela_principal.window)
         self.window_escolha.grid(row = 0, column = 0, sticky = "nsew")
         
+        # Geometria da página
         self.window_escolha.rowconfigure(0, minsize = 90)
         self.window_escolha.rowconfigure(1, minsize = 120)
         self.window_escolha.rowconfigure(2, minsize = 120)
@@ -627,6 +629,13 @@ class Tamagotchi:
         self.janela_principal.loja.n_rc = 0
         self.janela_principal.loja.n_sr = 0
         self.janela_principal.loja.n_poster = 0
+        
+        self.tem_bigode = 0
+        self.tem_oculos = 0
+        self.tem_chapeu = 0
+        self.qtd_rc = 0
+        self.tem_sr = 0
+        self.tem_poster = 0
         
         self.janela_principal.loja.botao_bigode.configure(state = "active")
         self.janela_principal.loja.botao_oculos.configure(state = "active")
