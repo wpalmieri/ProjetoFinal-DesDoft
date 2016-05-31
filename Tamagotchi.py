@@ -52,7 +52,9 @@ class Janela_Principal():
     def iniciar(self):
         self.window.mainloop()
         
-#------------------------------------------------------------------------------        
+        
+
+
 class Menu_Principal():
     
     def __init__(self, janela_principal):
@@ -74,7 +76,6 @@ class Menu_Principal():
         
         self.window1.columnconfigure(0, minsize = 300)
         
-        # Estética da página (imagem e detalhes dos botões)
         self.pokebola = tk.PhotoImage(file = "Pokeball.png")
         self.pokebola_label = tk.Label(self.window1, image = self.pokebola, height = 1, width = 1)
         self.pokebola_label.grid(row = 0, column = 0, sticky = "nsew")
@@ -90,20 +91,23 @@ class Menu_Principal():
         self.button_novojogo.grid(row = 3, column = 0)
         self.button_novojogo.configure(command = self.novo_jogo)
         
+
     def continuar(self):      
-        if self.janela_principal.jogo.p =="x": # Para que o jogador não possa continuar o jogo sem ter um save
+        if self.janela_principal.jogo.p =="x":
             tk.messagebox.showinfo ('Escolha','Você ainda nao escolheu seu pokemon')   
         else:
             self.janela_principal.mostra_tamagotchi()
             self.janela_principal.jogo.comeca_tamagotchi()
     
     def novo_jogo(self):
-        self.janela_principal.mostra_escolher_personagem()    
+        self.janela_principal.mostra_escolher_personagem()          
         
     def mostrar(self):
-        self.window1.tkraise()       
+        self.window1.tkraise()
+        
+        
 
-#------------------------------------------------------------------------------        
+
 class Escolha_Personagem():
     
     def __init__(self, janela_principal):
@@ -112,7 +116,6 @@ class Escolha_Personagem():
         self.window_escolha = tk.Frame(self.janela_principal.window)
         self.window_escolha.grid(row = 0, column = 0, sticky = "nsew")
         
-        # Geometria da página
         self.window_escolha.rowconfigure(0, minsize = 90)
         self.window_escolha.rowconfigure(1, minsize = 120)
         self.window_escolha.rowconfigure(2, minsize = 120)
@@ -187,7 +190,7 @@ class Loja:
         self.sabao = tk.PhotoImage(file = "Sabao.png")
         self.rare_candy = tk.PhotoImage(file = "Rare_Candy.png")
         self.super_rod = tk.PhotoImage(file = "Super_Rod.png")
-        self.insper_img = tk.PhotoImage(file = "Insper.png")
+        self.insper_img = tk.PhotoImage(file = "Insper_2.png")
         
         # Buttons        
         self.botao1 = tk.Button(self.window_loja, text = "Voltar", height = 2, width = 6)
@@ -264,7 +267,7 @@ class Loja:
         self.label_poster = tk.Label(self.window_loja, text = "Poster - $200")
         self.label_poster.grid(row = 6, column = 2, sticky = "nsew")
         
-        # Iniciar o after
+        # Iniciar 
         self.window_loja.after(0, self.update_money)
         
         # Ler o save
@@ -318,7 +321,7 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_bigode.configure(state = "disabled")
-            
+            self.janela_principal.jogo.button_bigode.configure(state = "active")
             self.n_bigode += 1
             self.update_money()
             print(self.n_bigode)
@@ -473,7 +476,7 @@ class Tamagotchi:
         self.canvas = tk.Canvas(self.window_tamagotchi, width = 192, height = 192)
         self.canvas.configure(bg = "white", highlightthickness = 0)
         self.canvas.grid(row = 2, rowspan = 3, column = 0, columnspan = 3)
-#        self.p = "squirtle"
+
         
         # Pegando últimos status
         self.arquivo = open("Save", "r")
@@ -541,50 +544,66 @@ class Tamagotchi:
         self.label_sono.configure(background = 'white')
         self.label_sono.grid(row = 1, column = 2)
         
+        self.bi = False
+        self.oc = False
+        self.ch = False
+        self.va = False
+        
         # Botões
         self.icone_comer = tk.PhotoImage(file = "comer_icone.png")
         self.button_feed = tk.Button(self.window_tamagotchi, image = self.icone_comer, height = 1, width = 5)
         self.button_feed.grid(row = 5, column = 0, sticky = "nsew")
         self.button_feed.configure(command = self.update_hunger, background = 'white')
         
+        
         self.icone_limpar = tk.PhotoImage(file = "banho_icone.png")
         self.button_clean = tk.Button(self.window_tamagotchi, image = self.icone_limpar, height = 1, width = 5)
         self.button_clean.grid(row = 5, column = 1, sticky = "nsew")
         self.button_clean.configure(command = self.update_clean, background = 'white')      
         
+
         self.icone_dormir = tk.PhotoImage(file = "dormir_icone.png")
         self.button_sleep = tk.Button(self.window_tamagotchi, image = self.icone_dormir, height = 1, width = 5)
         self.button_sleep.grid(row = 5, column = 2, sticky = "nsew")
         self.button_sleep.configure(command = self.update_sleep, background = 'white')
         
+
         self.botao_loja = tk.Button(self.window_tamagotchi, text = "Loja", height = 1, width = 6)
         self.botao_loja.grid(row = 0, column = 2)
         self.botao_loja.configure(command = self.acessa_loja)
         
+
         self.bigode_img = tk.PhotoImage(file = "bigode_2.png")
         self.button_bigode = tk.Button(self.window_tamagotchi, height = 32, width = 32)
         self.button_bigode.grid(row = 2, column = 0, sticky = "w")
+        self.button_bigode.configure(command = self.equipar_bigode) 
         if self.tem_bigode == 1:
             self.button_bigode.configure(image = self.bigode_img, state = "active")
         else:
             self.button_bigode.configure(image = self.bigode_img, state = "disabled")
                 
+
         self.oculos_img = tk.PhotoImage(file = "oculos_2.png")        
         self.button_oculos = tk.Button(self.window_tamagotchi, height = 32, width = 32)
         self.button_oculos.grid(row = 3, column = 0, sticky = "w")
+        self.button_oculos.configure(command = self.equipar_oculos)
         if self.tem_oculos == 1:
             self.button_oculos.configure(image = self.oculos_img, state = "active")
         else:
             self.button_oculos.configure(image = self.oculos_img, state = "disabled")
         
+
         self.chapeu_img = tk.PhotoImage(file = "chapeu_2.png")
         self.button_chapeu = tk.Button(self.window_tamagotchi, height = 32, width = 32)
         self.button_chapeu.grid(row = 4, column = 0, sticky = "w")
+        self.button_chapeu.configure(command = self.equipar_chapeu)
         if self.tem_chapeu == 1:
             self.button_chapeu.configure(image = self.chapeu_img, state = "active")
         else:
             self.button_chapeu.configure(image = self.chapeu_img, state = "disabled")
         
+
+
         self.rc_img = tk.PhotoImage(file = "Rare_Candy_2.png")
         self.button_rc = tk.Button(self.window_tamagotchi, height = 32, width = 32)
         self.button_rc.grid(row = 2, column = 2, sticky = "e")
@@ -596,6 +615,7 @@ class Tamagotchi:
         
         self.sr_img = tk.PhotoImage(file = "Super_Rod_2.png")
         self.button_sr = tk.Button(self.window_tamagotchi, height = 32, width = 32)
+        self.button_sr.configure(command = self.equipar_vara)
         self.button_sr.grid(row = 3, column = 2, sticky = "e")
         if self.tem_sr == 1:
             self.button_sr.configure(image = self.sr_img, state = "active")
@@ -630,13 +650,6 @@ class Tamagotchi:
         self.janela_principal.loja.n_sr = 0
         self.janela_principal.loja.n_poster = 0
         
-        self.tem_bigode = 0
-        self.tem_oculos = 0
-        self.tem_chapeu = 0
-        self.qtd_rc = 0
-        self.tem_sr = 0
-        self.tem_poster = 0
-        
         self.janela_principal.loja.botao_bigode.configure(state = "active")
         self.janela_principal.loja.botao_oculos.configure(state = "active")
         self.janela_principal.loja.botao_chapeu.configure(state = "active")
@@ -664,8 +677,7 @@ class Tamagotchi:
         elif s[0] == "ivysaur":
             num_imagens = 51           
         elif s[0] == "venusaur":
-            num_imagens = 31 
-        # XXXXX etc. terminar
+            num_imagens = 60 
             
         if tipo == "squirtle_A":
             base = 'Squirtle/squirtleA'
@@ -675,11 +687,7 @@ class Tamagotchi:
             base = 'Squirtle_S/SquirtleS'
         elif tipo == "squirtle_B":
             base = 'Squirtle_B/SquirtleB'
-#        else:
-#            # XXXXX terminar.
-#            base = 'Squirtle/squirtleA'
-#            num_imagens = 31
-            
+
         elif tipo == "wartortle_A":
             base = 'Squirtle/wartortleA'
         elif tipo == "wartortle_F":
@@ -743,13 +751,13 @@ class Tamagotchi:
         elif tipo == "ivysaur_B":
             base = 'Bulbasaur_B/ivysaurB'
     
-#        elif tipo == "venusar_A":
-#            base = 'Bulbasaur/venusarA'
-#        elif tipo == "venusar_F":
+        elif tipo == "venusaur_A":
+            base = 'Bulbasaur/venusaurA'
+#        elif tipo == "venusaur_F":
 #            base = 'Bulbasaur_F/venusaurF'
-#        elif tipo == "venusar_S":
+#        elif tipo == "venusaur_S":
 #            base = 'Bulbasaur_S/venusaurF'
-#        elif tipo == "venusar_B":
+#        elif tipo == "venusaur_B":
 #            base = 'Bulbasaur_B/venusaurB' 
 
         return base, num_imagens        
@@ -794,43 +802,23 @@ class Tamagotchi:
             "ivysaur_A",
             "ivysaur_F",
             "ivysaur_S",
-            "ivysaur_B"]
-#            "venusar_A",
-#            "venusar_F",
-#            "venusar_S",
-#            "venusar_B"]
+            "ivysaur_B",
+            "venusaur_A"]
+#            "venusaur_F",
+#            "venusaur_S",
+#            "venusaur_B"]
         
         self.imagens = {}
         for tipo in tipos:
             base, num_imagens = self.base_arquivo_imagens(tipo)
             self.imagens[tipo] = self.le_imagens(base, num_imagens)
         
-    def comeca_tamagotchi(self):        
+    def comeca_tamagotchi(self):       
         self.window_tamagotchi.after(0, self.get_hungry)
         self.window_tamagotchi.after(0, self.get_sleepy)
         self.window_tamagotchi.after(0, self.get_dirty)
         self.window_tamagotchi.after(0, self.pass_day)
         self.window_tamagotchi.after(0, self.animação)
-       
-# ---------------------------------------------------
-# Tempo
-        
-    def tempo_ao_desligar(self):
-        
-        # Quando desligar:
-#        desligou = time.time()
-#        
-#        return desligou
-        pass
-    
-    def tempo_ao_ligar(self):
-        
-        # Quando ligar:
-#        ligou = time.time()
-#        tkm.showinfo(title = "Em quanto você esteve fora...", message = "...")
-#        
-#        return ligou
-        pass
 
 # ---------------------------------------------------
 # Updates:      
@@ -1005,7 +993,40 @@ class Tamagotchi:
             
         self.window_tamagotchi.after(10000, self.pass_day)
 
-  
+#equipar
+    def equipar_bigode(self):
+        if self.bi == False:
+            self.bi = True
+        else :
+            self.bi = False
+        
+
+    def equipar_oculos(self):
+        if self.oc == False:
+            self.oc = True
+        else :
+            self.oc= False
+            
+ 
+    def equipar_chapeu(self):
+        if self.ch == False:
+            self.ch = True
+        else :
+            self.ch= False
+#
+# 
+#    def equipar_poster(self):
+#        if self.pos == False:
+#            self.pos = True
+#        else :
+#            self.pos = True
+#
+#
+    def equipar_vara(self):
+        if self.va == False:
+            self.va = True
+        else :
+            self.va = False            
 # ---------------------------------------------------  
 # Consequências:
     
@@ -1015,12 +1036,6 @@ class Tamagotchi:
         self.sair()
         self.window_tamagotchi.quit()
 
-#    def sujo(self):
-#        return f
-    
-#    def sonolento(self):
-#        return s
-        
 # --------------------------------------------------
 # Iniciar e sair 
         
@@ -1047,7 +1062,7 @@ class Tamagotchi:
         
         
 #------------------------------------------------------  
-# Animação
+# A
     def evolução(self):
         if self.p == "charmeleon" and self.xp >= 500:
             tkm.showinfo(title = "Evolução", message = "Seu Pokémon evoluiu!")
@@ -1079,6 +1094,104 @@ class Tamagotchi:
 
         for j in self.imagens[v]:
             self.canvas.create_image(192//2, 192//2, image = j)
+            
+            
+            if self.p == "charmander":
+                if self.bi == True:
+                    self.canvas.create_image(182//2, 245//2, image = self.bigode_img )
+                if self.oc == True:
+                    self.canvas.create_image(184//2, 229//2, image = self.oculos_img )            
+                if self.ch == True:
+                    self.canvas.create_image(190//2, 190//2, image = self.chapeu_img )
+                if self.va == True:
+                    self.canvas.create_image(137//2, 258//2, image = self.sr_img )
+            
+            elif self.p == "charmeleon":
+                if self.bi == True:
+                    self.canvas.create_image(179//2, 228//2, image = self.bigode_img )
+                if self.oc == True:
+                    self.canvas.create_image(184//2, 214//2, image = self.oculos_img )            
+                if self.ch == True:
+                    self.canvas.create_image(187//2, 172//2, image = self.chapeu_img )
+                if self.va == True:
+                    self.canvas.create_image(120//2, 264//2, image = self.sr_img )           
+            
+            
+            elif self.p == "charizard":
+                if self.bi == True:
+                    self.canvas.create_image(170//2, 175//2, image = self.bigode_img )
+                if self.oc == True:
+                    self.canvas.create_image(170//2, 160//2, image = self.oculos_img )            
+                if self.ch == True:
+                    self.canvas.create_image(170//2, 135//2, image = self.chapeu_img )
+                if self.va == True:
+                    self.canvas.create_image(135//2, 210//2, image = self.sr_img )            
+            
+            
+            elif self.p == "squirtle":
+                if self.bi == True:
+                    self.canvas.create_image(170//2, 250//2, image = self.bigode_img )
+                if self.oc == True:
+                    self.canvas.create_image(173//2, 240//2, image = self.oculos_img )            
+                if self.ch == True:
+                    self.canvas.create_image(183//2, 190//2, image = self.chapeu_img )
+                if self.va == True:
+                    self.canvas.create_image(120//2, 250//2, image = self.sr_img )            
+            
+            
+            
+            elif self.p == "wartortle":
+                if self.bi == True:
+                    self.canvas.create_image(172//2, 235//2, image = self.bigode_img )
+                if self.oc == True:
+                    self.canvas.create_image(173//2, 227//2, image = self.oculos_img )            
+                if self.ch == True:
+                    self.canvas.create_image(180//2, 180//2, image = self.chapeu_img )
+                if self.va == True:
+                    self.canvas.create_image(115//2, 240//2, image = self.sr_img )            
+            
+            
+            elif self.p == "blastoise":
+                if self.bi == True:
+                    self.canvas.create_image(160//2, 180//2, image = self.bigode_img )
+                if self.oc == True:
+                    self.canvas.create_image(165//2, 164//2, image = self.oculos_img )            
+                if self.ch == True:
+                    self.canvas.create_image(180//2, 127//2, image = self.chapeu_img )
+                if self.va == True:
+                    self.canvas.create_image(89//2, 205//2, image = self.sr_img )            
+            
+            elif self.p == "bulbasaur":
+                if self.bi == True:
+                    self.canvas.create_image(170//2, 295//2, image = self.bigode_img )
+                if self.oc == True:
+                    self.canvas.create_image(175//2, 282//2, image = self.oculos_img )            
+                if self.ch == True:
+                    self.canvas.create_image(180//2, 232//2, image = self.chapeu_img )
+                if self.va == True:
+                    self.canvas.create_image(135//2, 300//2, image = self.sr_img )            
+            
+            elif self.p == "ivysaur":
+                if self.bi == True:
+                    self.canvas.create_image(172//2, 290//2, image = self.bigode_img )
+                if self.oc == True:
+                    self.canvas.create_image(174//2, 280//2, image = self.oculos_img )            
+                if self.ch == True:
+                    self.canvas.create_image(180//2, 232//2, image = self.chapeu_img )
+                if self.va == True:
+                    self.canvas.create_image(135//2, 299//2, image = self.sr_img )           
+            
+
+            elif self.p == "venusaur":
+                if self.bi == True:
+                    self.canvas.create_image(163//2, 280//2, image = self.bigode_img )
+                if self.oc == True:
+                    self.canvas.create_image(170//2, 265//2, image = self.oculos_img )            
+                if self.ch == True:
+                    self.canvas.create_image(170//2, 205//2, image = self.chapeu_img )
+                if self.va == True:
+                    self.canvas.create_image(90//2, 300//2, image = self.sr_img )
+
             self.canvas.update()
             time.sleep(0.02)
         
