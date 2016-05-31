@@ -321,7 +321,7 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_bigode.configure(state = "disabled")
-            self.janela_principal.jogo.button_bigode.configure(state = "active")
+            
             self.n_bigode += 1
             self.update_money()
             print(self.n_bigode)
