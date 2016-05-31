@@ -190,7 +190,7 @@ class Loja:
         self.sabao = tk.PhotoImage(file = "Sabao.png")
         self.rare_candy = tk.PhotoImage(file = "Rare_Candy.png")
         self.super_rod = tk.PhotoImage(file = "Super_Rod.png")
-        self.insper_img = tk.PhotoImage(file = "Insper_2.png")
+        self.insper_img = tk.PhotoImage(file = "Insper.png")
         
         # Buttons        
         self.botao1 = tk.Button(self.window_loja, text = "Voltar", height = 2, width = 6)
