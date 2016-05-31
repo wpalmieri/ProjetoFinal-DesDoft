@@ -267,7 +267,7 @@ class Loja:
         self.label_poster = tk.Label(self.window_loja, text = "Poster - $200")
         self.label_poster.grid(row = 6, column = 2, sticky = "nsew")
         
-        # Iniciar o after
+        # Iniciar 
         self.window_loja.after(0, self.update_money)
         
         # Ler o save
@@ -321,7 +321,7 @@ class Loja:
             
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_bigode.configure(state = "disabled")
-            
+            self.janela_principal.jogo.button_bigode.configure(state = "active")
             self.n_bigode += 1
             self.update_money()
             print(self.n_bigode)
@@ -813,7 +813,7 @@ class Tamagotchi:
             base, num_imagens = self.base_arquivo_imagens(tipo)
             self.imagens[tipo] = self.le_imagens(base, num_imagens)
         
-    def comeca_tamagotchi(self):        
+    def comeca_tamagotchi(self):       
         self.window_tamagotchi.after(0, self.get_hungry)
         self.window_tamagotchi.after(0, self.get_sleepy)
         self.window_tamagotchi.after(0, self.get_dirty)
@@ -1062,7 +1062,7 @@ class Tamagotchi:
         
         
 #------------------------------------------------------  
-# Animação
+# A
     def evolução(self):
         if self.p == "charmeleon" and self.xp >= 500:
             tkm.showinfo(title = "Evolução", message = "Seu Pokémon evoluiu!")
