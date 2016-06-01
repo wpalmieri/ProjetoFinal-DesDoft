@@ -753,12 +753,12 @@ class Tamagotchi:
     
         elif tipo == "venusaur_A":
             base = 'Bulbasaur/venusaurA'
-#        elif tipo == "venusaur_F":
-#            base = 'Bulbasaur_F/venusaurF'
-#        elif tipo == "venusaur_S":
-#            base = 'Bulbasaur_S/venusaurF'
-#        elif tipo == "venusaur_B":
-#            base = 'Bulbasaur_B/venusaurB' 
+        elif tipo == "venusaur_F":
+            base = 'Bulbasaur_F/venusaurF'
+        elif tipo == "venusaur_S":
+            base = 'Bulbasaur_S/venusaurS'
+        elif tipo == "venusaur_B":
+            base = 'Bulbasaur_B/venusaurB' 
 
         return base, num_imagens        
         
@@ -803,10 +803,10 @@ class Tamagotchi:
             "ivysaur_F",
             "ivysaur_S",
             "ivysaur_B",
-            "venusaur_A"]
-#            "venusaur_F",
-#            "venusaur_S",
-#            "venusaur_B"]
+            "venusaur_A",
+            "venusaur_F",
+            "venusaur_S",
+            "venusaur_B"]
         
         self.imagens = {}
         for tipo in tipos:
