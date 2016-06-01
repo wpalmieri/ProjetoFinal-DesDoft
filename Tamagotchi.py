@@ -322,7 +322,7 @@ class Loja:
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_bigode.configure(state = "disabled")
             self.janela_principal.jogo.button_bigode.configure(state = "active")
-            self.n_bigode += 1
+            self.n_bigode = 1
             self.update_money()
             print(self.n_bigode)
             
@@ -338,7 +338,7 @@ class Loja:
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_oculos.configure(state = "disabled")
             self.janela_principal.jogo.button_oculos.configure(state = "active")
-            self.n_oculos += 1
+            self.n_oculos = 1
             self.update_money()
             print(self.n_oculos)
             
@@ -354,7 +354,7 @@ class Loja:
             self.janela_principal.jogo.dinheiro -= 500
             self.botao_chapeu.configure(state = "disabled")
             self.janela_principal.jogo.button_chapeu.configure(state = "active")
-            self.n_chapeu += 1
+            self.n_chapeu = 1
             self.update_money()
             print(self.n_chapeu)
             
@@ -427,7 +427,7 @@ class Loja:
             self.janela_principal.jogo.dinheiro -= 650
             self.botao_sr.configure(state = "disabled")
             self.janela_principal.jogo.button_sr.configure(state = "active")
-            self.n_sr += 1
+            self.n_sr = 1
             self.update_money()
             print(self.n_sr)
             
@@ -443,7 +443,7 @@ class Loja:
             self.janela_principal.jogo.dinheiro -= 200
             self.botao_poster.configure (state = "disabled")
             self.janela_principal.jogo.button_poster.configure(state = "active")
-            self.n_poster += 1
+            self.n_poster = 1
             self.update_money()
             
         else:
@@ -639,14 +639,9 @@ class Tamagotchi:
         self.sleep = 101
         self.days = 0
         self.xp = 0
-        self.dinheiro = 95
+        self.dinheiro = 995
         self.level = 0
-        self.tem_bigode = 1
-        self.tem_oculos = 1
-        self.tem_chapeu = 1
-        self.tem_sr = 1
-        self.tem_poster = 1
-        
+        self.janela_principal.loja.tem_bigode = 0
         
         self.janela_principal.loja.n_bigode = 0
         self.janela_principal.loja.n_oculos = 0
@@ -661,10 +656,15 @@ class Tamagotchi:
         self.janela_principal.loja.botao_bigode.configure(state = "active")
         self.janela_principal.loja.botao_oculos.configure(state = "active")
         self.janela_principal.loja.botao_chapeu.configure(state = "active")
-
         self.janela_principal.loja.botao_sr.configure(state = "active")
-#        self.janela_principal.loja.botao_poster.configure(state = "active")
+        self.janela_principal.loja.botao_poster.configure(state = "active")
 
+        self.button_bigode.configure(state = "disable")
+        self.button_oculos.configure(state = "disable")
+        self.button_chapeu.configure(state = "disable")
+        self.button_rc.configure(state = "disable")
+        self.button_sr.configure(state = "disable")
+        self.button_poster.configure(state = "disable")
 
     def base_arquivo_imagens(self, tipo):
         s = tipo.split("_")
@@ -891,12 +891,12 @@ class Tamagotchi:
             if self.sleep > 80:
                 return None
 
-            elif self.sleep >= 60:
+            elif self.sleep >= 70:
                self.button_feed.configure(state = "disabled")
                self.button_clean.configure(state = "disabled")
                self.button_sleep.configure(state = "disabled")
                self.xp += 2
-               self.window_tamagotchi.after(10000, self.dormindo)
+               self.window_tamagotchi.after(3000, self.dormindo)
 
             
             elif self.sleep >= 20:
@@ -904,7 +904,7 @@ class Tamagotchi:
                self.button_clean.configure(state = "disabled")
                self.button_sleep.configure(state = "disabled") 
                self.xp += 2
-               self.window_tamagotchi.after(50000, self.dormindo)
+               self.window_tamagotchi.after(6000, self.dormindo)
 
         
             elif self.sleep >= 1:
@@ -912,7 +912,7 @@ class Tamagotchi:
                self.button_clean.configure(state = "disabled")
                self.button_sleep.configure(state = "disabled")
                self.xp += 2
-               self.window_tamagotchi.after(100000, self.dormindo)
+               self.window_tamagotchi.after(8000, self.dormindo)
 
         
             else :
@@ -920,7 +920,7 @@ class Tamagotchi:
                self.button_clean.configure(state = "disabled")
                self.button_sleep.configure(state = "disabled")
                self.xp += 2
-               self.window_tamagotchi.after(120000, self.dormindo)
+               self.window_tamagotchi.after(10000, self.dormindo)
 
             self.janela_principal.loja.n_cafe -= 1
             
