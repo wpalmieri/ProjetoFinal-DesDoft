@@ -548,6 +548,7 @@ class Tamagotchi:
         self.oc = False
         self.ch = False
         self.va = False
+        self.pos = False
         
         # Botões
         self.icone_comer = tk.PhotoImage(file = "comer_icone.png")
@@ -624,6 +625,7 @@ class Tamagotchi:
 
         self.poster_img = tk.PhotoImage(file = "insper_2.png")
         self.button_poster = tk.Button(self.window_tamagotchi, height = 32, width = 32)
+        self.button_poster.configure(command = self.equipar_poster)        
         self.button_poster.grid(row = 4, column = 2, sticky = "e")
         if self.tem_poster == 1:
             self.button_poster.configure(image = self.poster_img, state = "active")
@@ -1013,15 +1015,15 @@ class Tamagotchi:
             self.ch = True
         else :
             self.ch= False
-#
-# 
-#    def equipar_poster(self):
-#        if self.pos == False:
-#            self.pos = True
-#        else :
-#            self.pos = True
-#
-#
+
+ 
+    def equipar_poster(self):
+        if self.pos == False:
+            self.pos = True
+        else :
+            self.pos = False
+
+
     def equipar_vara(self):
         if self.va == False:
             self.va = True
@@ -1105,7 +1107,9 @@ class Tamagotchi:
                     self.canvas.create_image(190//2, 190//2, image = self.chapeu_img )
                 if self.va == True:
                     self.canvas.create_image(137//2, 258//2, image = self.sr_img )
-            
+                if self.pos == True:
+                    self.canvas.create_image(100//2, 100//2, image = self.poster_img)
+                    
             elif self.p == "charmeleon":
                 if self.bi == True:
                     self.canvas.create_image(179//2, 228//2, image = self.bigode_img )
@@ -1115,7 +1119,8 @@ class Tamagotchi:
                     self.canvas.create_image(187//2, 172//2, image = self.chapeu_img )
                 if self.va == True:
                     self.canvas.create_image(120//2, 264//2, image = self.sr_img )           
-            
+                if self.pos == True:
+                    self.canvas.create_image(100//2, 100//2, image = self.poster_img)            
             
             elif self.p == "charizard":
                 if self.bi == True:
@@ -1125,7 +1130,10 @@ class Tamagotchi:
                 if self.ch == True:
                     self.canvas.create_image(170//2, 135//2, image = self.chapeu_img )
                 if self.va == True:
-                    self.canvas.create_image(135//2, 210//2, image = self.sr_img )            
+                    self.canvas.create_image(135//2, 210//2, image = self.sr_img )
+                if self.pos == True:
+                    self.canvas.create_image(100//2, 100//2, image = self.poster_img)
+                    
             
             
             elif self.p == "squirtle":
@@ -1137,7 +1145,8 @@ class Tamagotchi:
                     self.canvas.create_image(183//2, 190//2, image = self.chapeu_img )
                 if self.va == True:
                     self.canvas.create_image(120//2, 250//2, image = self.sr_img )            
-            
+                if self.pos == True:
+                    self.canvas.create_image(100//2, 100//2, image = self.poster_img)            
             
             
             elif self.p == "wartortle":
@@ -1149,7 +1158,8 @@ class Tamagotchi:
                     self.canvas.create_image(180//2, 180//2, image = self.chapeu_img )
                 if self.va == True:
                     self.canvas.create_image(115//2, 240//2, image = self.sr_img )            
-            
+                if self.pos == True:
+                    self.canvas.create_image(100//2, 100//2, image = self.poster_img)           
             
             elif self.p == "blastoise":
                 if self.bi == True:
@@ -1160,7 +1170,9 @@ class Tamagotchi:
                     self.canvas.create_image(180//2, 127//2, image = self.chapeu_img )
                 if self.va == True:
                     self.canvas.create_image(89//2, 205//2, image = self.sr_img )            
-            
+                if self.pos == True:
+                    self.canvas.create_image(100//2, 100//2, image = self.poster_img)
+                    
             elif self.p == "bulbasaur":
                 if self.bi == True:
                     self.canvas.create_image(170//2, 295//2, image = self.bigode_img )
@@ -1170,7 +1182,9 @@ class Tamagotchi:
                     self.canvas.create_image(180//2, 232//2, image = self.chapeu_img )
                 if self.va == True:
                     self.canvas.create_image(135//2, 300//2, image = self.sr_img )            
-            
+                if self.pos == True:
+                    self.canvas.create_image(100//2, 100//2, image = self.poster_img)
+                    
             elif self.p == "ivysaur":
                 if self.bi == True:
                     self.canvas.create_image(172//2, 290//2, image = self.bigode_img )
@@ -1180,7 +1194,8 @@ class Tamagotchi:
                     self.canvas.create_image(180//2, 232//2, image = self.chapeu_img )
                 if self.va == True:
                     self.canvas.create_image(135//2, 299//2, image = self.sr_img )           
-            
+                if self.pos == True:
+                    self.canvas.create_image(100//2, 100//2, image = self.poster_img)            
 
             elif self.p == "venusaur":
                 if self.bi == True:
@@ -1191,7 +1206,9 @@ class Tamagotchi:
                     self.canvas.create_image(170//2, 205//2, image = self.chapeu_img )
                 if self.va == True:
                     self.canvas.create_image(90//2, 300//2, image = self.sr_img )
-
+                if self.pos == True:
+                    self.canvas.create_image(100//2, 100//2, image = self.poster_img)
+                    
             self.canvas.update()
             time.sleep(0.02)
         
